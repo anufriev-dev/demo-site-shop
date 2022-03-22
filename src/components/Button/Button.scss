@@ -1,0 +1,15 @@
+.Button{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background: #0071f0;
+  cursor: pointer;
+  transition: .3s;
+  &:hover,&:focus{
+    background-color: rgba(0,113,240,0.7);
+  }
+  &:active{
+    background-color: orange;
+  }
+}

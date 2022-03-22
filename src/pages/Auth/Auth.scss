@@ -1,0 +1,57 @@
+
+.wrapAuth{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.formAuth{
+  font-family: Lato-Regular sans-serif;
+  width: 300px;
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,240,120,0.3);
+  letter-spacing: 1px;
+  &__input,
+  &__btn{
+    font-family: Lato-Regular sans-serif;
+    letter-spacing: 1px;
+    font-size: 16px;
+  }
+  &__title{
+    font-family: sans-serif;
+    text-align: center;
+    margin: 0 0 32px 0;
+  }
+  &__group{
+    position: relative;
+    padding-bottom: 32px;
+  }
+  &__input{
+
+    width: 100%;
+    padding: 0 0 10px 0;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    transition: 0.3s;
+    &:focus{
+      border-bottom: 1px solid #1a73a8;
+    }
+    &:hover{
+      border-bottom: 1px solid #1a73a8;
+    }
+  }
+  &__label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: .4s ease;
+  }
+  &__input:focus ~ &__label, 
+  &__input:not(:placeholder-shown) ~ &__label{
+    top: -18px;
+    font-size: 12px;
+    color:#e0e0e0;
+  }
+}
