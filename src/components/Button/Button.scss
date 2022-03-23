@@ -1,4 +1,5 @@
 .Button{
+  font-family: sans-serif;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -7,9 +8,16 @@
   cursor: pointer;
   transition: .3s;
   &:hover,&:focus{
-    background-color: rgba(0,113,240,0.7);
+    background: rgba(0,113,240,0.7);
   }
   &:active{
-    background-color: orange;
+    background: orange;
+  }
+}
+
+.Button-Hz{
+  background: #3cc395;
+  &:hover{
+    background: red;
   }
 }

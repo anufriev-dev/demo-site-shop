@@ -8,8 +8,6 @@ import "./MySlide.scss";
 import Layer1 from '../../img/Layer1.png';
 
 
-import './MySlide.scss';
-
 function MySlide () {
   const settings = {
     dots: true,
@@ -21,6 +19,7 @@ function MySlide () {
   return (
     <>
       <BgAbs height="446px" />
+      <div className="wrappSlider">
       <Slider {...settings}>
         <div>
           <div className="flex-slideMy">
@@ -77,6 +76,7 @@ function MySlide () {
           </div>
         </div>
       </Slider>
+      </div>
     </>
   );
 }

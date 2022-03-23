@@ -1,6 +1,6 @@
 import { MySlide } from '../MySlide/MySlide';
 
-function SectionSlide () {
+function SectionSlideVr () {
   return (
     <div className="container">
       <section className="slider-header">
@@ -9,4 +9,4 @@ function SectionSlide () {
     </div>
   );
 }
-export {SectionSlide}
+export {SectionSlideVr}

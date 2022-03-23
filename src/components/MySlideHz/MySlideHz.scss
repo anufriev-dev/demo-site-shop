@@ -1,0 +1,35 @@
+.flex-slideMyHz{
+  display: flex;
+}
+.block-Hz{
+  position: relative;
+}
+
+.dots-Hz .slick-prev:before{
+  content: "";
+  width: 50px;
+  height: 100px;
+  background: url(../../img/page1.png) no-repeat;
+  position: absolute;
+  top: -44px;
+  left: -35px;
+}
+.dots-Hz  .slick-next:before{
+  content: "";
+  width: 50px;
+  height: 100px;
+  background: url(../../img/page2.png) no-repeat;
+  position: absolute;
+  top:-44px;
+  right: -64px;
+}
+.flex-slideMyHz{
+  
+  &__img{
+    padding: 30px 30px 40px  30px ;
+    width: 192px;
+    height: 130px;
+    object-fit: contain;
+    border-left: 1px solid #e1e1e1;
+  }
+}
