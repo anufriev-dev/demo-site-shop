@@ -1,15 +1,19 @@
 import {Outlet} from 'react-router-dom';
 
+import {Header} from '../Header/Header.jsx';
+import { SectionSlide } from '../SectionSlide/SectionSlide.jsx';
+import {Footer} from '../Footer/Footer.jsx';
+
 function Layout () {
   return (
     <>
-    <header>Header</header>
-
+    <Header />
+    <SectionSlide />
     <main>
       <Outlet/>
     </main>
 
-    <footer>Footer</footer>
+    <Footer />
     </>
   );
 }

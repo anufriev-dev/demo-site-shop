@@ -1,0 +1,23 @@
+.nav{
+  font-family: "Lato-Bold";
+  font-size: 14px;
+  &__list{
+    display: flex;
+    padding: 9px 0 9px 0;
+  }
+  &__item:not(:last-child){
+    margin-right: 24px;
+    color: white;
+  }
+  &__link{
+    text-decoration: none;
+    color: white;
+    transition: .2s;
+    &:hover{
+      color: orange;
+    }
+    &:active{
+      color: blue;
+    }
+  }
+}

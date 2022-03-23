@@ -11,11 +11,11 @@ function App () {
   return (
     <>
     <Routes>
-      /* Главная страница */
+      { /* Главная страница */}
       <Route path="/" element={<Layout/>}>
         <Route index element={<p>Динамический текст в Outlet </p>}/>
       </Route>
-      /* Страница регистрации */
+      { /* Страница регистрации */}
       <Route path='/auth'>
         <Route index element={<Auth />}/>
         <Route path=':id' element={<Params />} />

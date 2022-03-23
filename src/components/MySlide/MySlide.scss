@@ -1,0 +1,44 @@
+.flex-slideMy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 65px;
+  &__img,&__box{
+    padding-right: 100px;
+  }
+
+}
+
+.slide-content {
+  width: 340px;
+  height: 100%;
+  color: white;
+  &__title {
+    font-family: "Lato-Black";
+    font-size: 25px;
+
+  }
+  &__text {
+    font-family: "Lato-Regular";
+    font-size: 14px;
+    line-height: 1.5em;
+    word-spacing: 1px;
+  }
+  &__btn {
+    color: white;
+    appearance: none;
+    border: 1px solid;
+    border-radius: 6px;
+    background:transparent;
+    padding: 10px 20px;
+    border: 3px solid;
+    &:hover {
+      color: #000;
+      border-color: #000; 
+    }
+    &:active {
+      color: white;
+      border-color: blue;
+    }
+  }
+}

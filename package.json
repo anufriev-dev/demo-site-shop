@@ -37,5 +37,10 @@
       "last 1 safari version"
     ],
     "homepage": "."
+  },
+  "devDependencies": {
+    "jquery": "^3.6.0",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1"
   }
 }
