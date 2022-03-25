@@ -17,6 +17,16 @@
 .BgAbs-Hz-two{
   height: 200px;
 }
+.BgAbs__MenuShadow{
+  height: 100%;
+  top:111px;
+  background: rgba(0,0,0, 0.14);
+  display: none;
+  z-index: 2;
+}
+.BgAbs__MenuShadow_rm{
+  display: block;
+}
 
 @media (max-width: 1200px){
   .BgAbs-Header-one{

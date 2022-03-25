@@ -2,6 +2,8 @@ import { useState } from "react";
 import classNames from "classnames";
 import "./Nav.scss";
 
+import {BgAbs} from '../BgAbs/BgAbs.jsx';
+
 function Nav () {
   let [getClass,setClass] = useState(null);
   let [getEffect, setEffect] = useState(null);
@@ -9,17 +11,21 @@ function Nav () {
   let hendelTog = () => getClass == 'nav--visible' ? setClass(null) : setClass('nav--visible');
   let hendelEfect = () => getEffect == 'burger--active' ? setEffect(null) : setEffect('burger--active');
 
-  function allFubcNav () {
-    hendelTog();
-    hendelEfect();
-    document.querySelector('body').classList.toggle("body__hidden");
+  function allFuncNav () {
+      hendelTog();
+      hendelEfect();
+      document.querySelector('.BgAbs__MenuShadow').classList.toggle('BgAbs__MenuShadow_rm')
+      document.querySelector('body').classList.toggle("body__hidden");
   }
+
   let nav = document.querySelector('.nav');
   let listItem = nav?.querySelectorAll('a');
+
   listItem?.forEach(el => {
     el.addEventListener('click', () => {
-      setClass(null);
-      setEffect(null);
+      setClass();
+      setEffect();
+      document.querySelector('.BgAbs__MenuShadow').classList.remove("BgAbs__MenuShadow_rm");
       document.querySelector('body').classList.remove("body__hidden");
     })
   })
@@ -53,9 +59,10 @@ function Nav () {
       </ul>
     </nav>
     <div className="block2"><span className="basket2">$300</span></div>
-    <button onClick={allFubcNav}className={classesBurger}>
+    <button onClick={allFuncNav}className={classesBurger}>
       <span className="burger__item"></span>
     </button>
+    <BgAbs className="BgAbs__MenuShadow" />
   </div>
   );
 }
