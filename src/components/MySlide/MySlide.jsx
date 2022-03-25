@@ -18,7 +18,7 @@ function MySlide () {
   };
   return (
     <>
-      <BgAbs height="446px" />
+      <BgAbs className="BgAbsVr" />
       <div className="wrappSlider">
       <Slider {...settings}>
         <div>

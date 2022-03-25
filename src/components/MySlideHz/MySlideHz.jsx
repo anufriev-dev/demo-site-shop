@@ -20,8 +20,8 @@ function MySlideHz () {
   };
   return (
     <div className='dots-Hz'>
-      <BgAbs zindex="-2"  height="295px" />
-      <BgAbs top="560px"background="#ffff" height="200px" />
+      <BgAbs zindex="-2"  className="BgAbs-Hz-one" />
+      <BgAbs top="560px"background="#ffff" className="BgAbs-Hz-two" />
       <div className="wrappSlider" style={{height: 190}}>
       <Slider {...settings}>
         <div>

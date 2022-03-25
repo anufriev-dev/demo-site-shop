@@ -1,32 +1,62 @@
+import { useState } from "react";
+import classNames from "classnames";
 import "./Nav.scss";
 
 function Nav () {
+  let [getClass,setClass] = useState(null);
+  let [getEffect, setEffect] = useState(null);
+
+  let hendelTog = () => getClass == 'nav--visible' ? setClass(null) : setClass('nav--visible');
+  let hendelEfect = () => getEffect == 'burger--active' ? setEffect(null) : setEffect('burger--active');
+
+  function allFubcNav () {
+    hendelTog();
+    hendelEfect();
+    document.querySelector('body').classList.toggle("body__hidden");
+  }
+  let nav = document.querySelector('.nav');
+  let listItem = nav?.querySelectorAll('a');
+  listItem?.forEach(el => {
+    el.addEventListener('click', () => {
+      setClass(null);
+      setEffect(null);
+      document.querySelector('body').classList.remove("body__hidden");
+    })
+  })
+
+  const slasses = classNames("nav", getClass);
+  const classesBurger = classNames("burger",getEffect );
+  
   return (
-    <>
-    <nav className="nav">
+  <div className="wrapNav">
+    <nav className={slasses} >
       <ul className="nav__list">
         <li className="nav__item"><a href="#" className="nav__link">HOME</a></li>
-        <li className="nav__item">|</li>
+        <li className="nav__item nav__item--dash">|</li>
         <li className="nav__item"><a href="#" className="nav__link">SALE</a></li>
-        <li className="nav__item">|</li>
+        <li className="nav__item nav__item--dash">|</li>
         <li className="nav__item"><a href="#" className="nav__link">HANDBAGS</a></li>
-        <li className="nav__item">|</li>
+        <li className="nav__item nav__item--dash">|</li>
         <li className="nav__item"><a href="#" className="nav__link">WALLETS</a></li>
-        <li className="nav__item">|</li>
+        <li className="nav__item nav__item--dash">|</li>
         <li className="nav__item"><a href="#" className="nav__link">ACCESSORIES</a></li>
-        <li className="nav__item">|</li>
+        <li className="nav__item nav__item--dash">|</li>
         <li className="nav__item"><a href="#" className="nav__link">MENTS STORE</a></li>
-        <li className="nav__item">|</li>
+        <li className="nav__item nav__item--dash">|</li>
         <li className="nav__item"><a href="#" className="nav__link">SHOES</a></li>
-        <li className="nav__item">|</li>
+        <li className="nav__item nav__item--dash">|</li>
         <li className="nav__item"><a href="#" className="nav__link">VINTAGE</a></li>
-        <li className="nav__item">|</li>
+        <li className="nav__item nav__item--dash">|</li>
         <li className="nav__item"><a href="#" className="nav__link">SERVICES</a></li>
-        <li className="nav__item">|</li>
+        <li className="nav__item nav__item--dash">|</li>
         <li className="nav__item"><a href="#" className="nav__link">CONTACT US</a></li>
       </ul>
     </nav>
-    </>
+    <div className="block2"><span className="basket2">$300</span></div>
+    <button onClick={allFubcNav}className={classesBurger}>
+      <span className="burger__item"></span>
+    </button>
+  </div>
   );
 }
 export {Nav};

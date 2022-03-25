@@ -24,7 +24,47 @@ ul{
   padding-bottom: 46px;
 }
 .container {
-  width: 1170px;
+  max-width: 1170px;
   margin: 0 auto;
   padding: 0 15px;
+  transition: .3s ease-in-out;
+}
+
+/*======= Desktop First =======*/
+
+/* Large Devices, With Screen */
+@media (max-width: 1200px){
+  .container{
+    width: 960px;
+  }
+}
+/* Medium Devices, Desktops */
+@media (max-width: 992px){
+  .container{
+    width: 740px;
+  }
+}
+/* Small Devices, Tables */
+@media (max-width: 768px){
+  .container{
+    width: 543px;
+  }
+}
+
+/* Extra Small Decvices, Phones */
+@media (max-width: 577px){
+  .container{
+    width: 370px;
+  }
+}
+/* Custon, iPhone Retina */
+@media (max-width: 400px){
+  .container{
+    width: 328px;
+  }
+}
+@media (max-width: 355px){
+  .container{
+    width: 200px
+  }
 }

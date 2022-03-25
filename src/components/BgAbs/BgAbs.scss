@@ -5,3 +5,31 @@
   z-index: -1;
   background: url(../../img/Layer0.png);
 }
+.BgAbs-Header-one{
+  height: 37px;
+}
+.BgAbsVr{
+  height: 446px;
+}
+.BgAbs-Hz-one{
+  height: 295px;
+}
+.BgAbs-Hz-two{
+  height: 200px;
+}
+
+@media (max-width: 1200px){
+  .BgAbs-Header-one{
+    height: 27px;
+  }
+}
+@media (max-width: 992px){
+  .BgAbs-Header-one{
+    height: 29px;
+  }
+}
+@media (max-width: 768px) {
+  .BgAbs-Header-one{
+    height: 37px;
+  }
+}
