@@ -5,3 +5,10 @@
     padding-bottom: 100px;
   } 
 }
+@media (max-width: 1024px) {
+  .slider-header-hz{
+    &__title{
+      color: #000;
+    } 
+  }
+}

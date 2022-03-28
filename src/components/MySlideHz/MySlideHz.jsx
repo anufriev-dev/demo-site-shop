@@ -18,6 +18,7 @@ function MySlideHz () {
     slidesToShow: 3,
     slidesToScroll: 3
   };
+
   return (
     <div className='dots-Hz'>
       <BgAbs zindex="-2"  className="BgAbs-Hz-one" />

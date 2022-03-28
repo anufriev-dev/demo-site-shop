@@ -5,6 +5,8 @@ import "./Nav.scss";
 import {BgAbs} from '../BgAbs/BgAbs.jsx';
 
 function Nav () {
+
+
   let [getClass,setClass] = useState(null);
   let [getEffect, setEffect] = useState(null);
 
@@ -12,6 +14,8 @@ function Nav () {
   let hendelEfect = () => getEffect == 'burger--active' ? setEffect(null) : setEffect('burger--active');
 
   function allFuncNav () {
+    let height = document.querySelector('.header').getBoundingClientRect().height;
+      document.querySelector(':root').style.setProperty('--nav-height', `${height}px`);
       hendelTog();
       hendelEfect();
       document.querySelector('.BgAbs__MenuShadow').classList.toggle('BgAbs__MenuShadow_rm')
@@ -34,6 +38,7 @@ function Nav () {
   const classesBurger = classNames("burger",getEffect );
   
   return (
+    <>
   <div className="wrapNav">
     <nav className={slasses} >
       <ul className="nav__list">
@@ -62,8 +67,10 @@ function Nav () {
     <button onClick={allFuncNav}className={classesBurger}>
       <span className="burger__item"></span>
     </button>
-    <BgAbs className="BgAbs__MenuShadow" />
+
   </div>
+      <BgAbs className="BgAbs__MenuShadow" />
+      </>
   );
 }
 export {Nav};
