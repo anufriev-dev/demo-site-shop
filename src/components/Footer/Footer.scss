@@ -2,6 +2,7 @@
   --footer-text: #ffffff;
 }
 .footer{
+  padding-top: 100px;
   position: relative;
 }
 .wrapFooter{
@@ -16,9 +17,6 @@
 }
 .navf{
   text-align: center;
-  &__list{
-
-  }
   &__item:not(:last-child){
     margin-bottom: 10px;
   }
@@ -49,5 +47,4 @@
   .wrapFooter{
     flex-direction: column;
   }
-
 }

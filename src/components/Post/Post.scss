@@ -1,0 +1,28 @@
+.post{
+  color: #afafaf;
+  font-size: 20px;
+  display: inline-block;
+  border:2px solid #e4e4e4;
+  border-bottom: 5px solid #3cc395;
+  padding: 20px;
+  margin: 10px;
+  min-width: 250px;
+  &__img{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+  }
+  &__title{
+
+  }
+  &__price{
+
+  }
+  &__wrapPrice{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
