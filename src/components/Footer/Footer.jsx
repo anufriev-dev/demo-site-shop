@@ -6,7 +6,9 @@ function Footer () {
   return (
     <>
       <footer className='footer'>
+        <div>
         <BgAbs className="BgAbs__footer"/>
+        </div>
         <div className="container">
           <div className="wrapFooter">
             <div className="wrapBlock">

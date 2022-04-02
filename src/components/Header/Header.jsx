@@ -1,11 +1,11 @@
 import './Header.scss';
 
+import Registry from '../Registry/Registry';
 import {Nav} from '../Nav/Nav';
 import { BgAbs } from '../BgAbs/BgAbs';
 import Logo from '../../img/logo.png';
 
 function Header () {
-
   return (
     <>
     <header className='header'>
@@ -17,9 +17,14 @@ function Header () {
           <div className="block"><div className="header-container__serch--content"><input className='header-container__serch' type="text" /><button className='btn-serch' type='hidden'></button> </div> </div>
 
           <div className="block"><span className="basket">$300</span></div>
+
         </div>
-        <BgAbs className="BgAbs-Header-one" boxShadow="0 1px -2px" background="#4ccfc1"  />
+        <Registry />
+        <div>
+          <BgAbs className="BgAbs-Header-one" background="#4ccfc1"  />
+        </div>
         <Nav />
+
       </div>
     </header>
     </>

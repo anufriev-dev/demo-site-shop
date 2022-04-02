@@ -1,10 +1,10 @@
 import {Routes,Route, useParams} from 'react-router-dom';
 
 import {Layout} from '../Layout/Layout';
-import {Auth} from '../../pages/Auth/Auth.jsx';
 import {Error} from '../Error/Error.jsx';
 import {Params} from '../../pages/Params/Params.jsx'; 
 import {MainList} from '../MainList/MainList.jsx';
+import {FormReg} from '../../pages/FormReg/FormReg';
 
 
 function App () {
@@ -17,9 +17,9 @@ function App () {
         <Route index element={<MainList/>}/>
       </Route>
       { /* Страница регистрации */}
-      <Route path='/auth'>
-        <Route index element={<Auth />}/>
-        <Route path=':id' element={<Params />} />
+      <Route path='/feed'>
+        <Route index element={<FormReg />}/>
+        <Route path=':auth' element={<Params />} />
       </Route>
       {/* Страница Api*/}
       <Route path='/auth/api'>

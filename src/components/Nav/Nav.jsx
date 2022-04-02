@@ -69,7 +69,9 @@ function Nav () {
     </button>
 
   </div>
-      <BgAbs className="BgAbs__MenuShadow" />
+      <div>
+          <BgAbs className="BgAbs__MenuShadow" />
+      </div>
       </>
   );
 }
