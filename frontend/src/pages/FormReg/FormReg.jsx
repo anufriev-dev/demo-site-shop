@@ -3,7 +3,7 @@ import './FormReg.scss';
 function FormReg () {
 
   function sub(e) {
-    e.preventDefault();
+    e.preventDefault(); 
     const name = document.getElementById('formRg-name').value,
           email = document.getElementById('formRg-email').value,
           pass = document.getElementById('formRg-pass').value,
@@ -30,7 +30,7 @@ function FormReg () {
               lablePass.style.display = 'none';
                 document.querySelector('.form-reg').submit();
               /* тут заканчивается проверка */
-
+              
             }else{
               lablePass.textContent = 'Пароль должен содержать минимум 6 символов';
               lablePass.style.display = 'block';

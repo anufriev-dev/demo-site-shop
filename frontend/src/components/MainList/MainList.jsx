@@ -10,7 +10,7 @@ function MainList () {
   const [store, setStore] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/auth/api')
+    fetch('http://localhost:4000/auth/api/product')
       .then(json => json.json())
       .then(
         (data) => {
