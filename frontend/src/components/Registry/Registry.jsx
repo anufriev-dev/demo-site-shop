@@ -1,13 +1,14 @@
 import './Registry.scss';
-
+import {useSelector,useDispatch} from 'react-redux';
+import {setLogin,setPass,nulls} from '../../store/regSlice'
 import { Button } from '../Button/Button';
-import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 
 function Registry () {
 
-  const [login, setLogin] = useState('');
-  const [pass, setPass] = useState('');
+  const {login,pass} = useSelector(state => state.reg)
+
+  const dispath = useDispatch()
 
   function toggle () {
     document.querySelector('.modal-window').classList.toggle('wrapAuth-active');
@@ -16,8 +17,7 @@ function Registry () {
         const wrap = document.querySelector('.wrapAuth');
         if(e.target == wrap){
           document.querySelector('.modal-window').classList.remove('wrapAuth-active');
-          setLogin('');
-          setPass('');
+          dispath(nulls())
         }
       })
     }
@@ -34,14 +34,14 @@ function Registry () {
           <h1 className='formAuth__title'>Вход</h1>
           <div className="formAuth__group">
             <input id='formAuth__input--1' type="text"
-             autocomplete="off" className="formAuth__input"
-              placeholder=' ' onChange={(e) => setLogin(e.target.value) } value={login}/>
+             autoComplete="off" className="formAuth__input"
+              placeholder=' ' onChange={(e) => dispath(setLogin(e.target.value)) } value={login}/>
             <label htmlFor="formAuth__input--1" className="formAuth__label">Login</label>
           </div>
           <div className="formAuth__group">
             <input id='formAuth__input--2' type="password"
               className="formAuth__input" placeholder=' '
-              onChange={(e) => setPass(e.target.value) } value={pass}
+              onChange={(e) => dispath(setPass(e.target.value)) } value={pass}
               />
             <label htmlFor="formAuth__input--2" className="formAuth__label">Pass</label>
           </div>

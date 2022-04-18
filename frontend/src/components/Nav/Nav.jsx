@@ -32,7 +32,7 @@ function Nav () {
       document.querySelector('.BgAbs__MenuShadow').classList.remove("BgAbs__MenuShadow_rm");
       document.querySelector('body').classList.remove("body__hidden");
     })
-  })
+  },[])
 
   const slasses = classNames("nav", getClass);
   const classesBurger = classNames("burger",getEffect );

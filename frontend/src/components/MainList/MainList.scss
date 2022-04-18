@@ -4,6 +4,20 @@
   row-gap: 20px;
   column-gap: 30px;
 }
+.pageML{
+  padding: 40px 0;
+}
+.pagesML, .current-pageML{
+  border: 1px solid #000;
+  border-radius: 50%;
+  padding: 7px 14px;
+  margin:14px;
+  cursor: pointer;
+}
+.current-pageML{
+  border: 2px solid #000;
+  font-weight: 700;
+}
 @media (max-width: 992px) {
   .main-container{
     display: grid;
@@ -19,5 +33,12 @@
     grid-template-columns: repeat(1, 1fr);
     row-gap: 20px;
     column-gap: 30px;
+  }
+  .pagesML, .current-pageML{
+    border: 1px solid #000;
+    border-radius: 50%;
+    padding: 0px 4px;
+    margin:7px;
+    cursor: pointer;
   }
 }

@@ -29,8 +29,8 @@ function FormReg () {
             if(pass.length >= 6){
               lablePass.style.display = 'none';
                 document.querySelector('.form-reg').submit();
-              /* тут заканчивается проверка */
-              
+                // document.location.href = 'http://localhost:3000'
+              /* тут заканчивается проверка */ 
             }else{
               lablePass.textContent = 'Пароль должен содержать минимум 6 символов';
               lablePass.style.display = 'block';
