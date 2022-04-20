@@ -1,41 +1,41 @@
-import { useState } from "react";
-import classNames from "classnames";
-import "./Nav.scss";
+import { useState } from 'react'
+import classNames from 'classnames'
+import './Nav.scss'
 
-import {BgAbs} from '../BgAbs/BgAbs.jsx';
+import {BgAbs} from '../BgAbs/BgAbs.jsx'
 
 function Nav () {
 
 
-  let [getClass,setClass] = useState(null);
-  let [getEffect, setEffect] = useState(null);
+  const [getClass,setClass] = useState(null)
+  const [getEffect, setEffect] = useState(null)
 
-  let hendelTog = () => getClass == 'nav--visible' ? setClass(null) : setClass('nav--visible');
-  let hendelEfect = () => getEffect == 'burger--active' ? setEffect(null) : setEffect('burger--active');
+  const hendelTog = () => getClass === 'nav--visible' ? setClass(null) : setClass('nav--visible')
+  const hendelEfect = () => getEffect === 'burger--active' ? setEffect(null) : setEffect('burger--active')
 
   function allFuncNav () {
-    let height = document.querySelector('.header').getBoundingClientRect().height;
-      document.querySelector(':root').style.setProperty('--nav-height', `${height}px`);
-      hendelTog();
-      hendelEfect();
+    const height = document.querySelector('.header').getBoundingClientRect().height
+      document.querySelector(':root').style.setProperty('--nav-height', `${height}px`)
+      hendelTog()
+      hendelEfect()
       document.querySelector('.BgAbs__MenuShadow').classList.toggle('BgAbs__MenuShadow_rm')
-      document.querySelector('body').classList.toggle("body__hidden");
+      document.querySelector('body').classList.toggle('body__hidden')
   }
 
-  let nav = document.querySelector('.nav');
-  let listItem = nav?.querySelectorAll('a');
+  const nav = document.querySelector('.nav')
+  const listItem = nav?.querySelectorAll('a')
 
   listItem?.forEach(el => {
     el.addEventListener('click', () => {
-      setClass();
-      setEffect();
-      document.querySelector('.BgAbs__MenuShadow').classList.remove("BgAbs__MenuShadow_rm");
-      document.querySelector('body').classList.remove("body__hidden");
+      setClass()
+      setEffect()
+      document.querySelector('.BgAbs__MenuShadow').classList.remove('BgAbs__MenuShadow_rm')
+      document.querySelector('body').classList.remove('body__hidden')
     })
   },[])
 
-  const slasses = classNames("nav", getClass);
-  const classesBurger = classNames("burger",getEffect );
+  const slasses = classNames('nav', getClass)
+  const classesBurger = classNames('burger',getEffect )
   
   return (
     <>
@@ -73,6 +73,6 @@ function Nav () {
           <BgAbs className="BgAbs__MenuShadow" />
       </div>
       </>
-  );
+  )
 }
-export {Nav};
+export {Nav}

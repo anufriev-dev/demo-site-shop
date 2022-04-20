@@ -1,14 +1,14 @@
-import './MySlideHz.scss';
-import {Button} from '../Button/Button.jsx';
-import { BgAbs } from '../BgAbs/BgAbs';
-import Layer3 from '../../img/Layer3.png';
-import Layer5 from '../../img/Layer5.png';
-import Layer6 from '../../img/Layer6.png';
+import './MySlideHz.scss'
+import {Button} from '../Button/Button.jsx'
+import { BgAbs } from '../BgAbs/BgAbs'
+import Layer3 from '../../img/Layer3.png'
+import Layer5 from '../../img/Layer5.png'
+import Layer6 from '../../img/Layer6.png'
 
-import Slider from 'react-slick';
+import Slider from 'react-slick'
 
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css' 
+import 'slick-carousel/slick/slick-theme.css'
 
 function MySlideHz () {
   const settings = {
@@ -17,10 +17,10 @@ function MySlideHz () {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3
-  };
+  }
 
   return (
-    <div className='dots-Hz'>
+    <div className="dots-Hz">
       <div>
       <BgAbs zindex="-2"  className="BgAbs-Hz-one" />
       </div>
@@ -31,7 +31,7 @@ function MySlideHz () {
       <Slider {...settings}>
         <div>
           <div className="flex-slideMyHz">
-            <img className='flex-slideMyHz__img' src={Layer3} alt="картика" width="192" height="130" />
+            <img className="flex-slideMyHz__img" src={Layer3} alt="картика" width="192" height="130" />
             <div className="slideMyHz-container">
               <h3 className="slideMyHz-container__title">Title</h3>
               <p className="slideMyHz-container__text">Lorem ipsum dolor sit amet.</p>
@@ -42,7 +42,7 @@ function MySlideHz () {
 
         <div>
           <div className="flex-slideMyHz">
-            <img className='flex-slideMyHz__img'  src={Layer5} alt="картика" width="192" height="130"/>
+            <img className="flex-slideMyHz__img"  src={Layer5} alt="картика" width="192" height="130"/>
             <div className="slideMyHz-container">
               <h3 className="slideMyHz-container__title">Title</h3>
               <p className="slideMyHz-container__text">Lorem ipsum dolor sit amet.</p>
@@ -53,7 +53,7 @@ function MySlideHz () {
 
         <div>
           <div className="flex-slideMyHz">
-            <img className='flex-slideMyHz__img' src={Layer6} alt="картика" width="192" height="130"/>
+            <img className="flex-slideMyHz__img" src={Layer6} alt="картика" width="192" height="130"/>
             <div className="slideMyHz-container">
               <h3 className="slideMyHz-container__title">Title</h3>
               <p className="slideMyHz-container__text">Lorem ipsum dolor sit amet.</p>
@@ -64,7 +64,7 @@ function MySlideHz () {
         <div>
 
           <div className="flex-slideMyHz">
-            <img className='flex-slideMyHz__img' src={Layer6} alt="картика" width="192" height="130" />
+            <img className="flex-slideMyHz__img" src={Layer6} alt="картика" width="192" height="130" />
             <div className="slideMyHz-container">
               <h3 className="slideMyHz-container__title">Title</h3>
               <p className="slideMyHz-container__text">Lorem ipsum dolor sit amet.</p>
@@ -75,7 +75,7 @@ function MySlideHz () {
 
         <div>
           <div className="flex-slideMyHz">
-            <img className='flex-slideMyHz__img' src={Layer5} alt="картика" width="192" height="130"/>
+            <img className="flex-slideMyHz__img" src={Layer5} alt="картика" width="192" height="130"/>
             <div className="slideMyHz-container">
               <h3 className="slideMyHz-container__title">Title</h3>
               <p className="slideMyHz-container__text">Lorem ipsum dolor sit amet.</p>
@@ -86,6 +86,6 @@ function MySlideHz () {
       </Slider>
       </div>
       </div>
-  );
+  )
 }
-export {MySlideHz};
+export {MySlideHz}

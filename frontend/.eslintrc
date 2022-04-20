@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "react-app"
+  ],
+  "rules": {
+    "quotes": ["warn","single"],
+    "jsx-quotes": ["warn","prefer-double"],
+    "no-console": "warn",
+    "no-unused-vars": "warn",
+    "semi": ["warn","never"],
+    "prefer-const": "warn"
+  }
+}

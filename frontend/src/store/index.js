@@ -1,11 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit'
-import regSlice from './regSlice'
+import authSlice from './authSlice'
 import mainListSlice from './mainListSlice'
+import registSlice from './registSlice'
 
 const store = configureStore({
   reducer: {
-    reg: regSlice,
-    mainList: mainListSlice
+    auth: authSlice,
+    mainList: mainListSlice,
+    reg: registSlice
   }
 })
+
 export default store

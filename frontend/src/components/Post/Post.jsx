@@ -1,6 +1,6 @@
-import React  from "react";
-import './Post.scss';
-import { Button } from "../Button/Button";
+import React  from 'react'
+import './Post.scss'
+import { Button } from '../Button/Button'
 
 function Post ({item}) {
   return(
@@ -10,11 +10,11 @@ function Post ({item}) {
       <p className="post__desc">{item.title}</p>
       <div className="post__wrapPrice"> 
       <span><b>$</b><span className="post__price">{item.price}</span></span>  
-        <Button className={"btn-post"} text={"BUY NOW"}  />
+        <Button className={'btn-post'} text={'BUY NOW'}  />
       </div>
     </div>  
     </>
-  );
+  )
 }
 
-export default Post;
+export default Post

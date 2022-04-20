@@ -1,11 +1,11 @@
-import {useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom'
 
 function Params () {
-  let {id} = useParams();
+  let {id} = useParams()
   return(
     <>
       id = {id}
     </>
-  );
+  )
 };
-export {Params};
+export {Params}

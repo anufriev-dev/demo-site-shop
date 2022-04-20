@@ -1,4 +1,4 @@
-import { MySlide } from '../MySlide/MySlide';
+import { MySlide } from '../MySlide/MySlide'
 
 function SectionSlideVr () {
   return (
@@ -7,6 +7,6 @@ function SectionSlideVr () {
         <MySlide />
       </section>
     </div>
-  );
+  )
 }
 export {SectionSlideVr}
