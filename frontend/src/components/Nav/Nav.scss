@@ -130,7 +130,7 @@
     }
     &__item{
       width: 300px;
-      border-bottom: 1px solid #000;
+      // border-bottom: 1px solid #000;
       &--dash{
         display: none;
       }
@@ -138,6 +138,7 @@
     &__link{
       color: #000;
       font-size: 20px;
+      text-decoration: none;
     }
   }
   .wrapNav{

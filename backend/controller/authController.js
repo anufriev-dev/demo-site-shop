@@ -37,7 +37,6 @@ class AuthController {
     try {
       let {password,login} = req.body
       let [candidat] = await modeleAuth.getLogin(login)
-      // console.log(candidat)
       if(!candidat){
         res.status(400).json(`Пользователь не найден`)
       }
@@ -46,8 +45,8 @@ class AuthController {
         res.status(403).json('Неверный пароль!!')
       }
       let token = createToken(candidat.id,candidat.roleid)
-      return res.status(200).json({token})
-      
+      return res.status(200).json({token,role: candidat.roleid})
+      // return res.status(200).cookie('Name',token,{sameSite: 'lax', httpOnly: true}).send('cookies') 
     } catch (e) {
       console.log(e)
     } 

@@ -22,7 +22,8 @@ export const authariz = createAsyncThunk(
         return rejectWithValue()
       }
       res = await res.json()
-      return res.token
+
+      return res
     } catch (e) {
       console.log(e)
       return rejectWithValue(e)
@@ -35,7 +36,8 @@ const regSlice = createSlice({
   initialState: {
     login: '',
     pass: '',
-    cookie: ''
+    cookie: '',
+    role: ''
   },
   reducers: {
     setLogin (state,action) {
@@ -51,10 +53,13 @@ const regSlice = createSlice({
   },
   extraReducers: {
     [authariz.fulfilled]: (state,action) => {
-      state.cookie = action.payload
+      state.cookie = action.payload.token
+      state.role = action.payload.role
       if(state.cookie) {
-        document.cookie = 'user='
-        document.cookie = `user=${state.cookie}`
+        window.cookieStore.delete('lore')
+        window.cookieStore.delete('user')
+        window.cookieStore.set({name: 'user', value: state.cookie, sameSite: 'lax'})
+        window.cookieStore.set('role',state.role)
         document.querySelector('.modal-window').classList.toggle('wrapAuth-active')
         state.login = ''
         state.pass = ''

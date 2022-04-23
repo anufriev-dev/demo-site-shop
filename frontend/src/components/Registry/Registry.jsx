@@ -11,11 +11,14 @@ function Registry () {
   const {login,pass} = useSelector(state => state.auth)
 
   const dispath = useDispatch()
+
+  const tokenUser = document.cookie.includes('user=')
+  const tokenRole = document.cookie.includes('role=ADMIN')
+
+
   
-
-
   useEffect(() => {
-    document.querySelector('.formAuth__btn').addEventListener('click', sub)
+    document.querySelector('.formAuth__btn')?.addEventListener('click', sub)
   }, [])
 
   function sub (e) {
@@ -36,10 +39,24 @@ function Registry () {
     }
   }
 
+  function exit () {
+    window.cookieStore.delete('user')
+    window.cookieStore.delete('role')
+    document.location.reload()
+  }
   return(
   <>
       <div className="registry">
-        <button onClick={toggle} className="registry__link" >Войти</button>
+        {tokenRole
+          ? <Link to="/admin" className="btn-green-qa ">Перейти в Админку</Link> 
+          : null 
+        }
+      
+       {
+        tokenUser
+        ? <button onClick={() => exit()} className="btn-green-qa btn-green-qa--red" >Выйти</button>
+        : <button onClick={toggle} className="btn-green-qa" >Войти</button>
+       }
       </div>
       <div className="modal-window">
         <div className="wrapAuth">
@@ -61,7 +78,7 @@ function Registry () {
               />
             <label htmlFor="formAuth__input--2" className="formAuth__label">Pass</label>
           </div>
-          <Button text="Войти" className="formAuth__btn" />
+         <Button text="Войти" className="formAuth__btn" />
           <div className="formAuth__wrap-button">
             <Link to={'/feed'}>Зарегистрироваться</Link>
           </div>

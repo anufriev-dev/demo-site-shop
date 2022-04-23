@@ -7,6 +7,8 @@ import {MainList} from '../MainList/MainList.jsx'
 import {FormReg} from '../../pages/FormReg/FormReg'
 import {BrowserRouter} from 'react-router-dom'
 import Redirect from '../../pages/Redirect/Redirect'
+import Panel from '../../pages/Panel/Panel'
+import Admin from '../../pages/Admin/Admin'
 
 
 function App () {
@@ -28,6 +30,11 @@ function App () {
         {/* Страница Api*/}
         <Route path="/auth/api">
           <Route index element={<></>} />
+        </Route>
+        {/* Админка */}
+        <Route path="/admin">
+          <Route index  element={<Admin />}/>
+          <Route path=":panel" element={<Panel />}/>
         </Route>
         <Route path="*" element={<Error />}/>
       </Routes>
