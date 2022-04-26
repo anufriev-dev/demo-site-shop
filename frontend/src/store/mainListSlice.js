@@ -33,7 +33,7 @@ const mainListSlice = createSlice({
     status: null,
     countPage: 1,
     currentPage: 1,
-    limit: 1,
+    limit: 3,
   },
   reducers: {
     setCurrent (state, action) {

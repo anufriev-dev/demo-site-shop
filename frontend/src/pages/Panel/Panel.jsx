@@ -1,29 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { getAllProduct,deleteProduct,createProduct } from '../../store/adminPanelSlice'
-import {setTitle,setPrice,setImg} from '../../store/adminPanelSlice'
+import { getAllProduct,deleteProduct,createProduct,getOneProduct,updateProduct,setProductid } from '../../store/adminPanelSlice'
+import {setTitle,setPrice,setOneProductTitle,setOneProductPrice} from '../../store/adminPanelSlice'
 import { Link } from 'react-router-dom'
+import FormPanel from '../../components/FormPanel/FormPanel'
 
 import './panel.scss'
 
 function Panel() {
 
-  const {store, error,title,img,price} = useSelector(state => state.adminPanel)
+  const {store, error,title,img,price,oneProduct,amountPost,productid} = useSelector(state => state.adminPanel)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getAllProduct())
-  }, [])
+  }, [amountPost])
 
-  useEffect (() => {
-    document.querySelector('.form-admin__btn').addEventListener('click', sub)
-  },[])
-
-  function sub (e) {
-    e.preventDefault()
-  }
   function prev (item) {
-   let res = window.confirm('Вы точно уверены что хотите удалить пост???')
+   const res = window.confirm('Вы точно уверены что хотите удалить пост???')
    if(res) {
     dispatch(deleteProduct(item.productid))
    }
@@ -31,13 +25,12 @@ function Panel() {
 
   function createProd (e) {
     e.preventDefault()
-    const file = document.querySelector('.inputFile')
-    const form = new FormData()
-    form.append('title',title)
-    form.append('price',price)
-    form.append('img',file.files[0])
-    console.log(file.files[0])
-    dispatch(createProduct(form))
+    dispatch(createProduct())
+  }
+
+  function updateProd (e) {
+    e.preventDefault()
+    dispatch(updateProduct())
   }
 
   return (
@@ -47,57 +40,52 @@ function Panel() {
         <Link to="/admin">Назад</Link>
     <div className="wrap-cell-admin grid1">
       <div className="wrap-form-admin">
-      <form action="" method="post" className="form-admin">
-        <h1>Добавить товар</h1>
-        <div className="form-admin__block">
-          <label htmlFor="form-admin__ni1">Название</label>
-          <input value={title} onChange={e => dispatch(setTitle(e.target.value))} id="form-admin__ni1" className="form-admin__in" type="text" />
-        </div>
-        <div className="form-admin__block">
-          <label htmlFor="form-admin__ni2">Цена</label>
-          <input value={price} onChange={e => dispatch(setPrice(e.target.value))} id="form-admin__ni2" className="form-admin__in" type="text" />
-        </div>
-        <div className="form-admin__block">
-          <input className="inputFile" type="file" onChange={e => dispatch(setImg(e.target[0]))}/>
-        </div>
-        <button onClick={createProd} className="form-admin__btn">Добавить</button>
-      </form>
+      <FormPanel 
+        className="form-admin--add"
+        name="Добавить товар" 
+        nameBtn="Добавить" 
+        title={title}
+        price={price}
+        onChangeTitle={setTitle}
+        onChangePrice={setPrice}
+        submit={(e) => createProd(e)}
+        />
       </div>
     </div>
       <div className="grid3 wrap-cell-admin ">
       <div className="wrap-form-admin">
-      <form action="" method="post" className="form-admin">
-        <h1>Обновить товар</h1>
-        <div className="form-admin__block">
-          <label htmlFor="form-admin__ni21">Название</label>
-          <input id="form-admin__ni21" className="form-admin__in" type="text" />
-        </div>
-        <div className="form-admin__block">
-          <label htmlFor="form-admin__ni22">Цена</label>
-          <input id="form-admin__ni22" className="form-admin__in" type="text" />
-        </div>
-        <div className="form-admin__block">
-          <input type="file" />
-        </div>
-        <button className="form-admin__btn">Обновить</button>
-      </form>
+      <FormPanel 
+        name="Обновить товар" 
+        nameBtn="Обновить" 
+        title={oneProduct[0].title}
+        price={oneProduct[0].price}
+        onChangeTitle={setOneProductTitle}
+        onChangePrice={setOneProductPrice}
+        submit={(e) => updateProd(e)}
+        productid={oneProduct[0].productid}
+        id={productid}
+        />
       </div>
       </div>
       <div className="wrap-cell-admin grid2">
         <table className="table-admin">
           <tbody>
           <tr className="table-admin__tr">
+            <th className="table-admin__th">Номер</th>        
+            <th className="table-admin__th">ID</th>
             <th className="table-admin__th">Название</th>
             <th className="table-admin__th">Цена</th>
             <th className="table-admin__th">Картинка</th>
             <th colSpan="2" className="table-admin__th">Настройки</th>
           </tr>
-          {store.map(item => (
+          {store.map((item,index) => (
             <tr className="table-admin__tr" key={item.productid}>
+              <td className="table-admin__td">{index + 1}</td>         
+              <td className="table-admin__td">{item.productid}</td>
               <td className="table-admin__td">{item.title}</td>
               <td className="table-admin__td">{item.price}</td>
               <td className="table-admin__td"><a target="_blank" href={`http://localhost:4000/${item.img}`}>ссылка</a></td>
-              <td className="table-admin__tdUP"><button className="table-admin__btnUp">Обновить</button></td>
+              <td className="table-admin__tdUP"><button onClick={() => dispatch(getOneProduct(item.productid))} className="table-admin__btnUp">Обновить</button></td>
               <td className="table-admin__tdDE"><button onClick={() => prev(item) } className="table-admin__btnDe">Удалить</button></td>
             </tr>
           ))}

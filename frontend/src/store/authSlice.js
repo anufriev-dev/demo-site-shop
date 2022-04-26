@@ -17,7 +17,6 @@ export const authariz = createAsyncThunk(
         },
         body: JSON.stringify(body)
       })
-      console.log(JSON.stringify(body))
       if(res.status === 400) {
         return rejectWithValue()
       }

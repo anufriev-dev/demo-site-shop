@@ -32,11 +32,32 @@ class ModelProduct {
       })
     })
   }
+  static findPost (id) {
+    return new Promise((res,rej) => {
+      connection.query("SELECT * FROM product WHERE productid = '"+ id +"'",(err,data) => {
+        if(err) {
+          rej(err)
+        }
+        res(data)
+      })
+    })
+  }
   static createPost (title,price,filename) {
     return new Promise ((res, rej) => {
       connection.query(
   "INSERT INTO product (productid,title,price,img) VALUES (NULL,'"+ title +"','"+ price +"','"+ filename +"')", (err,data) => {
           if(err) {
+            rej(err)
+          }
+          res(data)
+        })
+    })
+  }
+  static updatePost (title,price,filename,id) {
+    return new Promise((res, rej) => {
+      connection.query(
+        "UPDATE product SET img = '"+ filename  +"', title = '"+ title +"', price = '"+ price +"' WHERE productid = '"+ id +"'",(err,data) => {
+          if(err){ 
             rej(err)
           }
           res(data)
