@@ -1,5 +1,7 @@
 import {Routes,Route} from 'react-router-dom'
 
+import React,{useEffect} from 'react'
+import { useDispatch } from 'react-redux'
 import {Layout} from '../Layout/Layout'
 import {Error} from '../Error/Error.jsx'
 import {Params} from '../../pages/Params/Params.jsx' 
@@ -9,10 +11,19 @@ import {BrowserRouter} from 'react-router-dom'
 import Redirect from '../../pages/Redirect/Redirect'
 import Panel from '../../pages/Panel/Panel'
 import Admin from '../../pages/Admin/Admin'
+import Basket from '../../pages/basket/Basket'
+import { setBasket,setKeys } from '../../store/basketSlice'
 
 
 function App () {
-  // console.log(useParams());
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const res = Number(JSON.parse(localStorage.getItem('basket')))
+    dispatch(setBasket(res))
+    const keys = Object.keys(localStorage)
+    dispatch(setKeys(keys))
+  })
+
   return (
     <>
     <BrowserRouter>
@@ -35,6 +46,9 @@ function App () {
         <Route path="/admin">
           <Route index  element={<Admin />}/>
           <Route path=":panel" element={<Panel />}/>
+        </Route>
+        <Route path="/basket">
+          <Route index element={<Basket />} />
         </Route>
         <Route path="*" element={<Error />}/>
       </Routes>

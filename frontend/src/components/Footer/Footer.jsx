@@ -9,7 +9,7 @@ function Footer () {
         <div>
         <BgAbs className="BgAbs__footer"/>
         </div>
-        <div className="container">
+        <div className="containerMy">
           <div className="wrapFooter">
             <div className="wrapBlock">
               <h2 className="footer__title">Lorem, ipsum dolor.</h2>

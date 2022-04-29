@@ -24,48 +24,52 @@ ul{
   // padding-bottom: 80px;
   padding-bottom: 46px;
 }
-.container {
+.containerMy {
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 15px;
   transition: .3s ease-in-out;
+}
+.Link {
+  text-decoration: none;
+  color: #2D81E0;
 }
 
 /*======= Desktop First =======*/
 
 /* Large Devices, With Screen */
 @media (max-width: 1200px){
-  .container{
+  .containerMy{
     width: 960px;
   }
 }
 /* Medium Devices, Desktops */
 @media (max-width: 992px){
-  .container{
+  .containerMy{
     width: 720px;
   }
 }
 /* Small Devices, Tables */
 @media (max-width: 768px){
-  .container{
+  .containerMy{
     width: 526px;
   }
 }
 
 /* Extra Small Decvices, Phones */
 @media (max-width: 577px){
-  .container{
+  .containerMy{
     width: 348px;
   }
 }
 /* Custon, iPhone Retina */
 @media (max-width: 400px){
-  .container{
+  .containerMy{
     width: 305px;
   }
 }
 @media (max-width: 355px){
-  .container{
+  .containerMy{
     width: 200px
   }
 }

@@ -1,4 +1,4 @@
-const connection = require('../config/db')
+const connection                  = require('../config/db')
 
 class ModelProduct {
   static getProductId(id) {
@@ -42,10 +42,10 @@ class ModelProduct {
       })
     })
   }
-  static createPost (title,price,filename) {
+  static createPost (title,price,filename,articul) {
     return new Promise ((res, rej) => {
       connection.query(
-  "INSERT INTO product (productid,title,price,img) VALUES (NULL,'"+ title +"','"+ price +"','"+ filename +"')", (err,data) => {
+  "INSERT INTO product (productid,title,price,img,articul) VALUES (NULL,'"+ title +"','"+ price +"','"+ filename +"','"+ articul +"')", (err,data) => {
           if(err) {
             rej(err)
           }

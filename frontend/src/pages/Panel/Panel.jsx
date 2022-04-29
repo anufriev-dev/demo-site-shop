@@ -37,7 +37,7 @@ function Panel() {
 
     <div className="wrap-admin"> 
         {error && <h2>{error}</h2>}
-        <Link to="/admin">Назад</Link>
+        <Link className="Link" to="/admin">Назад</Link>
     <div className="wrap-cell-admin grid1">
       <div className="wrap-form-admin">
       <FormPanel 

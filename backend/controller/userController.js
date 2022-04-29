@@ -1,4 +1,4 @@
-const modelUser = require('../model/modelUser')
+const modelUser                   = require('../model/modelUser')
 
 class UserController {
   static async getAllUsers (req,res) {

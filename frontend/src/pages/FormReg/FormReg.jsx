@@ -18,7 +18,7 @@ function FormReg () {
   return (
     <>
       <div className="wfdiv"></div>
-        <div className="container">
+        <div className="containerMy">
           <form className="form-reg" action="" method="post">
             <h1 className="form-reg__title">Регистрация</h1>
 

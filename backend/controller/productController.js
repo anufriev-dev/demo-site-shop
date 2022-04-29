@@ -1,7 +1,7 @@
-const modelProduct = require('../model/modelProduct')
-const uuid = require('uuid')
-const path = require('path')
-const fs = require('fs')
+const modelProduct                = require('../model/modelProduct')
+const uuid                        = require('uuid')
+const path                        = require('path')
+const fs                          = require('fs')
 
 class ProductController {
   static async getProductAll (req,res) {
@@ -59,8 +59,10 @@ class ProductController {
 
       let filename = uuid.v4() + '.jpg';
       img.mv(path.resolve(__dirname,'..','static', filename))
-
-      let result = await modelProduct.createPost(title,price, filename)
+      
+      let articul = uuid.v1();
+      console.log("heare" + articul);
+      let result = await modelProduct.createPost(title,price, filename,articul)
       res.status(200).json({status: 'OK',result})
     } catch (e) {
       console.log(e)

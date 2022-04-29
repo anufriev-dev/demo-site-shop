@@ -1,8 +1,10 @@
-require('dotenv').config({path: __dirname + "../config/.env"})
-const bcrypt = require('bcrypt')
-const modeleAuth = require('../model/modelAuth')
-const jwt = require('jsonwebtoken')
-const {validationResult} = require('express-validator')
+const path                        = require('path')
+const bcrypt                      = require('bcrypt')
+const modeleAuth                  = require('../model/modelAuth')
+const jwt                         = require('jsonwebtoken')
+const {validationResult}          = require('express-validator')
+
+require('dotenv').config({path: path.resolve(__dirname, '..','config','.env')})
 
 function createToken (id, roleid) {
   const payload = {

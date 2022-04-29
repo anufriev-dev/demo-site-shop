@@ -1,14 +1,17 @@
 import { useState } from 'react'
+import {useSelector} from 'react-redux'
 import classNames from 'classnames'
 import './Nav.scss'
 
 import {BgAbs} from '../BgAbs/BgAbs.jsx'
+import { Link } from 'react-router-dom'
 
 function Nav () {
 
 
   const [getClass,setClass] = useState(null)
   const [getEffect, setEffect] = useState(null)
+  const {basket} = useSelector(state => state.basket)
 
   const hendelTog = () => getClass === 'nav--visible' ? setClass(null) : setClass('nav--visible')
   const hendelEfect = () => getEffect === 'burger--active' ? setEffect(null) : setEffect('burger--active')
@@ -63,7 +66,7 @@ function Nav () {
         <li className="nav__item"><a href="#" className="nav__link">CONTACT US</a></li>
       </ul>
     </nav>
-    <div className="block2"><span className="basket2">$300</span></div>
+    <Link to="/basket"><div className="block2"><span className="basket2">{basket}$</span></div> </Link> 
     <button onClick={allFuncNav}className={classesBurger}>
       <span className="burger__item"></span>
     </button>

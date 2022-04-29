@@ -2,7 +2,7 @@ import { MySlide } from '../MySlide/MySlide'
 
 function SectionSlideVr () {
   return (
-    <div className="container">
+    <div className="containerMy">
       <section className="slider-header">
         <MySlide />
       </section>

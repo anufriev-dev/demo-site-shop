@@ -42,6 +42,8 @@ function Registry () {
   function exit () {
     window.cookieStore.delete('user')
     window.cookieStore.delete('role')
+    localStorage.clear()
+    // обнови состояние (reload str)
     document.location.reload()
   }
   return(
