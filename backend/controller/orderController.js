@@ -4,7 +4,7 @@ class OrderController {
   static async order (req,res) {
     try {
       let {articul,email,textArea} = req.body
-      console.log(email,textArea,[articul])
+      console.log(email,textArea,articul)
       let arr = articul.split(',')
       console.log(articul)
       let result = await modeleOrder.orderBy(articul,email,textArea)

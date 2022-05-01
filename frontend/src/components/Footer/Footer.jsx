@@ -1,6 +1,7 @@
 import './Footer.scss'
 
 import {BgAbs} from '../BgAbs/BgAbs.jsx'
+import {Link} from 'react-router-dom'
 
 function Footer () {
   return (
@@ -15,12 +16,12 @@ function Footer () {
               <h2 className="footer__title">Lorem, ipsum dolor.</h2>
                 <nav className="navf">
                   <ul className="navf__list">
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
                   </ul>
                 </nav>
               </div>
@@ -29,12 +30,12 @@ function Footer () {
               <h2 className="footer__title">Lorem, ipsum dolor.</h2>
                 <nav className="navf">
                   <ul className="navf__list">
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
                   </ul>
                 </nav>
               </div>
@@ -43,12 +44,12 @@ function Footer () {
               <h2 className="footer__title">Lorem, ipsum dolor.</h2>
                 <nav className="navf">
                   <ul className="navf__list">
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
                   </ul>
                 </nav>
               </div>
@@ -57,12 +58,12 @@ function Footer () {
               <h2 className="footer__title">Lorem, ipsum dolor.</h2>
                 <nav className="navf">
                   <ul className="navf__list">
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Далеко-далеко, за.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
-                    <li className="navf__item"><a href="#" className="navf__link">Lorem, ipsum.</a></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Далеко-далеко, за.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
+                    <li className="navf__item"><Link to="/" className="navf__link">Lorem, ipsum.</Link></li>
                   </ul>
                 </nav>
               </div>

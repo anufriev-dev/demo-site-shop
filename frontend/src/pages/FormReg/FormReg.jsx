@@ -3,6 +3,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import {setLogin,setPassword,setEmile} from '../../store/registSlice'
 import {auth} from '../../store/registSlice'
 import { useEffect } from 'react'
+import {Link} from 'react-router-dom'
 
 function FormReg () {
   const {login,password,emile} = useSelector(state => state.reg)
@@ -10,7 +11,10 @@ function FormReg () {
 
   useEffect(() => {
     document.querySelector('.FormReg__btn').addEventListener('click', sub)
-  }, [])
+    return function () {
+      document.querySelector('.FormReg__btn')?.removeEventListener('click', sub)
+    }
+  })
   function sub(e) {
     e.preventDefault()
     dispath(auth())
@@ -49,7 +53,10 @@ function FormReg () {
               />
             </div>
             <hr className="FormReg__hr" />
-            <button className="FormReg__btn">Зарегистрироваться</button>
+            <div className="wrap-botton-reg">
+              <button className="FormReg__btn">Зарегистрироваться</button>
+              <Link className="Link" to="/">Назад</Link>
+            </div>
           </form>
         </div>
       </>

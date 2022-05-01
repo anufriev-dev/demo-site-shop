@@ -19,7 +19,7 @@ export const getAllProduct = createAsyncThunk(
   'adminPanel/getAllProduct',
   async function (_,{rejectWithValue}) {
     try {
-      const respons = await fetch(`http://localhost:4000/auth/api/product`, {
+      const respons = await fetch('http://localhost:4000/auth/api/product', {
         method: 'GET'
       })
       if(!respons.ok){
@@ -56,6 +56,7 @@ export const createOrder = createAsyncThunk(
   }
 )
 
+
 const basketSlice = createSlice({
   name: 'basket',
   initialState: {
@@ -77,18 +78,23 @@ const basketSlice = createSlice({
     },
     setTextArea (state,action) {
       state.textArea = action.payload
-    }
+    },
   },
   extraReducers: {
     [getAllProduct.fulfilled] : (state,actions) => {
       state.data = actions.payload
     },
     [getAllProduct.rejected] : (state,actions) => {
-      console.log(actions)
+      Object.console.log(actions)
+    },
+    [createOrder.fulfilled] : (state,action) => {
+      state.email = ''
+      state.textArea = ''
+      localStorage.clear()
     }
   }
 })
 
 
-export const {setKeys,setEmail,setTextArea,setBasket} = basketSlice.actions
+export const {setKeys,setEmail,setTextArea,setBasket,setData2} = basketSlice.actions
 export default basketSlice.reducer

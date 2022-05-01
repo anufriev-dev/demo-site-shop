@@ -47,11 +47,7 @@ const mainListSlice = createSlice({
     },
     setSerch (state,actio) {
       state.serch = actio.payload
-    }
-     ,
-    // setNostore (state,actio) {
-    //   state.nostore = actio.payload
-    // },
+    },
     setLimite (state,action) {
       state.limit = action.payload
     },

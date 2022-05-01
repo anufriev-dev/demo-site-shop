@@ -5,7 +5,7 @@ export const getAllProduct = createAsyncThunk(
   async function (_,{rejectWithValue}) {
     // const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
     try {
-      const respons = await fetch(`http://localhost:4000/auth/api/product`, {
+      const respons = await fetch('http://localhost:4000/auth/api/product', {
         method: 'GET'
       })
       if(!respons.ok){
@@ -30,7 +30,6 @@ export const deleteProduct = createAsyncThunk(
         }
       })
       result = await (await result).json()
-      console.log(result)
       return result.message
     } catch (e) {
       rejectWithValue(e)
@@ -50,7 +49,6 @@ export const createProduct = createAsyncThunk(
       let result = await fetch('http://localhost:4000/auth/api/product/create', {
         method: 'POST',
         headers: {
-          // 'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`
         },
         body: body
@@ -90,7 +88,6 @@ export const updateProduct = createAsyncThunk(
 
       const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
       const {img,oneProduct,productid} = await getState().adminPanel
-      console.log(productid)
       const body = new FormData()
 
       body.append('title',await oneProduct[0].title)
@@ -192,7 +189,7 @@ const adminPanelSlice = createSlice({
     },
     [updateProduct.rejected] : (state,action) => {
       alert('Не все поля заполнены')
-      console.log(action)
+      Object.console.log(action)
     }
   }
 })

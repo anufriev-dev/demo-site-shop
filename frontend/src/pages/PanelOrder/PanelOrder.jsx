@@ -3,6 +3,7 @@ import './style.scss'
 import {getAllOrder} from '../../store/orderSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import OrderLi from '../../components/OrderLi/OrderLi'
+import {Link} from 'react-router-dom'
 
 function PanelOrder() {
   const {data,message} = useSelector(state => state.orderslice)
@@ -33,7 +34,7 @@ function PanelOrder() {
       ))}
         </tbody>
       </table>
-
+          <Link to="/admin" className="Link">Назад</Link>
     </div>
   )
 }

@@ -29,7 +29,7 @@ function App () {
     const keys = Object.keys(localStorage)
     dispatch(setKeys(keys))
     dispatch(setBasket(JSON.parse(localStorage.getItem('basket'))))
-  },[])
+  })
 
   return (
     <>

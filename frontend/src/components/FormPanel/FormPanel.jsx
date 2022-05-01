@@ -1,10 +1,10 @@
 import React from 'react'
 import './FormPanel.scss'
 import {useDispatch } from 'react-redux'
-import {setTitle,setPrice,setImg,setOneProductTitle,setOneProductPrice,setProductid} from '../../store/adminPanelSlice'
+import {setImg,setProductid} from '../../store/adminPanelSlice'
 
 
-function FormPanel({name, nameBtn,title,price,onChangeTitle,onChangePrice,submit,className,id,productid}) {
+function FormPanel({name, nameBtn,title,price,onChangeTitle,onChangePrice,submit,className,productid}) {
 
   const dispatch = useDispatch()
 
@@ -14,10 +14,8 @@ function FormPanel({name, nameBtn,title,price,onChangeTitle,onChangePrice,submit
     dispatch(setImg(e.target.files[0]))
   }
   
-
   return (
     <>
-
     <form className={`form-admin ${className}`}>
       <h1 className="form-admin__titel">{name}</h1>
       <div className="form-admin__block">

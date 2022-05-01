@@ -19,23 +19,29 @@ function Registry () {
   
   useEffect(() => {
     document.querySelector('.formAuth__btn')?.addEventListener('click', sub)
-  }, [])
+    return function () {
+      document.querySelector('.formAuth__btn')?.removeEventListener('click', sub)
+      window.removeEventListener('click', windowEvent)
+    }
+  })
 
   function sub (e) {
     e.preventDefault()
     dispath( authariz())
   }
 
+  function windowEvent (e) {
+    const wrap = document.querySelector('.wrapAuth')
+    if(e.target === wrap){
+      document.querySelector('.modal-window').classList.remove('wrapAuth-active')
+      dispath(nulls())
+    }
+  }
+
   function toggle () {
     document.querySelector('.modal-window').classList.toggle('wrapAuth-active')
     if(document.querySelector('.modal-window').classList.contains('wrapAuth-active')){
-      window.addEventListener('click', (e) => {
-        const wrap = document.querySelector('.wrapAuth')
-        if(e.target === wrap){
-          document.querySelector('.modal-window').classList.remove('wrapAuth-active')
-          dispath(nulls())
-        }
-      })
+      window.addEventListener('click', windowEvent)
     }
   }
 

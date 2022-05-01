@@ -1,4 +1,4 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit"
+import { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
 
 export const getAllOrder = createAsyncThunk(
   'orderslice/getAllOrder',
@@ -11,7 +11,6 @@ export const getAllOrder = createAsyncThunk(
         }
       })
       res = await res.json()
-      console.log('i work there')
       return res.result
     } catch (e) {
       rejectWithValue(e)
@@ -43,24 +42,20 @@ const orderSlice = createSlice({
     data: [],
     message: ''
   },
-  reducers: {
-
-  },
   extraReducers: {
     [getAllOrder.fulfilled] : (state,actio) => {
-      console.log('i work')
       state.data = actio.payload
       state.message = ''
     },
     [getAllOrder.rejected] : (state,actio) => {
-      console.log(actio.payload)
+      Object.console.log(actio.payload)
     },
     [deleteOneOrder.fulfilled] : (state,actio) => {
       state.message = actio.payload
       alert(state.message)
     },
     [deleteOneOrder.rejected] : (state,actio) => {
-      console.log(actio.payload)
+      Object.console.log(actio.payload)
     }
   }
 })

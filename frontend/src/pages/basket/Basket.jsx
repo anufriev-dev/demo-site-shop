@@ -1,4 +1,4 @@
-import React,{useEffect, useRef} from 'react'
+import React,{useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { getAllProduct,createOrder } from '../../store/basketSlice'
 import { Link } from 'react-router-dom'
@@ -10,7 +10,7 @@ import PostBasket from '../../components/postBasket/PostBasket.jsx'
 
 function Basket() {
   
-  const {data,email,textArea,keys} = useSelector(state => state.basket)
+  const {data,email,textArea,keys,basket} = useSelector(state => state.basket)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -31,19 +31,18 @@ function Basket() {
     dispatch(getAllProduct())
   }
 
-  const order = async (e) => {
+  const order =  (e) => {
     e.preventDefault()
-    let articulArr = await keys.filter(item => item !== 'basket')
+    const keysHere = Object.keys(localStorage)
+    const articulArr =  keysHere.filter(item => item !== 'basket')
 
     const body = new FormData()
     body.append('email',email)
     body.append('textArea',textArea)
-    body.append('articul',[articulArr])
+    body.append('articul',articulArr)
 
     dispatch(createOrder(body)) 
-    dispatch(setEmail(''))
-    dispatch(setTextArea(''))
-    localStorage.clear()
+
     document.location.href ='http://localhost:3000/basket/order'
   }
 
@@ -70,7 +69,7 @@ function Basket() {
         <textarea value={textArea} onChange={e => dispatch(setTextArea(e.target.value))} className="form-basket__text" name="" id="" cols="30" rows="10"></textarea>
         <div className="Basket-wrap">
           <button onClick={order} className="form-basket__btn">Заказать</button>
-          <span>Цена:  {JSON.parse(localStorage.getItem('basket'))}$</span>
+          <span>Цена:  {basket}$</span>
         </div>
       </form>
     </div>

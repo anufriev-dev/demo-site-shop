@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import Post from '../Post/Post'
 import { useSelector,useDispatch } from 'react-redux'
 import {setCurrent} from '../../store/mainListSlice'
-import { getProduct,setStore,setLimite,setSerch } from '../../store/mainListSlice'
+import { getProduct,setStore,setLimite,setSerch, } from '../../store/mainListSlice'
 import { createPages } from '../../script/createPage'
 import {setBasket} from '../../store/basketSlice'
 
@@ -14,7 +14,6 @@ function MainList () {
 
   const {error,store,serch,status,limit,currentPage,countPage,kastilCount} = useSelector(state => state.mainList)
 
-  const {basket} = useSelector(state => state.basket)
   const dispatch = useDispatch()
   const pages = []
   createPages(pages,countPage,currentPage)
@@ -24,7 +23,7 @@ function MainList () {
   },[limit,currentPage,kastilCount])
 
   useEffect(() => {
-    let keys = Object.keys(localStorage)
+    const keys = Object.keys(localStorage)
     const collectionBtn = document.querySelectorAll('.post')
     collectionBtn.forEach(el => {
       if(keys.includes(el.getAttribute('data-id'))) {
@@ -49,7 +48,7 @@ function MainList () {
     const self = e.currentTarget
     const post = self.closest('.post')
     const price = parseInt(post.querySelector('.post__price').textContent) // price
-    let sum = (Number(JSON.parse(localStorage.getItem('basket')) + price))
+    const sum = (Number(JSON.parse(localStorage.getItem('basket')) + price))
     localStorage.setItem('basket', JSON.stringify(sum))
     dispatch(setBasket(sum))
     const img = post.querySelector('.post__img').getAttribute('src')//image
