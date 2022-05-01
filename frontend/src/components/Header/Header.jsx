@@ -11,8 +11,6 @@ import {Link} from 'react-router-dom'
 function Header () {
 
 
-
-
   const {basket} = useSelector(state => state.basket)
 
   return (

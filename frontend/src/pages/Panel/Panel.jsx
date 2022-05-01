@@ -32,7 +32,11 @@ function Panel() {
     e.preventDefault()
     dispatch(updateProduct())
   }
-
+  if(!store) {
+    return (
+      <h1>Загрузка</h1>
+    )
+  }
   return (
 
     <div className="wrap-admin"> 

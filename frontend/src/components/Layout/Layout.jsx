@@ -9,7 +9,7 @@ function Layout () {
   return (
     <>
     <Header />
-    <SectionSlideVr />
+    {/* <SectionSlideVr /> */}
     {/* <SectionSlideHz /> */}
     <main>
       <Outlet/>

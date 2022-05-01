@@ -12,17 +12,24 @@ import Redirect from '../../pages/Redirect/Redirect'
 import Panel from '../../pages/Panel/Panel'
 import Admin from '../../pages/Admin/Admin'
 import Basket from '../../pages/basket/Basket'
-import { setBasket,setKeys } from '../../store/basketSlice'
+import { setKeys } from '../../store/basketSlice'
+import RedirectByOrder from '../../pages/redirectByOrder/RedirectByOrder'
+import PanelOrder from '../../pages/PanelOrder/PanelOrder'
+import {setBasket} from '../../store/basketSlice'
 
 
 function App () {
   const dispatch = useDispatch()
+
+  if(!localStorage.getItem('basket')) {
+    localStorage.setItem('basket',0)
+  }
+
   useEffect(() => {
-    const res = Number(JSON.parse(localStorage.getItem('basket')))
-    dispatch(setBasket(res))
     const keys = Object.keys(localStorage)
     dispatch(setKeys(keys))
-  })
+    dispatch(setBasket(JSON.parse(localStorage.getItem('basket'))))
+  },[])
 
   return (
     <>
@@ -37,6 +44,7 @@ function App () {
           <Route index element={<FormReg />}/>
           <Route path=":goodreq" element={<Redirect />}/>
           <Route path=":auth" element={<Params />} />
+
         </Route>
         {/* Страница Api*/}
         <Route path="/auth/api">
@@ -45,10 +53,12 @@ function App () {
         {/* Админка */}
         <Route path="/admin">
           <Route index  element={<Admin />}/>
-          <Route path=":panel" element={<Panel />}/>
+          <Route path="panel" element={<Panel />}/>
+          <Route path="order" element={<PanelOrder />} />
         </Route>
         <Route path="/basket">
           <Route index element={<Basket />} />
+          <Route path=":order" element={<RedirectByOrder />} />
         </Route>
         <Route path="*" element={<Error />}/>
       </Routes>

@@ -17,9 +17,7 @@ export const getProductByArt = createAsyncThunk(
 )
 export const getAllProduct = createAsyncThunk(
   'adminPanel/getAllProduct',
-  async function (_,{rejectWithValue,getState}) {
-    // const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
-    // const {data,keys} = getState().basket
+  async function (_,{rejectWithValue}) {
     try {
       const respons = await fetch(`http://localhost:4000/auth/api/product`, {
         method: 'GET'
@@ -37,36 +35,51 @@ export const getAllProduct = createAsyncThunk(
     }
   }
 )
+export const createOrder = createAsyncThunk(
+  'basket/createOrder',
+  async function (body,{rejectWithValue}) {
+    const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
+    try {
+      let result = fetch('http://localhost:4000/auth/api/order', {
+        method: 'POST',
+        body: body,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      result = (await result).json()
+
+      return result.message
+    } catch (e) {
+      rejectWithValue(e)
+    }
+  }
+)
 
 const basketSlice = createSlice({
   name: 'basket',
   initialState: {
     data: [],
-    load: false,
     basket : 0,
-    basketItem: [],
-    keys: []
+    keys: [],
+    email: '',
+    textArea: ''
   },
   reducers: {
-    setBasket (state,actions) {
-      state.basket += parseInt(actions.payload)
-      localStorage.setItem('basket',JSON.stringify(state.basket))
+    setBasket (state,action) {
+      state.basket = action.payload
     },
-    setBasketItem (state,actions) {
-      state.basketItem.push(actions.payload)
+    setKeys (state,action) {
+      state.keys = action.payload
     },
-    setKeys (state,actions) {
-      state.keys = actions.payload
+    setEmail (state,action) {
+      state.email = action.payload
+    },
+    setTextArea (state,action) {
+      state.textArea = action.payload
     }
   },
   extraReducers: {
-    [getProductByArt.pending] : (state,actions) => {
-      state.load = true
-    },
-    [getProductByArt.fulfilled] : (state,actions) => {
-      state.load = false
-      state.data = actions.payload
-    },
     [getAllProduct.fulfilled] : (state,actions) => {
       state.data = actions.payload
     },
@@ -77,5 +90,5 @@ const basketSlice = createSlice({
 })
 
 
-export const {setBasket,setBasketItem,setKeys} = basketSlice.actions
+export const {setKeys,setEmail,setTextArea,setBasket} = basketSlice.actions
 export default basketSlice.reducer

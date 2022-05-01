@@ -1,21 +1,18 @@
-import React,{useEffect}  from 'react'
-import './Post.scss'
-import { Button } from '../Button/Button'
+import React from 'react'
+import './postBasket.scss'
 
-function Post ({item,text,onCl}) {
+export default function PostBasket({item,deLete}) {
 
-  return(
+  return (
     <>
     <div className="post" data-id={item.articul}>
       <img className="post__img" src={`http://localhost:4000/${item.img}`} alt="картинка" width={300} height={300}/>
       <p className="post__desc">{item.title}</p>
       <div className="post__wrapPrice"> 
       <span><b>$</b><span className="post__price">{item.price}</span></span>  
-        <Button className={'btn-post'} text={text}  />
+        <button onClick={e => deLete(e)} className="post-delete ">Удалить</button>
       </div>
     </div>  
     </>
   )
 }
-
-export default Post

@@ -4,6 +4,7 @@ import mainListSlice from './mainListSlice'
 import registSlice from './registSlice'
 import adminPanelSlice from './adminPanelSlice'
 import basketSlice from './basketSlice'
+import orderSlice from './orderSlice'
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     mainList: mainListSlice,
     reg: registSlice,
     adminPanel:adminPanelSlice,
-    basket: basketSlice
+    basket: basketSlice,
+    orderslice: orderSlice
   },
   middleware: getDefaultMiddleware => {
   return  getDefaultMiddleware({

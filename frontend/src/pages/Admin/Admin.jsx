@@ -1,16 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Card from '../../components/Card/Card'
 import './admin.scss'
+
+const textPost = 'Здесь вы сможете редактировать просты с товарами, а именно: удалять, обновлять, добавлять'
+const textOrders = 'Здесь расположены заказы клиентов'
 
 function Admin() {
   return (
     <div className="containerMy">
       <h1>Админка</h1>
-      <div className="postBlockAdmin">
-        <h1>Посты с товарами</h1>
-        <p className="postBlockAdmin__text">
-          Здесь вы сможете редактировать просты с товарами, а именно: удалять, обновлять, добавлять</p>
-        <Link className="link-adminka" to="/admin/panel">Посты</Link>
+      <div className="wrapAd">
+        <Card title={'Посты с товарами'} text={textPost} btn={'Посты'} link={'/admin/panel'} />
+        <Card title={'Заказы'} text={textOrders} btn={'Перейти'} link={'/admin/order'} />
       </div>
       <div className="main-adminka">
         <Link className="Link" to="/">Назад</Link>

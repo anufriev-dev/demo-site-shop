@@ -29,15 +29,34 @@ const mainListSlice = createSlice({
   name:'mainlist',
   initialState: {
     store: [],
+    // nostore: [],
     error: null,
     status: null,
     countPage: 1,
     currentPage: 1,
-    limit: 3,
+    limit: 6,
+    kastilCount: 0,
+    serch: ''
   },
   reducers: {
     setCurrent (state, action) {
       state.currentPage = action.payload
+    },
+    setStore (state,action) {
+      state.store = action.payload
+    },
+    setSerch (state,actio) {
+      state.serch = actio.payload
+    }
+     ,
+    // setNostore (state,actio) {
+    //   state.nostore = actio.payload
+    // },
+    setLimite (state,action) {
+      state.limit = action.payload
+    },
+    setkastilCount(state,actio) {
+      state.kastilCount = actio.payload
     }
   },
   extraReducers: {
@@ -46,9 +65,9 @@ const mainListSlice = createSlice({
       state.error = null
     },
     [getProduct.fulfilled] : (state, action) => {
-      state.store = action.payload.data
-      state.countPage = action.payload.length
-      state.status = 'resolved'
+      state.store =  action.payload.data
+      state.countPage =  action.payload.length
+      state.status =  'resolved'
     },
     [getProduct.rejected] : (state, action) => {
       state.status = 'rejected'
@@ -58,5 +77,5 @@ const mainListSlice = createSlice({
 })
 
 
-export const {setCurrent} = mainListSlice.actions
+export const {setCurrent,setStore,setLimite,setkastilCount,setSerch} = mainListSlice.actions
 export default mainListSlice.reducer
