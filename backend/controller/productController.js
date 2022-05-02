@@ -22,6 +22,9 @@ class ProductController {
       }
 
       let oneProduct = await modelProduct.findPost(id)
+      if(oneProduct.length === 0) {
+        return res.status(400).json({message: 'Поста не существует'})
+      }
       console.log(oneProduct)
       res.status(200).json(oneProduct)
       
@@ -70,20 +73,23 @@ class ProductController {
   }
   static async updateProduct (req, res) {
     try {
-      console.log('я тут')
+      if(!req.files){
+        return res.status(400).json({message: 'Файл не найден'})
+      }
+      let {img} = req.files 
       let {title,price} = req.body;
       let id = req.params.id
-      let {img} = req.files
-      console.log(title,price,id,img)
-
       const postId  = await modelProduct.findPost(id)
+      
+      if(postId.length <= 0){
+        return res.status(400).json({message: 'Такого поста несуществует'})
+      }
 
       const prevImg = postId[0].img
 
       let filename = uuid.v4() + '.jpg';
 
       let result;
-      console.log(prevImg == img)
       if(prevImg == img) {      
         result = await modelProduct.updatePost(title,price,prevImg,id)
       }else{

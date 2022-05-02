@@ -9,17 +9,17 @@ const pagination = (model) => {
 
     let result = {}
 
-    if(endIndex < (await model()).length){
-      result.nextPage = {
-        page: page + 1
-      }
-    }
+    // if(endIndex < (await model()).length){
+    //   result.nextPage = {
+    //     page: page + 1
+    //   }
+    // }
 
-    if(startIndex > 0){
-      result.previousePage = {
-        page: page - 1
-      }
-    }
+    // if(startIndex > 0){
+    //   result.previousePage = {
+    //     page: page - 1
+    //   }
+    // }
     result.length = (await model()).length
 
     result.data = (await model()).slice(startIndex,endIndex)

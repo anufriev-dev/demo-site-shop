@@ -36,11 +36,11 @@ function Basket() {
     const keysHere = Object.keys(localStorage)
     const articulArr =  keysHere.filter(item => item !== 'basket')
 
-    const body = new FormData()
-    body.append('email',email)
-    body.append('textArea',textArea)
-    body.append('articul',articulArr)
-
+    const body = {
+      email: email,
+      textArea: textArea,
+      articul: articulArr
+    }
     dispatch(createOrder(body)) 
 
     document.location.href ='http://localhost:3000/basket/order'

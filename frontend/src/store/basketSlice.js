@@ -38,14 +38,14 @@ export const getAllProduct = createAsyncThunk(
 export const createOrder = createAsyncThunk(
   'basket/createOrder',
   async function (body,{rejectWithValue}) {
-    const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
+    // const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
     try {
       let result = fetch('http://localhost:4000/auth/api/order', {
         method: 'POST',
         body: body,
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        // headers: {
+        //   'Authorization': `Bearer ${token}`
+        // }
       })
       result = (await result).json()
 

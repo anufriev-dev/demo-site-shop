@@ -13,8 +13,7 @@ module.exports = function (role) {
       }
       token = token.split(' ')[1];
       const isToken = jwt.verify(token, process.env.JWT_SECRET)
-      console.log(role.includes(isToken.roleid))
-      console.log(isToken)
+
       if(role.includes(isToken.roleid)) {
         next()
       }else{
