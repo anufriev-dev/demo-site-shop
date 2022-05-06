@@ -3,7 +3,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import {setLogin,setPass,nulls} from '../../store/authSlice'
 import { authariz } from '../../store/authSlice'
 import { Button } from '../Button/Button'
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 import { useEffect } from 'react'
 
 function Registry () {
@@ -11,6 +11,7 @@ function Registry () {
   const {login,pass} = useSelector(state => state.auth)
 
   const dispath = useDispatch()
+  const navigate = useNavigate()
 
   const tokenUser = document.cookie.includes('user=')
   const tokenRole = document.cookie.includes('role=ADMIN')
@@ -50,7 +51,8 @@ function Registry () {
     window.cookieStore.delete('role')
     localStorage.clear()
     // обнови состояние (reload str)
-    document.location.reload()
+    navigate('/')
+    // document.location.reload()
   }
   return(
   <>

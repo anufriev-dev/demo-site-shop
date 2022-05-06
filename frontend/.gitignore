@@ -14,7 +14,4 @@
 .env.production.local
 
 # my files
-/index.php
-/index.html
-/settings
 /public

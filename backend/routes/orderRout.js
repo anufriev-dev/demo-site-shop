@@ -10,9 +10,10 @@ const roleMiddleware              = require('../middleware/roleMiddleware')
  *  post:
  *   tags:
  *   - order
+ *   summary: создать Заказ
  *   parameters:
  *   -
- *    name: email
+ *    name: body
  *    description: Email для создания заказа
  *    in: body
  *    type: string
@@ -63,12 +64,93 @@ const roleMiddleware              = require('../middleware/roleMiddleware')
 router.post('/order',[
   check('articul',"Минимальное кол-во символов от 4").isLength({min:4}),
   check('email', "Email не валидный").isEmail(),
-  check('textArea',"Минимальное кол-во символов от 4").isLength({min: 4})
+  // check('textArea',"Минимальное кол-во символов от 4").isLength({min: 4})
 ],
   orderController.order )
-
+/**
+ * @swagger
+ *  /auth/api/orderget:
+ *  get:
+ *   tags:
+ *   - order
+ *   summary: получить массив Заказов
+ *   parameters:
+ *   - 
+ *     name: Authorization
+ *     description: "Bearer 'one space' token"
+ *     in: header
+ *     type: string
+ *     required: true
+ *   responses:
+ *    200: 
+ *      schema:
+ *        type: object
+ *        properties:
+ *          message:
+ *            type: string
+ *            example: OK
+ *          result:
+ *            type: array
+ *            items:
+ *              type: object
+ *              properties:
+ *                allArticul:
+ *                  type: string
+ *                email:
+ *                  type: string
+ *                text:
+ *                  type: string
+ *                idorder:
+ *                   type: integer
+ *    403:
+ *     schema:
+ *      type: object
+ *      properties:
+ *        message:
+ *          type: string             
+ */
 router.get('/orderget',[roleMiddleware(['ADMIN'])], orderController.orderget )
-
+/**
+ * @swagger
+ *  /auth/api/delete/order/{id}:
+ *   delete:
+ *    tags:
+ *    - order
+ *    summary: удалить Заказ по id
+ *    parameters:
+ *    - 
+ *      name: id 
+ *      description: id для удаления
+ *      in: path
+ *      type: integer
+ *      required: true
+ *    - 
+ *      name: Authorization
+ *      description: "Bearer 'one space' token"
+ *      in: header
+ *      required: true
+ *      type: string
+ *      
+ *    responses:
+ *      200:
+ *        schema:
+ *          type: object
+ *          properties:
+ *            message:
+ *              type: string
+ *            status:
+ *              type: string
+ *              example: Ok
+ *      400:
+ *        schema:
+ *          type: object
+ *          properties:
+ *            message:
+ *              type: string
+ *            status:
+ *              type: string
+ *              example: Bad  
+ */
 router.delete('/delete/order/:id',[roleMiddleware(['ADMIN'])], orderController.deleteOrder)
 
 module.exports = router

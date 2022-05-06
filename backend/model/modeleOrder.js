@@ -22,13 +22,23 @@ class ModeleOrder {
       })
     })
   }
+  static orderGetOne (id) {
+    return new Promise((res,rej) => {
+      connection.query("SELECT * FROM orderby WHERE idorder = '"+id+"'",(err,data) => {
+        if(err){
+          rej(err)
+        }
+        res(data)
+      })
+    })
+  }
   static deleteOrderByOne (id) {
     return new Promise((res,rej) => {
       connection.query("DELETE FROM orderby WHERE idorder = '"+id+"' ",(err,data) => {
         if(err) {
           rej(err)
         }
-        res(data)
+        res()
       })
     })
   }

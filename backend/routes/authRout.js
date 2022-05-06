@@ -9,10 +9,9 @@ const {check}                     = require('express-validator')
  *  post:
  *    tags:
  *    - auth
- *    summary: "Регистрация user'a"
+ *    summary: "регистрация User'a"
  *    parameters:
  *     -  
- *       name: everything
  *       description: Логи для регистрации
  *       in: body
  *       schema:
@@ -69,10 +68,9 @@ router.post('/registration',[
  *  post:
  *   tags:
  *   - auth
- *   summary: Авторизация,
+ *   summary: авторизация
  *   parameters:
  *   -
- *    name: everything
  *    description: body
  *    in: body
  *    required: true

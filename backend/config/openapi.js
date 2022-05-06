@@ -5,8 +5,9 @@ const option = {
     swagger: "2.0",
     info: {
       title: 'my-shop',
-      version: '0.0.1'
+      version: '1.0.0',
     },
+    host: 'localhost:4000'
   },
   apis:['./app.js','./routes/*.js']
 }

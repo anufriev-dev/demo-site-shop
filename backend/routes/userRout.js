@@ -8,7 +8,7 @@ const userController              = require('../controller/userController')
  *  get:
  *   tags:
  *   - user
- *   summary: Получить всех пользователей
+ *   summary: получить всех Пользователей
  *   responses:
  *    200:
  *      description: Пост в массиве

@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { getAllProduct,createOrder } from '../../store/basketSlice'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { setEmail,setTextArea } from '../../store/basketSlice'
 import { setBasket } from '../../store/basketSlice'
 
@@ -12,7 +12,7 @@ function Basket() {
   
   const {data,email,textArea,keys,basket} = useSelector(state => state.basket)
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   useEffect(() => {
     dispatch(getAllProduct())
   },[keys])
@@ -41,9 +41,14 @@ function Basket() {
       textArea: textArea,
       articul: articulArr
     }
-    dispatch(createOrder(body)) 
+    const body2 = new FormData()
+    body2.append('email',email)
+    body2.append('textArea',textArea)
+    body2.append('articul',articulArr)
 
-    document.location.href ='http://localhost:3000/basket/order'
+    dispatch(createOrder(body2)) 
+
+    navigate('/basket/order')
   }
 
   return (

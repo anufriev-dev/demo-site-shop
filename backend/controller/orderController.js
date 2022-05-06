@@ -28,11 +28,12 @@ class OrderController {
   static async deleteOrder (req,res) {
     try {
       let {id} = req.params
-      if(!id) {
-        return res.status(400).json('Id НЕ найдено')
+      let idProved = await modeleOrder.orderGetOne(id)
+      if(idProved.length <= 0) {
+        return res.status(400).json({message: `Поста c id: ${id} не существует!`,status: 'Bad'})
       }
       let result = await modeleOrder.deleteOrderByOne(id)
-      res.status(200).json({message: 'Заказ был онулирован!', result})
+      res.status(200).json({message: 'Заказ был онулирован!',status: 'OK'})
     } catch (e) {
       console.log(e)
     }

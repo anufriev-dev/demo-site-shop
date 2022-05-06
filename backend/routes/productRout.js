@@ -13,7 +13,7 @@ const {validBody}                 = require('../middleware/castomValidation')
  *   get: 
  *     tags:
  *     - product
- *     summary: Получение постов постранично
+ *     summary: получение Постов постранично
  *     parameters: 
  *       - 
  *         description: "число страниц"
@@ -56,7 +56,7 @@ router.get('/product/:page?/:limit?',pagination(model.getPost),productController
  *  get:
  *   tags:
  *   - product
- *   summary: Найти Пост по id
+ *   summary: найти Пост по id
  *   parameters:
  *    - 
  *      descriptions: id Поста который нужно найти
@@ -100,7 +100,7 @@ router.get('/one/product/:id',roleMiddleware(['ADMIN']), productController.getOn
  *  delete:
  *    tags: 
  *    - product
- *    summary: Удалить пост по id
+ *    summary: удалить Пост по id
  *    parameters:
  *      - 
  *        description: id для удаления
@@ -139,7 +139,7 @@ router.delete('/product/delete/:id',roleMiddleware(['ADMIN']), productController
  *  post:
  *   tags:
  *   - product
- *   summary: Создать пост
+ *   summary: создать Пост
  *   parameters:
  *   - name: title
  *     in: formData
@@ -186,7 +186,7 @@ router.post('/product/create',[roleMiddleware(['ADMIN']),validBody], productCont
  *   put:
  *    tags:
  *    - product
- *    summary: Обновить по id
+ *    summary: обновить Пост по id
  *    parameters:
  *     - 
  *       name: id
