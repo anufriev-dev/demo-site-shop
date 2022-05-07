@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { getAllProduct,deleteProduct,createProduct,getOneProduct,updateProduct,setProductid } from '../../store/adminPanelSlice'
+import { getAllProduct,deleteProduct,createProduct,getOneProduct,updateProduct } from '../../store/adminPanelSlice'
 import {setTitle,setPrice,setOneProductTitle,setOneProductPrice} from '../../store/adminPanelSlice'
 import { Link } from 'react-router-dom'
-import FormPanel from '../../components/FormPanel/FormPanel'
+import FormPanel from '../../components/formPanel/FormPanel'
 
-import './panel.scss'
+import './styles.scss'
 
 function Panel() {
 
-  const {store, error,title,img,price,oneProduct,amountPost,productid} = useSelector(state => state.adminPanel)
+  const {store, error,title,price,oneProduct,amountPost,productid} = useSelector(state => state.adminPanel)
   const dispatch = useDispatch()
 
   useEffect(() => {

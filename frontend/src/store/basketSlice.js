@@ -17,7 +17,7 @@ export const getProductByArt = createAsyncThunk(
 )
 export const getAllProduct = createAsyncThunk(
   'adminPanel/getAllProduct',
-  async function (_,{rejectWithValue,dispatch}) {
+  async function (_,{rejectWithValue, dispatch}) {
     try {
       const respons = await fetch('http://localhost:4000/auth/api/product', {
         method: 'GET'
@@ -29,7 +29,7 @@ export const getAllProduct = createAsyncThunk(
       const keys = Object.keys(localStorage)
 
       res = res.data.filter(item => keys.includes(item.articul))
-      // dispatch(setData(res))
+      dispatch( setData(res))
       return res
     } catch (e) {
       return rejectWithValue(e.message)
@@ -39,24 +39,25 @@ export const getAllProduct = createAsyncThunk(
 export const createOrder = createAsyncThunk(
   'basket/createOrder',
   async function (body,{rejectWithValue}) {
-    // const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
     try {
-      let result = fetch('http://localhost:4000/auth/api/order', {
+      let result = await fetch('http://localhost:4000/auth/api/order', {
         method: 'POST',
         body: body,
-        // headers: {
-        //   'Authorization': `Bearer ${token}`
-        // }
       })
-      result = (await result).json()
 
-      return result.message
+      if(!result.ok) { 
+        result = await result.json()
+        result.errors.errors.forEach(it => alert(it.msg))
+        return false
+
+      } else {
+        return true
+      }
     } catch (e) {
       rejectWithValue(e)
     }
   }
 )
-
 
 const basketSlice = createSlice({
   name: 'basket',
@@ -65,7 +66,7 @@ const basketSlice = createSlice({
     basket : 0,
     keys: [],
     email: '',
-    textArea: ''
+    textArea: '',
   },
   reducers: {
     setBasket (state,action) {
@@ -80,25 +81,28 @@ const basketSlice = createSlice({
     setTextArea (state,action) {
       state.textArea = action.payload
     },
-    // setData (state,action) {
-    //   state.data = action.payload
-    // }
+    setData (state,action) {
+      state.data = action.payload
+    }
   },
   extraReducers: {
-    [getAllProduct.fulfilled] : (state,actions) => {
-      state.data = actions.payload
-    },
     [getAllProduct.rejected] : (state,actions) => {
       Object.console.log(actions)
     },
     [createOrder.fulfilled] : (state,action) => {
-      state.email = ''
-      state.textArea = ''
-      localStorage.clear()
+        if(action.payload) {
+          state.email = ''
+          state.textArea = ''
+          localStorage.clear()
+          document.location.href = '/basket/order'    
+        }
+    },
+    [createOrder.rejected] : (state,action) => {
+      Object.console.log(action.payload)
     }
   }
 })
 
 
-export const {setKeys,setEmail,setTextArea,setBasket,setData2,setData} = basketSlice.actions
+export const {setKeys,setEmail,setTextArea,setBasket,setData} = basketSlice.actions
 export default basketSlice.reducer

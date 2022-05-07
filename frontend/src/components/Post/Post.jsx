@@ -1,6 +1,6 @@
-import React,{useEffect}  from 'react'
-import './Post.scss'
-import { Button } from '../Button/Button'
+import React  from 'react'
+import './styles.scss'
+import { Button } from '../button/Button'
 
 function Post ({item,text,onCl}) {
 

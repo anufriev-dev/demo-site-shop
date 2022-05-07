@@ -1,4 +1,5 @@
-import './BgAbs.scss'
+import React from 'react'
+import './styles.scss'
 import classNames from 'classnames'
 
 function BgAbs ({background,boxShadow,zindex,top,className}) {

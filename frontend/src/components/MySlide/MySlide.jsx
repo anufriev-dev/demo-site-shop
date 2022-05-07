@@ -1,9 +1,10 @@
+import React from 'react'
 import Slider from 'react-slick'
-import { BgAbs } from '../BgAbs/BgAbs'
+import { BgAbs } from '../bgAbs/BgAbs'
 
 import 'slick-carousel/slick/slick.css' 
 import 'slick-carousel/slick/slick-theme.css'
-import './MySlide.scss'
+import './styles.scss'
 
 import Layer1 from '../../img/Layer1.png'
 

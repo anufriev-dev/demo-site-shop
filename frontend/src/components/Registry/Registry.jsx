@@ -1,10 +1,10 @@
-import './Registry.scss'
+import React,{ useEffect } from 'react'
+import './styles.scss'
 import {useSelector,useDispatch} from 'react-redux'
 import {setLogin,setPass,nulls} from '../../store/authSlice'
 import { authariz } from '../../store/authSlice'
-import { Button } from '../Button/Button'
+import { Button } from '../button/Button'
 import {Link,useNavigate} from 'react-router-dom'
-import { useEffect } from 'react'
 
 function Registry () {
 
@@ -50,9 +50,8 @@ function Registry () {
     window.cookieStore.delete('user')
     window.cookieStore.delete('role')
     localStorage.clear()
-    // обнови состояние (reload str)
     navigate('/')
-    // document.location.reload()
+
   }
   return(
   <>

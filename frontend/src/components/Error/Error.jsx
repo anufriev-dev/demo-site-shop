@@ -1,4 +1,5 @@
-import './Error.scss'
+import React from 'react'
+import './styles.scss'
 
 function Error () {
   return (
@@ -6,5 +7,5 @@ function Error () {
     <h1 className="Error404">Error 404</h1>
     </>
   )
-};
+}
 export {Error}

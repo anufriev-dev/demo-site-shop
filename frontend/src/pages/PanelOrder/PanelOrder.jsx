@@ -1,8 +1,8 @@
 import React,{useEffect} from 'react'
-import './style.scss'
+import './styles.scss'
 import {getAllOrder} from '../../store/orderSlice'
 import {useDispatch, useSelector} from 'react-redux'
-import OrderLi from '../../components/OrderLi/OrderLi'
+import OrderLi from '../../components/orderLi/OrderLi'
 import {Link} from 'react-router-dom'
 
 function PanelOrder() {

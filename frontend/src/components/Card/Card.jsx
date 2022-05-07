@@ -1,6 +1,6 @@
 import React from 'react'
-import './style.scss'
-import { Link } from 'react-router-dom';
+import './styles.scss'
+import { Link } from 'react-router-dom'
 
 function Card({title,text,btn,link}) {
   return (

@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
-import Post from '../Post/Post'
+import Post from '../post/Post'
 import { useSelector,useDispatch } from 'react-redux'
 import {setCurrent} from '../../store/mainListSlice'
 import { getProduct,setStore,setLimite,setSerch, } from '../../store/mainListSlice'
 import { createPages } from '../../script/createPage'
 import {setBasket} from '../../store/basketSlice'
 
-import './MainList.scss'
+import './styles.scss'
 
 
 
@@ -80,7 +80,7 @@ function MainList () {
     dispatch(setStore(result))
   }
 
-  const filterStore = store.filter((item,index) => {
+  const filterStore = store.filter((item) => {
     return item.title.toLowerCase().includes(serch.toLowerCase())  
     }
   )

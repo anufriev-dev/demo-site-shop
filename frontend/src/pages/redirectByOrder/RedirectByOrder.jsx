@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './style.scss'
+import './styles.scss'
 import ok from '../../img/ok-200.png'
 
 function RedirectByOrder() {

@@ -1,5 +1,5 @@
 import React from 'react'
-import './redirect.scss'
+import './styles.scss'
 import {Link} from 'react-router-dom'
 import ok from '../../img/ok-200.png'
 

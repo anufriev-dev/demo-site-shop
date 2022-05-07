@@ -1,5 +1,6 @@
-import './SectionSlideHz.scss'
-import {MySlideHz} from '../MySlideHz/MySlideHz.jsx'
+import React from 'react'
+import './styles.scss'
+import {MySlideHz} from '../mySlideHz/MySlideHz.jsx'
 
 function SectionSlideHz () {
   return (

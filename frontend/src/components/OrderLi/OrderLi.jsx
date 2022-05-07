@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import {deleteOneOrder} from '../../store/orderSlice'
 
-import './style.scss'
+import './styles.scss'
 
 
 function OrderLi({item}) {

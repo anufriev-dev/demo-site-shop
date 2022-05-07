@@ -74,5 +74,4 @@ const regSlice = createSlice({
 })
 
 export const {setLogin,setPass,nulls} = regSlice.actions
-
 export default regSlice.reducer

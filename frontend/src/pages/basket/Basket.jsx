@@ -1,18 +1,19 @@
 import React,{useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { getAllProduct,createOrder } from '../../store/basketSlice'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { setEmail,setTextArea } from '../../store/basketSlice'
 import { setBasket } from '../../store/basketSlice'
 
-import './basket.scss'
+import './styles.scss'
 import PostBasket from '../../components/postBasket/PostBasket.jsx'
 
 function Basket() {
   
   const {data,email,textArea,keys,basket} = useSelector(state => state.basket)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+
+
   useEffect(() => {
     dispatch(getAllProduct())
   },[keys])
@@ -33,31 +34,24 @@ function Basket() {
 
   const order =  (e) => {
     e.preventDefault()
+
     const keysHere = Object.keys(localStorage)
     const articulArr =  keysHere.filter(item => item !== 'basket')
 
-    const body = {
-      email: email,
-      textArea: textArea,
-      articul: articulArr
-    }
     const body2 = new FormData()
     body2.append('email',email)
     body2.append('textArea',textArea)
     body2.append('articul',articulArr)
 
-    dispatch(createOrder(body2)) 
-
-    navigate('/basket/order')
+    dispatch(createOrder(body2))
+    // document.location ='/basket/order'
   }
 
   return (
-
   <div className="containerMy">
-
     <div>
       <div className="headerBasket">
-          <h2>Корзина</h2>
+          <h1>Корзина</h1>
         <Link className="Link" to="/">Назад</Link>
       </div>
     </div>

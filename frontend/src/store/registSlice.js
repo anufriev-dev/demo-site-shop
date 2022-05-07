@@ -58,6 +58,5 @@ const registSlice = createSlice({
 })
 
 
-
 export const {setLogin,setPassword,setEmile} = registSlice.actions
 export default registSlice.reducer

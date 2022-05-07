@@ -1,4 +1,5 @@
-import './FormReg.scss'
+import React from 'react'
+import './styles.scss'
 import {useSelector,useDispatch} from 'react-redux'
 import {setLogin,setPassword,setEmile} from '../../store/registSlice'
 import {auth} from '../../store/registSlice'

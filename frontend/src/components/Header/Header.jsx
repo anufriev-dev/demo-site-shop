@@ -1,10 +1,10 @@
-import './Header.scss'
+import './styles.scss'
 
 import React from 'react'
-import Registry from '../Registry/Registry'
+import Registry from '../registry/Registry'
 import {useSelector} from 'react-redux'
-import {Nav} from '../Nav/Nav'
-import { BgAbs } from '../BgAbs/BgAbs'
+import {Nav} from '../nav/Nav'
+import { BgAbs } from '../bgAbs/BgAbs'
 import Logo from '../../img/logo.png'
 import {Link} from 'react-router-dom'
 

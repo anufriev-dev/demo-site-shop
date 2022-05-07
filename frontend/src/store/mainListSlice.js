@@ -5,13 +5,9 @@ export const getProduct = createAsyncThunk(
   'mainlist/getProduct',
   async function (_,{rejectWithValue,getState}) {
     const {currentPage,limit} = getState().mainList
-    // const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
     try {
       const respons = await fetch(`http://localhost:4000/auth/api/product/${currentPage}/${limit}`, {
         method: 'GET',
-        headers: {
-          // 'Authorization': `Bearer ${token}`
-        }
       })
       if(!respons.ok){
         throw new Error('error with error')
@@ -29,7 +25,6 @@ const mainListSlice = createSlice({
   name:'mainlist',
   initialState: {
     store: [],
-    // nostore: [],
     error: null,
     status: null,
     countPage: 1,

@@ -1,4 +1,5 @@
-import { MySlide } from '../MySlide/MySlide'
+import React from 'react'
+import { MySlide } from '../mySlide/MySlide'
 
 function SectionSlideVr () {
   return (

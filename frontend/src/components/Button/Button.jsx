@@ -1,4 +1,5 @@
-import './Button.scss'
+import React from 'react'
+import './styles.scss'
 import classNames from 'classnames'
 
 function Button ({text,className,onCl}) {

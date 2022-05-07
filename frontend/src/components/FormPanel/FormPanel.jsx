@@ -1,5 +1,5 @@
 import React from 'react'
-import './FormPanel.scss'
+import './styles.scss'
 import {useDispatch } from 'react-redux'
 import {setImg,setProductid} from '../../store/adminPanelSlice'
 

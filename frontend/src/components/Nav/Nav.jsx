@@ -1,9 +1,10 @@
+import React from 'react'
 import { useState,useEffect } from 'react'
 import {useSelector} from 'react-redux'
 import classNames from 'classnames'
-import './Nav.scss'
+import './styles.scss'
 
-import {BgAbs} from '../BgAbs/BgAbs.jsx'
+import {BgAbs} from '../bgAbs/BgAbs.jsx'
 import { Link } from 'react-router-dom'
 
 function Nav () {

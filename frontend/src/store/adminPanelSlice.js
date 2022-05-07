@@ -3,7 +3,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 export const getAllProduct = createAsyncThunk(
   'adminPanel/getAllProduct',
   async function (_,{rejectWithValue}) {
-    // const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
     try {
       const respons = await fetch('http://localhost:4000/auth/api/product', {
         method: 'GET'

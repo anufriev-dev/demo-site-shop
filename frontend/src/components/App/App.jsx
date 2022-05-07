@@ -1,20 +1,18 @@
-import {Routes,Route} from 'react-router-dom'
-
 import React,{useEffect} from 'react'
+import {Routes,Route} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import {Layout} from '../Layout/Layout'
-import {Error} from '../Error/Error.jsx'
-import {Params} from '../../pages/Params/Params.jsx' 
-import {MainList} from '../MainList/MainList.jsx'
-import {FormReg} from '../../pages/FormReg/FormReg'
+import {Layout} from '../layout/Layout'
+import {Error} from '../error/Error.jsx'
+import {MainList} from '../mainList/MainList.jsx'
+import {FormReg} from '../../pages/formReg/FormReg'
 import {BrowserRouter} from 'react-router-dom'
-import Redirect from '../../pages/Redirect/Redirect'
-import Panel from '../../pages/Panel/Panel'
-import Admin from '../../pages/Admin/Admin'
+import Redirect from '../../pages/redirect/Redirect'
+import Panel from '../../pages/panel/Panel'
+import Admin from '../../pages/admin/Admin'
 import Basket from '../../pages/basket/Basket'
 import { setKeys } from '../../store/basketSlice'
 import RedirectByOrder from '../../pages/redirectByOrder/RedirectByOrder'
-import PanelOrder from '../../pages/PanelOrder/PanelOrder'
+import PanelOrder from '../../pages/panelOrder/PanelOrder'
 import {setBasket} from '../../store/basketSlice'
 
 
@@ -35,32 +33,24 @@ function App () {
     <>
     <BrowserRouter>
       <Routes>
-        { /* Главная страница */}
+          { /* Главная страница */}
         <Route path="/" element={<Layout/>}>
           <Route index element={<MainList/>}/>
+          <Route path="/basket" element={<Basket />} />
         </Route>
-        { /* Страница регистрации */}
-        <Route path="/feed">
-          <Route index element={<FormReg />}/>
-          <Route path=":goodreq" element={<Redirect />}/>
-          <Route path=":auth" element={<Params />} />
+          { /* Страницы регистрации */}
+          <Route path="/feed" element={<FormReg />}/>
+          <Route path="/feed/goodreq" element={<Redirect />}/>
+          {/* Админка */}
 
-        </Route>
-        {/* Страница Api*/}
-        <Route path="/auth/api">
-          <Route index element={<></>} />
-        </Route>
-        {/* Админка */}
-        <Route path="/admin">
-          <Route index  element={<Admin />}/>
-          <Route path="panel" element={<Panel />}/>
-          <Route path="order" element={<PanelOrder />} />
-        </Route>
-        <Route path="/basket">
-          <Route index element={<Basket />} />
-          <Route path=":order" element={<RedirectByOrder />} />
-        </Route>
-        <Route path="*" element={<Error />}/>
+          <Route path="/admin" element={<Admin />}/>
+          <Route path="/admin/panel" element={<Panel />}/>
+          <Route path="/admin/order" element={<PanelOrder />} />
+
+
+          {/* Корзина */}
+          <Route path="/basket/order" element={<RedirectByOrder />} />
+          <Route path="*" element={<Error />}/>
       </Routes>
     </BrowserRouter>
     </>
