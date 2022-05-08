@@ -24,7 +24,7 @@ export const authariz = createAsyncThunk(
 
       return res
     } catch (e) {
-      console.log(e)
+      Object.console.log(e)
       return rejectWithValue(e)
     }
   }
