@@ -67,6 +67,8 @@ const basketSlice = createSlice({
     keys: [],
     email: '',
     textArea: '',
+    countBasket: 0,
+    status: null
   },
   reducers: {
     setBasket (state,action) {
@@ -83,10 +85,20 @@ const basketSlice = createSlice({
     },
     setData (state,action) {
       state.data = action.payload
+    },
+    setCountBasket (state, action) {
+      state.countBasket = action.payload
     }
   },
   extraReducers: {
+    [getAllProduct.pending] : (state, action) => {
+      state.status = 'loading'
+    },
+    [getAllProduct.fulfilled] : (state,action) => {
+      state.status = 'resolved'
+    },
     [getAllProduct.rejected] : (state,actions) => {
+      state.status = 'error'
       Object.console.log(actions)
     },
     [createOrder.fulfilled] : (state,action) => {
@@ -104,5 +116,5 @@ const basketSlice = createSlice({
 })
 
 
-export const {setKeys,setEmail,setTextArea,setBasket,setData} = basketSlice.actions
+export const {setKeys,setEmail,setTextArea,setBasket,setData,setCountBasket} = basketSlice.actions
 export default basketSlice.reducer

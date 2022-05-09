@@ -59,7 +59,6 @@ const regSlice = createSlice({
         window.cookieStore.delete('user')
         window.cookieStore.set({name: 'user', value: state.cookie, sameSite: 'lax'})
         window.cookieStore.set('role',state.role)
-        document.querySelector('.modal-window').classList.toggle('wrapAuth-active')
         state.login = ''
         state.pass = ''
         alert('Успех')

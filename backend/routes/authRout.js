@@ -57,9 +57,9 @@ const {check}                     = require('express-validator')
  *                        type: string
  */
 router.post('/registration',[
-  check('password', 'Минимальное кол-во символов от 4 до 10').isLength({min:4,max: 10}),
-  check('login', 'Минимальное кол-во символов от 4 до 10').isLength({min:4,max: 10}),
-  check('emile',"Невалидный email").isEmail()
+  check('password', 'Password: Минимальное кол-во символов от 4 до 10').isLength({min:4,max: 10}),
+  check('login', 'Login: Минимальное кол-во символов от 4 до 10').isLength({min:4,max: 10}),
+  check('emile',"Email: Невалидный email").isEmail()
 ],
   authController.createUser)
 /**

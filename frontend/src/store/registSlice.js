@@ -10,7 +10,7 @@ export const auth = createAsyncThunk(
         password: password,
         emile: emile
       }
-      const respons = await fetch('http://localhost:4000/auth/api/registration',{
+      let respons = await fetch('http://localhost:4000/auth/api/registration',{
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -19,7 +19,8 @@ export const auth = createAsyncThunk(
         body: JSON.stringify(body)
       })
       if(respons.status === 400){
-        alert('Такой пользователь уже существует!!')
+        respons = await respons.json()
+        respons.errors.errors.forEach(err => alert(err.msg))
       }  
       return  respons.status
     } catch (e) {
