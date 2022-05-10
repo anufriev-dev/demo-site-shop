@@ -36,10 +36,10 @@ function Header () {
             </IconButton>
             </Tooltip>         
           </Box>
-          <Registry />
           {location.pathname !== '/' && location.pathname !== '/basket/order' && location.pathname !== '/feed/goodreq'
           ? <Button sx={{mr: '1em', ml: '1em'}} onClick={() => navigate(-1)} size="small" color="success" variant="contained" >Назад</Button>  
           :  null}
+          <Registry />
 
           {/* <div ><div ><input type="text" /><button type="hidden"></button> </div> </div> */}
           <Tooltip title="Корзина">

@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 import { setEmail,setTextArea,setCountBasket } from '../store/basketSlice'
 import { setBasket } from '../store/basketSlice'
 
-import PostBasket from '../components/PostBasket.jsx'
 import { Button, CircularProgress, Container, Grid, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import NoGoods from '../components/NoGoods'
 import {styleH1} from '../utils/style'
 import { styleSpiner } from '../utils/style'
+import Post from '../components/Post'
 
 
 function Basket() {
@@ -84,7 +84,7 @@ function Basket() {
         {data.length 
         
         ? data.map((item,index) => (
-          <PostBasket deLete={deLete} item={item}  key={index}/>
+          <Post deLete={deLete} item={item}  key={index}/>
         ))
         :
           <NoGoods text="Корзина пуста" />

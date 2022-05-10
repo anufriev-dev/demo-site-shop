@@ -62,14 +62,9 @@ export const createProduct = createAsyncThunk(
 export const getOneProduct = createAsyncThunk(
   'adminPanel/getOneProduct',
   async function (id,{rejectWithValue}) {
-    const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
-
     try {
       let result = await fetch(`http://localhost:4000/auth/api/one/product/${id}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        method: 'GET'
       })
       result = await result.json()
 

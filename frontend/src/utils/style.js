@@ -5,6 +5,13 @@ export const styleH1 = {
     md: '60px'
   }
 }
+export const styleH3 = {
+  fontSize: {
+    xs: '25px',
+    sm: '30px',
+    md: '45px'
+  }
+}
 export const styleModal = {
   position: 'absolute',
   top: '50%',

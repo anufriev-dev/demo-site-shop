@@ -3,7 +3,8 @@ import {getAllOrder} from '../store/orderSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import OrderLi from '../components/OrderLi'
 import {Link} from 'react-router-dom'
-
+import {Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from '@mui/material'
+import {styleH1} from '../utils/style'
 
 function PanelOrder() {
   const {data,message} = useSelector(state => state.orderslice)
@@ -19,23 +20,29 @@ function PanelOrder() {
     )
   }
   return (
-    <div >
-      <h1 >Это Заказы users</h1>
-
-      <table >
-        <tbody>
-          <tr >
-            <th >allArticul</th>
-            <th >email</th>
-            <th >text</th>
-          </tr>
+    <Container >
+      <Typography 
+        variant="h1"
+        sx={{...styleH1, mb: '1em'}}
+      >Заказы</Typography>
+    <TableContainer  >
+      <Table  >
+        <TableHead>
+          <TableRow >
+            <TableCell ><h2>allArticul</h2></TableCell>
+            <TableCell ><h2>email</h2></TableCell>
+            <TableCell ><h2>text</h2></TableCell>
+            <TableCell ><h2>Настройки</h2></TableCell>
+          </TableRow>
+          </TableHead>
+          <TableBody>
           {data.map((item,index) => (
         <OrderLi item={item} key={index} />
       ))}
-        </tbody>
-      </table>
-          <Link to="/admin">Назад</Link>
-    </div>
+        </TableBody>
+      </Table>
+    </TableContainer>
+    </Container>
   )
 }
 

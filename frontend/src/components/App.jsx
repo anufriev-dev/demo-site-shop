@@ -15,6 +15,7 @@ import RedirectByOrder from '../pages/RedirectByOrder'
 import PanelOrder from '../pages/PanelOrder'
 import {setBasket,setCountBasket} from '../store/basketSlice'
 import {setCurrent, setLimite} from '../store/mainListSlice'
+import Description  from '../pages/DescriptionPost'
 
 
 
@@ -47,6 +48,7 @@ function App () {
           { /* Главная страница */}
         <Route path="/" element={<Layout/>}>
           <Route index element={<MainList/>}/>
+          <Route path="/description/:id" element={<Description />} />
           <Route path="/basket" element={<Basket />} />
           { /* Страницы регистрации */}
           <Route path="/feed" element={<FormReg />}/>

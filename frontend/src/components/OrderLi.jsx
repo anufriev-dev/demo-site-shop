@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import {deleteOneOrder} from '../store/orderSlice'
+import { Button, TableCell, TableRow } from '@mui/material'
 
 
 
@@ -13,12 +14,12 @@ function OrderLi({item}) {
   }
 
   return (
-    <tr >
-      <td >{item.allArticul}</td>
-      <td >{item.email}</td>
-      <td >{item.text}</td>
-      <td ><button onClick={() => deletePost(item.idorder)} >Удалить</button></td>
-    </tr>
+    <TableRow >
+      <TableCell >{item.allArticul}</TableCell>
+      <TableCell >{item.email}</TableCell>
+      <TableCell >{item.text}</TableCell>
+      <TableCell ><Button onClick={() => deletePost(item.idorder)} >Удалить</Button></TableCell>
+    </TableRow>
   )
 }
 export default OrderLi

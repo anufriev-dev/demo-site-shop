@@ -64,11 +64,6 @@ router.get('/product/:page?/:limit?',pagination(model.getPost),productController
  *      name: id
  *      required: true
  *      type: integer
- *    - 
- *      description: "Bearer 'one space' token"
- *      in: header
- *      name: Authorization
- *      required: true
  *   responses:
  *    200:
  *      schema:
@@ -86,6 +81,8 @@ router.get('/product/:page?/:limit?',pagination(model.getPost),productController
  *              type: integer
  *            articul:
  *              type: string 
+ *            rating:
+ *              type: integer
  *    400:
  *      schema:
  *        type: object
@@ -93,7 +90,7 @@ router.get('/product/:page?/:limit?',pagination(model.getPost),productController
  *          message:
  *            type: string    
  */
-router.get('/one/product/:id',roleMiddleware(['ADMIN']), productController.getOneProduct)
+router.get('/one/product/:id', productController.getOneProduct)
 /**
  * @swagger
  *  /auth/api/product/delete/{id}:
