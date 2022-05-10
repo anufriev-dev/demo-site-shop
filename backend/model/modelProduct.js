@@ -42,10 +42,10 @@ class ModelProduct {
       })
     })
   }
-  static createPost (title,price,filename,articul) {
+  static createPost (title,price,rating,descpost,filename,articul) {
     return new Promise ((res, rej) => {
       connection.query(
-  "INSERT INTO product (productid,title,price,img,articul) VALUES (NULL,'"+ title +"','"+ price +"','"+ filename +"','"+ articul +"')", (err,data) => {
+  "INSERT INTO product (productid,title,price,rating,descpost,img,articul) VALUES (NULL,'"+ title +"','"+ price +"','"+rating+"','"+descpost+"','"+ filename +"','"+ articul +"')", (err,data) => {
           if(err) {
             rej(err)
           }

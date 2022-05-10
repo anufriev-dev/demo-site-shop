@@ -2,6 +2,8 @@ const modelProduct                = require('../model/modelProduct')
 const uuid                        = require('uuid')
 const path                        = require('path')
 const fs                          = require('fs')
+const {validationResult}          = require('express-validator')
+
 
 class ProductController {
   static async getProductAll (req,res) {
@@ -57,7 +59,7 @@ class ProductController {
   }
   static async createProduct (req, res) {
     try {
-      let {title,price} = req.body;
+      let {title,price,rating,descpost} = req.body;
       let {img} = req.files
 
       let filename = uuid.v4() + '.jpg';
@@ -65,7 +67,7 @@ class ProductController {
       
       let articul = uuid.v1();
       console.log("heare" + articul);
-      let result = await modelProduct.createPost(title,price, filename,articul)
+      let result = await modelProduct.createPost(title,price,rating,descpost , filename,articul)
       res.status(200).json({status: 'OK',result})
     } catch (e) {
       console.log(e)

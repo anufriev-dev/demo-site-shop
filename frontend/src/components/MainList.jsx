@@ -35,45 +35,39 @@ function MainList () {
     })
   })
 
-  useEffect(() => {
-    const collectionBtn = document.querySelectorAll('.btn-post')
-    collectionBtn.forEach(el => {
-      el.addEventListener('click', btnEvent)  
-    })
-    return function () {
-      collectionBtn.forEach(el => {
-        el.removeEventListener('click', btnEvent)
-      })
-    }
-  })
-  
 
   const [open, setOpen] = useState(false)
   const handleClose = () => {
     setOpen(false)
   }
 
-  function btnEvent (e)  {
-    setOpen(true)
-    const self = e.currentTarget
-    const post = self.closest('.post')
-    const price = parseInt(post.querySelector('.post__price').textContent) // price
-    const sum = (Number(JSON.parse(localStorage.getItem('basket')) + price))
-    localStorage.setItem('basket', JSON.stringify(sum))
-    dispatch( setCountBasket(countBasket + 1))
-    dispatch(setBasket(sum))
-    const img = post.querySelector('.post__img').getAttribute('src')//image
-    const title = post.querySelector('.post__desc').textContent //text
-    const articul = post.getAttribute('data-id')
-    const item = {
-      articul: articul,
-      img:img,
-      title:title,
-      price:price
+  function btnEvent (e,item)  {
+    const valid = JSON.parse(localStorage.getItem(item.articul))
+    if(valid === null) {
+      setOpen(true)
+      const self = e.currentTarget
+      const post = self.closest('.post')
+      const price = parseInt(post.querySelector('.post__price').textContent) // price
+      const sum = (Number(JSON.parse(localStorage.getItem('basket')) + price))
+      localStorage.setItem('basket', JSON.stringify(sum))
+      dispatch( setCountBasket(countBasket + 1))
+      dispatch(setBasket(sum))
+      const img = post.querySelector('.post__img').getAttribute('src')//image
+      const title = post.querySelector('.post__desc').textContent //text
+      const articul = post.getAttribute('data-id')
+      const item = {
+        articul: articul,
+        img:img,
+        title:title,
+        price:price
+      }
+      localStorage.setItem(articul,JSON.stringify(item))
+      self.disabled = true
+    }else {
+      alert('Товар уже находится в вашей корзине')
+
     }
 
-    localStorage.setItem(articul,JSON.stringify(item))
-    self.disabled = true
     // document.location.reload()
   }
 
@@ -143,7 +137,7 @@ function MainList () {
       <Grid container spacing={2}  sx={{justifyContent: 'center'}}>
         {filterStore.length 
         ? filterStore.map(item => (
-          <Post item={item} text="BUY NOW" key={item.productid}/>
+          <Post btnEvent={btnEvent} item={item} text="BUY NOW" key={item.productid}/>
         ))
         :
         <NoGoods text="Товары не найдены"/>

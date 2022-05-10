@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import { getAllProduct,deleteProduct,createProduct,getOneProduct,updateProduct } from '../store/adminPanelSlice'
-import {setTitle,setPrice,setOneProductTitle,setOneProductPrice} from '../store/adminPanelSlice'
+import {setTitle,setPrice,setOneProductTitle,setOneProductPrice,setDescpost,setRating} from '../store/adminPanelSlice'
 import { Link } from 'react-router-dom'
 import FormPanel from '../components/FormPanel'
 import {Button,Typography, TableRow, Container, Modal, Table, TableContainer, TableHead, TableBody,TableCell} from '@mui/material'
@@ -14,7 +14,7 @@ import {styleH1} from '../utils/style'
 
 function Panel() {
 
-  const {store, error,title,price,oneProduct,amountPost,productid} = useSelector(state => state.adminPanel)
+  const {status,descpost,rating,store, error,title,price,oneProduct,amountPost,productid} = useSelector(state => state.adminPanel)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -82,8 +82,12 @@ function Panel() {
             nameBtn="Добавить" 
             title={title}
             price={price}
+            descpost={descpost}
+            rating={rating}
             onChangeTitle={setTitle}
             onChangePrice={setPrice}
+            setRating={setRating}
+            setDescpost={setDescpost}
             submit={(e) => createProd(e)}
             modalFunc={setOpenAdd}
             />
@@ -101,6 +105,8 @@ function Panel() {
             price={oneProduct[0].price}
             onChangeTitle={setOneProductTitle}
             onChangePrice={setOneProductPrice}
+            // onChangeRating={setRating}
+            // onChangeDescpost={setDescpost}
             submit={(e) => updateProd(e)}
             productid={oneProduct[0].productid}
             id={productid}
@@ -118,6 +124,8 @@ function Panel() {
             <TableCell ><h2>Название</h2></TableCell>
             <TableCell ><h2>Цена</h2></TableCell>
             <TableCell ><h2>Картинка</h2></TableCell>
+            <TableCell ><h2>Рейтинг</h2></TableCell>
+            <TableCell ><h2>Описание</h2></TableCell>
             <TableCell sx={{textAlign: 'center'}} colSpan="2" ><h2>Настройки</h2></TableCell>
           </TableRow>
          </TableHead>
@@ -129,6 +137,8 @@ function Panel() {
               <TableCell  >{item.title}</TableCell>
               <TableCell  >{item.price}</TableCell>
               <TableCell  ><a target="_blank" href={`http://localhost:4000/${item.img}`}>ссылка</a></TableCell>
+              <TableCell  >{item.rating}</TableCell>
+              <TableCell  >{item.descpost	}</TableCell>
               <TableCell sx={{textAlign: 'center'}}  ><Button size="small" color="success" variant="outlined" onClick={() => refreshPost(item.productid)}>Обновить</Button></TableCell>
               <TableCell sx={{textAlign: 'center'}} ><Button size="small" color="error" variant="outlined" onClick={() => prev(item) } >Удалить</Button></TableCell>
             </TableRow>

@@ -39,11 +39,13 @@ export const createProduct = createAsyncThunk(
   'adminPanel/createProduct',
   async function (_,{rejectWithValue,getState}) {
     const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
-    const {title,price,img} = getState().adminPanel
+    const {title,price,img,rating,descpost} = getState().adminPanel
     const body = new FormData()
     body.append('title',title)
     body.append('price',price)
     body.append('img',img)
+    body.append('rating',rating)
+    body.append('descpost',descpost)
     try {
       let result = await fetch('http://localhost:4000/auth/api/product/create', {
         method: 'POST',
@@ -113,9 +115,12 @@ const adminPanelSlice = createSlice({
     title: '',
     img: [],
     price: 0,
+    rating: '',
+    descpost: '',
     oneProduct: [{title: '', price: '',productid: '', id: 0}],
     amountPost: 0,
-    productid: 0
+    productid: 0,
+    status: null
   },
   reducers: {
     setTitle(state,action) {
@@ -136,7 +141,13 @@ const adminPanelSlice = createSlice({
     },
     setProductid (state,action) {
       state.productid = action.payload
-    }
+    },
+    setRating (state,action) {
+      state.rating = action.payload 
+    },
+    setDescpost	(state,action) {
+      state.descpost = action.payload
+    },
   },
   extraReducers: {
     [getAllProduct.fulfilled] : (state,action) => {
@@ -154,12 +165,16 @@ const adminPanelSlice = createSlice({
       state.message = action.payload
     },
     [createProduct.fulfilled]: (state, action) => {
+      state.status = 'resolved'
       state.message = action.payload
       state.amountPost = (state.store.length + 1)
       if(state.message.status === 'OK'){
-      state.title = ''
-      state.img = []
-      state.price = ''
+        state.title = ''
+        state.img = []
+        state.price = ''
+        state.rating = ''
+        state.descpost = ''
+        alert('Продукт создан!')
       }else {
         alert(state.message.message)
       }
@@ -188,5 +203,5 @@ const adminPanelSlice = createSlice({
   }
 })
 
-export const {setTitle,setImg,setPrice,setOneProductTitle,setOneProductPrice,setProductid} = adminPanelSlice.actions
+export const {setDescpost,setRating,setTitle,setImg,setPrice,setOneProductTitle,setOneProductPrice,setProductid} = adminPanelSlice.actions
 export default adminPanelSlice.reducer

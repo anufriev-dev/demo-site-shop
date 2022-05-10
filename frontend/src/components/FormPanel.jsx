@@ -6,7 +6,7 @@ import {styleH3} from '../utils/style'
 import {UploadFile} from '@mui/icons-material'
 import { Box } from '@mui/system'
 
-function FormPanel({modalFunc,name, nameBtn,title,price,onChangeTitle,onChangePrice,submit,productid}) {
+function FormPanel({descpost,rating,setDescpost,setRating,modalFunc,name, nameBtn,title,price,onChangeTitle,onChangePrice,submit,productid}) {
 
   const dispatch = useDispatch()
 
@@ -39,6 +39,18 @@ function FormPanel({modalFunc,name, nameBtn,title,price,onChangeTitle,onChangePr
         <TextField sx={{mb: '1em'}} fullWidth label="Цена" value={price} id="form-admin__ni22" 
          type="text" 
         onChange={e => dispatch(onChangePrice(e.target.value))} 
+        />
+      </div>
+      <div >
+        <TextField sx={{mb: '1em'}} fullWidth label="Рейтинг" value={rating}
+         type="text" 
+        onChange={e => dispatch(setRating(e.target.value))} 
+        />
+      </div>
+      <div >
+        <TextField sx={{mb: '1em'}} fullWidth label="Описание" value={descpost}
+         type="text" 
+        onChange={e => dispatch(setDescpost(e.target.value))} 
         />
       </div>
       <Box sx={{display: 'flex',justifyContent: 'space-between', alignItems: 'center'}}>
