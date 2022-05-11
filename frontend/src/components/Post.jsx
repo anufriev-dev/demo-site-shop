@@ -21,7 +21,7 @@ function Post ({item,text,deLete,btnEvent}) {
             sx={{mb:'0.5em',mt: '0.5em'}}
             >
             <label>Цена:&nbsp;&nbsp;</label>
-            <Box component="span"><b>${item.price}</b></Box>
+            <Box component="span"><b>$ <span className="post__price">{item.price}</span></b></Box>
           </Box>
           <Typography component="legend">Rating</Typography>
           <Rating readOnly value={item.rating} /> 

@@ -18,22 +18,31 @@ function MainList () {
   const {countBasket} = useSelector(state => state.basket)
 
   const dispatch = useDispatch()
-  const pages = []
-  createPages(pages,countPage,currentPage)
 
   useEffect(() => {
     dispatch(getProduct())
-  },[limit,currentPage,kastilCount])
+  },[])
 
   useEffect(() => {
-    const keys = Object.keys(localStorage)
-    const collectionBtn = document.querySelectorAll('.post')
-    collectionBtn.forEach(el => {
-      if(keys.includes(el.getAttribute('data-id'))) {
-       console.log('Дисейбл')
-      }
+    const startIndex = (Number(currentPage) - 1) * Number(limit)
+    const endIndex = Number(currentPage) * Number(limit)
+    setFilterStore([...store].slice(startIndex,endIndex))
+  },[currentPage,limit,store])
+
+  useEffect(() => {
+    let finaly = store.filter((item) => {
+      return item.title.toString().toLowerCase().includes(serch.trim().toLowerCase())  
     })
-  })
+
+    const startIndex = (Number(currentPage) - 1) * Number(limit)
+    const endIndex = Number(currentPage) * Number(limit)
+  
+    if(serch === '') {
+      finaly = [...finaly].slice(startIndex,endIndex)
+    }
+
+    setFilterStore(finaly)
+  },[serch,currentPage,limit,store])
 
 
   const [open, setOpen] = useState(false)
@@ -65,37 +74,39 @@ function MainList () {
       self.disabled = true
     }else {
       alert('Товар уже находится в вашей корзине')
-
     }
-
-    // document.location.reload()
   }
+  
+  /* Поиск, сортировка , постраничная навигация */
+  const [filterStore, setFilterStore] =  useState([]) 
 
-  const sortHi = async () => {
-
-    const result = await [...store].sort((a,b) => {
+  const sortHi =  () => {
+    const result = [...store].sort((a,b) => {
      return parseFloat(a.price) - parseFloat(b.price)
     })
     dispatch(setStore(result))
+    document.getElementById('input23').value = ''
   }
-  const sortLow = async () => {
-    const result = await [...store].sort((a,b) => {
+  const sortLow =  () => {
+    const result = [ ...store].sort((a,b) => {
       return parseFloat(b.price) - parseFloat(a.price)
     })
     dispatch(setStore(result))
+    document.getElementById('input23').value = ''
   }
 
-  const filterStore = store.filter((item) => {
-    return item.title.toLowerCase().includes(serch.toLowerCase())  
+  const pagination = (e,value) => {
+    dispatch(setCurrent(value))
+    if(typeof Number(value) === 'number') {
+      localStorage.setItem('currentPage',JSON.stringify(value) )
     }
-  )
-  const pagination = (e) => {
-    const currentCount = e.target.textContent
-    dispatch(setCurrent(currentCount))
-    if(typeof Number(currentCount) === 'number') {
-      localStorage.setItem('currentPage',JSON.stringify(currentCount) )
-    }
+    const startIndex = (Number(value) - 1) * Number(limit)
+    const endIndex = Number(value) * Number(limit)
+    const result = [...store].slice(startIndex,endIndex)
+    setFilterStore(result)
   }
+
+
 
   if(status === 'loading') {
     return (
@@ -128,7 +139,7 @@ function MainList () {
 
       <Box sx={{mb:'2rem'}}>
         <Stack>
-          <Pagination page={parseInt(currentPage)} onClick={(e) => pagination(e) } count={10} />
+          <Pagination onChange={(e,v) => pagination(e,v)} page={parseInt(currentPage)}  count={10} />
         </Stack>
       </Box>
 
@@ -145,7 +156,7 @@ function MainList () {
       </Grid>
       <Box sx={{mt:'2rem', mb: '2em'}}>
         <Stack>
-          <Pagination page={parseInt(currentPage)} onClick={(e) => pagination(e)} count={10} />
+          <Pagination  onChange={(e,v) => pagination(e,v)} page={parseInt(currentPage)}  count={10} />
         </Stack>
       </Box>
       <Snack open={open} close={handleClose}/>

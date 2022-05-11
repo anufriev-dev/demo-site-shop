@@ -93,7 +93,7 @@ function Basket() {
   
       <div >
         <form action="" method="POST" >
-          <h3>Введите свой номер email</h3>
+          <h3>Введите свой email</h3>
           <TextField fullWidth variant="outlined" error={myerrors} label="email" required  value={email} onChange={e => dispatch(setEmail(e.target.value))} type="text" name="emailBasket" />
           <h3 >Комментарий к заказу</h3>
           <textarea style={{width: '95%',height: '150px',marginBottom: '50px'}} value={textArea} onChange={e => dispatch(setTextArea(e.target.value))} ></textarea>

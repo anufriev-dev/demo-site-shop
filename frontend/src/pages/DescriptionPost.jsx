@@ -34,7 +34,11 @@ function DescriptionPost() {
   }
 
   if(status === 'loading') {
-    return <CircularProgress sx={styleSpiner}/>
+    return (
+      <div style={styleSpiner}>
+        <CircularProgress />
+      </div>
+     )
   }
   return (
     <Container>

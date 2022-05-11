@@ -53,15 +53,24 @@ class ModelProduct {
         })
     })
   }
-  static updatePost (title,price,filename,id) {
+  static updatePost (title,price,rating,descpost,filename,id) {
     return new Promise((res, rej) => {
       connection.query(
-        "UPDATE product SET img = '"+ filename  +"', title = '"+ title +"', price = '"+ price +"' WHERE productid = '"+ id +"'",(err,data) => {
+  "UPDATE product SET img = '"+ filename  +"', title = '"+ title +"', price = '"+ price +"',rating ='"+rating+"', descpost = '"+descpost+"' WHERE productid = '"+ id +"'",(err,data) => {
           if(err){ 
             rej(err)
           }
           res(data)
         })
+    })
+  }
+  static updatePostaPatch(name,pole,id) {
+    return new  Promise ((res,rej) =>{
+      connection.query("UPDATE product SET "+name+" = '"+pole+"' WHERE productid = '"+id+"'",(err,data) => {
+        if (err) rej(err)
+        
+        res(data)
+      })
     })
   }
 }

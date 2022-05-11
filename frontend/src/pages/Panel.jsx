@@ -4,8 +4,8 @@ import { getAllProduct,deleteProduct,createProduct,getOneProduct,updateProduct }
 import {setTitle,setPrice,setOneProductTitle,setOneProductPrice,setDescpost,setRating} from '../store/adminPanelSlice'
 import { Link } from 'react-router-dom'
 import FormPanel from '../components/FormPanel'
-import {Button,Typography, TableRow, Container, Modal, Table, TableContainer, TableHead, TableBody,TableCell} from '@mui/material'
-import {styleModal} from '../utils/style'
+import {Button,Typography, TableRow, Container, Modal, Table, TableContainer, TableHead, TableBody,TableCell, TextField, NativeSelect, CircularProgress} from '@mui/material'
+import {styleModal, styleSpiner} from '../utils/style'
 import { Box } from '@mui/system'
 import { Add } from '@mui/icons-material'
 import {styleH1} from '../utils/style'
@@ -46,11 +46,35 @@ function Panel() {
     setOpenEdit(true)
   }
 
+  /* Поиск */
+  const [valueSch,setValueSch] = useState('1')
+  const [serch, setSerch] = useState('')
 
-  if(!store) {
+  const [filterData, setFilterData] = useState([])
+  useEffect(() => {
+    setFilterData([...store]?.filter((item) => {
+
+      switch(valueSch){
+        case '1':
+          return item.title.toLowerCase().includes(serch.trim().toLowerCase())
+        case '2':
+          return item.productid.toString().toLowerCase().includes(serch.trim().toLowerCase())
+        case '3':
+          return item.price.toString().toLowerCase().includes(serch.trim().toLowerCase())
+        case '4':
+          return item.rating.toString().toLowerCase().includes(serch.trim().toLowerCase())
+        case '5':
+          return item.descpost.toLowerCase().includes(serch.trim().toLowerCase())
+      }  
+    }))
+  }, [store,serch,valueSch])
+
+  if(status === 'loading') {
     return (
-      <h1>Загрузка</h1>
-    )
+      <div style={styleSpiner}>
+        <CircularProgress />
+      </div>
+     )
   }
   if(error) {
     return  <h2>{error}</h2>
@@ -62,7 +86,15 @@ function Panel() {
         variant="h1"
         sx={{...styleH1,mb: '1em'}}
       >Заказы</Typography>
-
+      <label style={{marginRight: '1em'}}>Искать по</label>
+      <NativeSelect onChange={(e) => setValueSch(e.target.value)} value={valueSch} sx={{mb:'2em'}}>
+        <option value={1}>Названию</option>
+        <option value={2}>id</option>
+        <option value={3}>Цене</option>
+        <option value={4}>Рейтингу</option>
+        <option value={5}>Описанию</option>
+      </NativeSelect>
+      <TextField onChange={(e) => setSerch(e.target.value)} sx={{mb:'2em'}} fullWidth label="Поиск" variant="filled" color="success" />
       <Button 
       endIcon={<Add />} 
       size="large" 
@@ -105,8 +137,10 @@ function Panel() {
             price={oneProduct[0].price}
             onChangeTitle={setOneProductTitle}
             onChangePrice={setOneProductPrice}
-            // onChangeRating={setRating}
-            // onChangeDescpost={setDescpost}
+            descpost={descpost}
+            rating={rating}
+            setRating={setRating}
+            setDescpost={setDescpost}
             submit={(e) => updateProd(e)}
             productid={oneProduct[0].productid}
             id={productid}
@@ -130,8 +164,9 @@ function Panel() {
           </TableRow>
          </TableHead>
           <TableBody >
-          {store.map((item,index) => (
-            <TableRow   key={item.productid}>
+          {filterData
+          ?filterData.map((item,index) => (
+            <TableRow   key={index}>
               <TableCell  >{index + 1}</TableCell>         
               <TableCell  >{item.productid}</TableCell>
               <TableCell  >{item.title}</TableCell>
@@ -142,7 +177,9 @@ function Panel() {
               <TableCell sx={{textAlign: 'center'}}  ><Button size="small" color="success" variant="outlined" onClick={() => refreshPost(item.productid)}>Обновить</Button></TableCell>
               <TableCell sx={{textAlign: 'center'}} ><Button size="small" color="error" variant="outlined" onClick={() => prev(item) } >Удалить</Button></TableCell>
             </TableRow>
-          ))}
+          ))
+          : null
+          }
           </TableBody>
         </Table>
       </TableContainer>

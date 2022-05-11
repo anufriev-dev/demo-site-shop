@@ -40,24 +40,37 @@ const orderSlice = createSlice({
   name: 'orderslice',
   initialState: {
     data: [],
-    message: ''
+    message: '',
+    serch: '',
+    status: null
   },
+  reducers: {
+    setSerch(state,actio) {
+      state.serch = actio.payload
+    }
+  }
+  ,
   extraReducers: {
-    [getAllOrder.fulfilled] : (state,actio) => {
-      state.data = actio.payload
+    [getAllOrder.pending]: (state,action) => {
+      state.status = 'loading'
+    },
+    [getAllOrder.fulfilled] : (state,action) => {
+      state.data = action.payload
       state.message = ''
+      state.status = 'resolved'
     },
-    [getAllOrder.rejected] : (state,actio) => {
-      Object.console.log(actio.payload)
+    [getAllOrder.rejected] : (state,action) => {
+      Object.console.log(action.payload)
     },
-    [deleteOneOrder.fulfilled] : (state,actio) => {
-      state.message = actio.payload
+    [deleteOneOrder.fulfilled] : (state,action) => {
+      state.message = action.payload
       alert(state.message)
     },
-    [deleteOneOrder.rejected] : (state,actio) => {
-      Object.console.log(actio.payload)
+    [deleteOneOrder.rejected] : (state,action) => {
+      Object.console.log(action.payload)
     }
   }
 })
 
+export const {setSerch} = orderSlice.actions
 export default orderSlice.reducer

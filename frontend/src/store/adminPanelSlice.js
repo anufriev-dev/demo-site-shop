@@ -83,15 +83,17 @@ export const updateProduct = createAsyncThunk(
     try {
 
       const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
-      const {img,oneProduct,productid} = await getState().adminPanel
+      const {img,oneProduct,productid,rating,descpost} = await getState().adminPanel
       const body = new FormData()
 
-      body.append('title',await oneProduct[0].title)
-      body.append('price',await oneProduct[0].price)
-      body.append('img', await img)
+      body.append('title', oneProduct[0].title)
+      body.append('price', oneProduct[0].price)
+      body.append('img',  img)
+      body.append('rating',rating)
+      body.append('descpost',descpost)
 
       let result = await fetch(`http://localhost:4000/auth/api/product/update/${productid}` , {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`
         },
@@ -150,8 +152,12 @@ const adminPanelSlice = createSlice({
     },
   },
   extraReducers: {
+    [getAllProduct.pending]: (state,action) => {
+      state.status = 'loading'
+    },
     [getAllProduct.fulfilled] : (state,action) => {
       state.store = action.payload.data
+      state.status = 'resolved'
     },
     [getAllProduct.rejected] : (state, action) => {
         state.error = action.payload
@@ -185,6 +191,8 @@ const adminPanelSlice = createSlice({
     [getOneProduct.fulfilled] : (state, action) => {
       state.oneProduct = action.payload
       state.oneProduct[0].img = []
+      state.rating = action.payload[0].rating
+      state.descpost = action.payload[0].descpost
     },
     [updateProduct.fulfilled] : (state,action) => {
       state.amountPost = (state.store.length + 1)

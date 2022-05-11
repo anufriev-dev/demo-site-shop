@@ -16,6 +16,7 @@ function FormPanel({descpost,rating,setDescpost,setRating,modalFunc,name, nameBt
     dispatch(setImg(e.target.files[0]))
   }
   function actionBtn (e) {
+    dispatch(setProductid(productid))
     submit(e)
     modalFunc(false)
   }
@@ -36,24 +37,24 @@ function FormPanel({descpost,rating,setDescpost,setRating,modalFunc,name, nameBt
         />
       </div>
       <div >
-        <TextField sx={{mb: '1em'}} fullWidth label="Цена" value={price} id="form-admin__ni22" 
+        <TextField sx={{mb: '1em'}} fullWidth label="Цена"  value={price} id="form-admin__ni22" 
          type="text" 
         onChange={e => dispatch(onChangePrice(e.target.value))} 
         />
       </div>
       <div >
-        <TextField sx={{mb: '1em'}} fullWidth label="Рейтинг" value={rating}
+        <TextField sx={{mb: '1em'}} fullWidth label="Рейтинг"  value={rating}
          type="text" 
         onChange={e => dispatch(setRating(e.target.value))} 
         />
       </div>
       <div >
-        <TextField sx={{mb: '1em'}} fullWidth label="Описание" value={descpost}
+        <TextField sx={{mb: '1em'}} fullWidth label="Описание"  value={descpost}
          type="text" 
         onChange={e => dispatch(setDescpost(e.target.value))} 
         />
       </div>
-      <Box sx={{display: 'flex',justifyContent: 'space-between', alignItems: 'center'}}>
+      <Box Box sx={{display: 'flex',justifyContent: 'space-between', alignItems: 'center'}}>
         <label htmlFor="upload1">
             <Input style={{display: 'none'}} id="upload1" multiple  type="file" onChange={e => fileUp(e)}/>
             <Button variant="contained" size="small" startIcon={<UploadFile/>} component="span">Загрузить</Button>

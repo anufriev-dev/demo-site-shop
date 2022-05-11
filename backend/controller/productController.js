@@ -73,37 +73,38 @@ class ProductController {
       console.log(e)
     }
   }
-  static async updateProduct (req, res) {
+  static async updateProductPatch (req,res) {
     try {
-      if(!req.files){
-        return res.status(400).json({message: 'Файл не найден'})
+      let img;
+      if(req.files) {
+        img = req.files.img
       }
-      let {img} = req.files 
-      let {title,price} = req.body;
       let id = req.params.id
-      const postId  = await modelProduct.findPost(id)
-      
-      if(postId.length <= 0){
-        return res.status(400).json({message: 'Такого поста несуществует'})
-      }
+      console.log(img)
+      let {title ,price,rating,descpost } = req.body
 
-      const prevImg = postId[0].img
+      console.log(title ,price,rating,descpost)
 
-      let filename = uuid.v4() + '.jpg';
+      if (title)  await modelProduct.updatePostaPatch('title',title,id)
+      if (price)  await modelProduct.updatePostaPatch('price',price,id)
+      if (rating)  await modelProduct.updatePostaPatch('rating',rating,id)
+      if (descpost)  await modelProduct.updatePostaPatch('descpost',descpost,id)
 
-      let result;
-      if(prevImg == img) {      
-        result = await modelProduct.updatePost(title,price,prevImg,id)
-      }else{
-        img.mv(path.resolve(__dirname,'..','static', filename))
+      if (img) {
+        const postId  = await modelProduct.findPost(id)
+        const prevImg = postId[0].img
         if(fs.existsSync(path.resolve(__dirname , '..', 'static', prevImg))) {
           fs.unlinkSync(path.resolve(__dirname , '..', 'static', prevImg))
         }
-        result = await modelProduct.updatePost(title,price,filename,id)
-      }
-      res.status(200).json({message: 'Обновлено!',result,status: 'OK'})
 
-    } catch (e) {
+        let filename = uuid.v4() + '.jpg';
+        img.mv(path.resolve(__dirname,'..','static', filename))
+        await modelProduct.updatePostaPatch('img',filename,id)
+      }
+
+      let result = []
+      res.status(200).json({message: 'Обновлено!',result,status: 'OK'})
+    } catch(e) {
       console.log(e)
     }
   }

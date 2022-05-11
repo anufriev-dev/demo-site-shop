@@ -3,23 +3,23 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const getProduct = createAsyncThunk(
   'mainlist/getProduct',
-  async function (_,{rejectWithValue,getState}) {
-    const {currentPage,limit} = getState().mainList
+  async function (_,{rejectWithValue,dispatch}) {
     try {
-      const respons = await fetch(`http://localhost:4000/auth/api/product/${currentPage}/${limit}`, {
-        method: 'GET',
+      const respons = await fetch('http://localhost:4000/auth/api/product', {
+        method: 'GET'
       })
       if(!respons.ok){
         throw new Error('error with error')
       }
       const data = await respons.json()
+      dispatch(setStore(data.data))
       return data
-    } catch (e) {
+    } catch(e) {
       return rejectWithValue(e.message)
     }
-
   }
 )
+
 
 const mainListSlice = createSlice({
   name:'mainlist',
@@ -56,7 +56,6 @@ const mainListSlice = createSlice({
       state.error = null
     },
     [getProduct.fulfilled] : (state, action) => {
-      state.store =  action.payload.data
       state.countPage =  action.payload.length
       state.status =  'resolved'
     },

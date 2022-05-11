@@ -180,7 +180,7 @@ router.post('/product/create',[roleMiddleware(['ADMIN']),validBody], productCont
 /**
  * @swagger
  *  /auth/api/product/update/{id}:
- *   put:
+ *   patch:
  *    tags:
  *    - product
  *    summary: обновить Пост по id
@@ -196,19 +196,19 @@ router.post('/product/create',[roleMiddleware(['ADMIN']),validBody], productCont
  *       description: Название Поста
  *       in: formData
  *       type: string
- *       required: true
+ *       required: false
  *     - 
  *       name: price
  *       description: Цена товара
  *       in: formData
  *       type: integer
- *       required: true
+ *       required: false
  *     - 
  *       name: img
  *       description: Картинка  
  *       in: formData
  *       type: file
- *       required: true
+ *       required: false
  *     -
  *       description: "Bearer 'one space' token"
  *       in: header
@@ -233,7 +233,7 @@ router.post('/product/create',[roleMiddleware(['ADMIN']),validBody], productCont
  *            message:
  *              type: string
  */
-router.put('/product/update/:id', roleMiddleware(['ADMIN']), productController.updateProduct)
+router.patch('/product/update/:id', roleMiddleware(['ADMIN']), productController.updateProductPatch)
 
 
 module.exports = router

@@ -7,8 +7,7 @@ import {Link, useLocation, useNavigate} from 'react-router-dom'
 import { AppBar, Badge, Button, Container, IconButton, Toolbar, Tooltip, Typography } from '@mui/material'
 import {ShoppingBasket, LogoDev} from '@mui/icons-material'
 import { Box } from '@mui/system'
-
-
+import Basket from './Basket'
 
 
 function Header () {
@@ -41,23 +40,9 @@ function Header () {
           :  null}
           <Registry />
 
-          {/* <div ><div ><input type="text" /><button type="hidden"></button> </div> </div> */}
-          <Tooltip title="Корзина">
-            <IconButton
-              sx={{ ml: '0.5em'}}
-              disabled={location.pathname == '/basket' ? true : false} 
-              onClick={() => navigate('/basket')}
-              color="inherit"
-            >
-              <Badge
-                color="secondary"
-                badgeContent={countBasket}
-              >
-              <ShoppingBasket />
-              </Badge>
-            </IconButton>
-          </Tooltip>
-          {/* <Link to="/basket" > <div ><span >{basket}$</span></div> </Link> */}
+          <Box sx={{display: {xs: 'none',md: 'block'}}}>
+            <Basket />
+          </Box>
 
         {/* <Nav /> */}
         </Toolbar>
