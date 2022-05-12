@@ -20,7 +20,7 @@ app.use(express.json())
 
 app.use(express.static(path.resolve(__dirname,'static')))
 app.use(fileUpload({}))
-app.use(cors({origin:"http://localhost:3000"}))
+app.use(cors({origin:process.env.CORS}))
 
 app.use('/auth/api', router);
 

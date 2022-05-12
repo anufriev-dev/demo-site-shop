@@ -1,30 +1,26 @@
+import { Box } from '@mui/system'
+import Post from '../components/Post'
+import {styleH1} from '../utils/style'
+import NoGoods from '../components/NoGoods'
+import { styleSpiner } from '../utils/style'
 import React,{useEffect, useState} from 'react'
+import { setBasket } from '../store/basketSlice'
 import { useDispatch,useSelector } from 'react-redux'
 import { getAllProduct,createOrder } from '../store/basketSlice'
-import { Link } from 'react-router-dom'
 import { setEmail,setTextArea,setCountBasket } from '../store/basketSlice'
-import { setBasket } from '../store/basketSlice'
-
 import { Button, CircularProgress, Container, Grid, TextField, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import NoGoods from '../components/NoGoods'
-import {styleH1} from '../utils/style'
-import { styleSpiner } from '../utils/style'
-import Post from '../components/Post'
 
 
-function Basket() {
+const Basket = () => {
   
   const {data,textArea,keys,basket, countBasket,email,status} = useSelector(state => state.basket)
   const dispatch = useDispatch()
 
-
-
   useEffect(() => {
     dispatch(getAllProduct())
-  },[keys])
+  },[keys,dispatch])
 
- async function deLete (e) {
+ const deLete = async (e) => {
     e.preventDefault()
     const self = e.currentTarget
     const relative = self.closest('.post')
@@ -57,7 +53,6 @@ function Basket() {
     body2.append('articul',articulArr)
 
     dispatch(createOrder(body2))
-    // document.location ='/basket/order'
   }
   const [myerrors, setErrors] = useState(false)
 
@@ -94,9 +89,23 @@ function Basket() {
       <div >
         <form action="" method="POST" >
           <h3>Введите свой email</h3>
-          <TextField fullWidth variant="outlined" error={myerrors} label="email" required  value={email} onChange={e => dispatch(setEmail(e.target.value))} type="text" name="emailBasket" />
+          <TextField 
+            fullWidth 
+            variant="outlined" 
+            error={myerrors} 
+            label="email" 
+            required  
+            value={email} 
+            onChange={e => dispatch(setEmail(e.target.value))} 
+            type="text"
+             name="emailBasket"
+          />
           <h3 >Комментарий к заказу</h3>
-          <textarea style={{width: '95%',height: '150px',marginBottom: '50px'}} value={textArea} onChange={e => dispatch(setTextArea(e.target.value))} ></textarea>
+          <textarea 
+            style={{width: '95%',height: '150px',marginBottom: '50px'}} 
+            value={textArea} 
+            onChange={e => dispatch(setTextArea(e.target.value))} 
+          ></textarea>
           <Box sx={{display: 'flex',justifyContent: 'space-between'}}>
             <Button size="large" variant="contained" onClick={order} >Заказать</Button>
             <Box 
@@ -111,4 +120,5 @@ function Basket() {
   }
 
 }
+
 export default Basket

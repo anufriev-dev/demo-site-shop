@@ -1,26 +1,42 @@
-import React, {useEffect, useState} from 'react'
+import { 
+  Box, 
+  Container, 
+  TextField, 
+  Button, 
+  Stack, 
+  ButtonGroup, 
+  Pagination, 
+  Grid, 
+  CircularProgress 
+} from '@mui/material'
 import Post from './Post'
-import { useSelector,useDispatch } from 'react-redux'
-import {setCurrent} from '../store/mainListSlice'
-import { getProduct,setStore,setLimite,setSerch, } from '../store/mainListSlice'
-import { createPages } from '../script/createPage'
-import {setBasket, setCountBasket} from '../store/basketSlice'
-import { Box, Container, TextField, Button, Stack, ButtonGroup, Pagination, Grid, CircularProgress } from '@mui/material'
-import SelectHeader from './SelectHeader'
 import Snack from './Snack'
-import { styleSpiner } from '../utils/style'
-
 import NoGoods from './NoGoods'
+import SelectHeader from './SelectHeader'
+import { styleSpiner } from '../utils/style'
+import React, {useEffect, useState} from 'react'
+import {setCurrent} from '../store/mainListSlice'
+import { useSelector,useDispatch } from 'react-redux'
+import {setBasket, setCountBasket} from '../store/basketSlice'
+import { getProduct,setStore,setSerch,setCountPage } from '../store/mainListSlice'
 
-function MainList () {
 
-  const {error,store,serch,status,limit,currentPage,countPage,kastilCount} = useSelector(state => state.mainList)
+const MainList = () => {
+
+  const {error,store,serch,status,limit,currentPage,countPage} = useSelector(state => state.mainList)
   const {countBasket} = useSelector(state => state.basket)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(setCountPage(Math.ceil(store.length / limit)))
+  })
+
+  useEffect(() => {
     dispatch(getProduct())
+    return () => {
+      dispatch(setSerch(''))
+    } 
   },[])
 
   useEffect(() => {
@@ -46,11 +62,12 @@ function MainList () {
 
 
   const [open, setOpen] = useState(false)
+
   const handleClose = () => {
     setOpen(false)
   }
 
-  function btnEvent (e,item)  {
+  const btnEvent = (e,item) =>  {
     const valid = JSON.parse(localStorage.getItem(item.articul))
     if(valid === null) {
       setOpen(true)
@@ -85,14 +102,12 @@ function MainList () {
      return parseFloat(a.price) - parseFloat(b.price)
     })
     dispatch(setStore(result))
-    document.getElementById('input23').value = ''
   }
   const sortLow =  () => {
     const result = [ ...store].sort((a,b) => {
       return parseFloat(b.price) - parseFloat(a.price)
     })
     dispatch(setStore(result))
-    document.getElementById('input23').value = ''
   }
 
   const pagination = (e,value) => {
@@ -105,7 +120,6 @@ function MainList () {
     const result = [...store].slice(startIndex,endIndex)
     setFilterStore(result)
   }
-
 
 
   if(status === 'loading') {
@@ -139,24 +153,26 @@ function MainList () {
 
       <Box sx={{mb:'2rem'}}>
         <Stack>
-          <Pagination onChange={(e,v) => pagination(e,v)} page={parseInt(currentPage)}  count={10} />
+          <Pagination onChange={(e,v) => pagination(e,v)} page={parseInt(currentPage)}  count={countPage} />
         </Stack>
       </Box>
 
       {error && <h2>{error}</h2>}
 
       <Grid container spacing={2}  sx={{justifyContent: 'center'}}>
-        {filterStore.length 
-        ? filterStore.map(item => (
-          <Post btnEvent={btnEvent} item={item} text="BUY NOW" key={item.productid}/>
-        ))
-        :
-        <NoGoods text="Товары не найдены"/>
-      }
+        {
+          filterStore.length 
+
+          ? filterStore.map(item => (
+            <Post btnEvent={btnEvent} item={item} text="BUY NOW" key={item.productid}/>
+          ))
+
+          : <NoGoods text="Товары не найдены"/>
+        }
       </Grid>
       <Box sx={{mt:'2rem', mb: '2em'}}>
         <Stack>
-          <Pagination  onChange={(e,v) => pagination(e,v)} page={parseInt(currentPage)}  count={10} />
+          <Pagination  onChange={(e,v) => pagination(e,v)} page={parseInt(currentPage)}  count={countPage} />
         </Stack>
       </Box>
       <Snack open={open} close={handleClose}/>

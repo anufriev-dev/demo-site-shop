@@ -1,13 +1,26 @@
+import {
+  CircularProgress,
+  Container, 
+  NativeSelect, 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableContainer, 
+  TableHead, 
+  TableRow, 
+  TextField, 
+  Typography
+} from '@mui/material'
+import OrderLi from '../components/OrderLi'
+import {setSerch} from '../store/orderSlice'
 import React,{useEffect, useState} from 'react'
 import {getAllOrder} from '../store/orderSlice'
-import {useDispatch, useSelector} from 'react-redux'
-import OrderLi from '../components/OrderLi'
-import {Link} from 'react-router-dom'
-import {CircularProgress, Container, NativeSelect, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography} from '@mui/material'
 import {styleH1, styleSpiner} from '../utils/style'
-import {setSerch} from '../store/orderSlice'
+import {useDispatch, useSelector} from 'react-redux'
 
-function PanelOrder() {
+
+const PanelOrder = () => {
+  
   const {data,message,serch,status} = useSelector(state => state.orderslice)
   const dispatch = useDispatch()
 
@@ -22,13 +35,17 @@ function PanelOrder() {
 
   useEffect(() => {
     setFilterData([...data]?.filter((item) => {
-      switch(valueSch){
-        case '1':
-          return item.email.toLowerCase().includes(serch.trim().toLowerCase())
-        case '2':
-          return item.text.toString().toLowerCase().includes(serch.trim().toLowerCase())
-        case '3':
-          return item.allArticul.toString().toLowerCase().includes(serch.trim().toLowerCase())
+      try {
+        switch(valueSch){
+          case '1':
+            return item.email.toLowerCase().includes(serch.trim().toLowerCase())
+          case '2':
+            return item.text.toString().toLowerCase().includes(serch.trim().toLowerCase())
+          case '3':
+            return item.allArticul.toString().toLowerCase().includes(serch.trim().toLowerCase())
+        }
+      } catch (e) {
+        e
       }
     }))
   },[serch,data,valueSch])
@@ -65,7 +82,8 @@ function PanelOrder() {
           </TableHead>
           <TableBody>
           {filterData
-           ?filterData.map((item,index) => (
+
+           ? filterData.map((item,index) => (
                 <OrderLi item={item} key={index} />
             ))
            : null

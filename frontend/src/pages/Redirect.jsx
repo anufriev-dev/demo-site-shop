@@ -1,14 +1,12 @@
-import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
-import {Link} from 'react-router-dom'
-import ok from '../img/ok-200.png'
+import ok from '../assets/ok-200.png'
+import {styleH1} from '../utils/style'
 import {styleFlexBox} from '../utils/style'
 import {useNavigate} from 'react-router-dom'
-import {styleH1} from '../utils/style'
+import { Box, Button, Typography } from '@mui/material'
 
 
-
-function Redirect() {
+const Redirect = () => {
 
   const navigate = useNavigate()
 
@@ -28,8 +26,13 @@ function Redirect() {
       >
         Теперь вы можете совершать покупки в нашем маркете.
         </Typography>
-        <Button variant="contained" color="success" size="large" onClick={() => navigate('/')}>
-        Продолжить
+        <Button 
+          variant="contained" 
+          color="success" 
+          size="large" 
+          onClick={() => navigate('/')}
+        >
+          Продолжить
           </Button>
     </Box>
     </>

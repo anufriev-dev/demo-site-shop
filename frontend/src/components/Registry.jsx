@@ -1,17 +1,15 @@
-import React,{useState } from 'react'
-import {useSelector,useDispatch} from 'react-redux'
-import {setLogin,setPass,nulls} from '../store/authSlice'
-import { authariz } from '../store/authSlice'
-import { Button, IconButton, Modal, TextField, Tooltip, Typography } from '@mui/material'
-import {useLocation,useNavigate} from 'react-router-dom'
-import { Home, Logout } from '@mui/icons-material'
 import { Box } from '@mui/system'
+import React,{useState } from 'react'
 import { styleModal } from '../utils/style'
+import { authariz } from '../store/authSlice'
+import { Home, Logout } from '@mui/icons-material'
+import {useSelector,useDispatch} from 'react-redux'
+import {useLocation,useNavigate} from 'react-router-dom'
+import {setLogin,setPass} from '../store/authSlice'
+import { Button, IconButton, Modal, TextField, Tooltip, Typography } from '@mui/material'
 
 
-
-function Registry () {
-
+const Registry = () => {
 
   const {login,pass} = useSelector(state => state.auth)
   const location = useLocation()
@@ -22,7 +20,7 @@ function Registry () {
   const tokenUser = document.cookie.includes('user=')
   const tokenRole = document.cookie.includes('role=ADMIN')
 
-  function sub (e) {
+  const sub = (e) => {
     e.preventDefault()
     dispath( authariz())
     setOpen(false)
@@ -39,10 +37,11 @@ function Registry () {
 
   return(
   <>
-      <div className="registry">
-        {tokenRole
-          ?
-          <Tooltip title="Админка">
+    <div className="registry">
+      {
+        tokenRole
+
+        ? <Tooltip title="Админка">
             <span>
             <IconButton 
                 sx={{mr: 2}} disabled={location.pathname == '/admin' ? true : false}
@@ -53,44 +52,46 @@ function Registry () {
               </IconButton> 
             </span>
           </Tooltip> 
-          : null 
-        }
-      </div>
-      <div>
-       {
-        tokenUser
-        ?
-        <Tooltip title="Выйти">
+          
+        : null 
+      }
+    </div>
+    <div>
+      {
+      tokenUser  
+
+      ? <Tooltip title="Выйти">
           <IconButton
           variant="contained" 
           color="error"
-          onClick={() => exit()}>
+          onClick={() => exit()}
+          >
             <Logout />
           </IconButton>
         </Tooltip>
-        : 
-        <Button size="small" onClick={() => setOpen(true)} variant="contained">Войти</Button>
-       }
-      </div>
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-      >
+
+      : <Button size="small" onClick={() => setOpen(true)} variant="contained">Войти</Button>
+      }
+    </div>
+    <Modal
+      open={open}
+      onClose={() => setOpen(false)}
+    >
       <Box sx={styleModal} >
-          <Typography sx={{mb:'0.5em'}} variant="h2" color="primary">Вход</Typography>
-          <div>
-            <TextField sx={{mb: 2}} fullWidth  label="Login"  id="formAuth__input--1" 
-             onChange={(e) => dispath(setLogin(e.target.value)) } value={login}
-              name="login"
-              />
-          </div>
-          <div >
-            <TextField sx={{mb: 2}}  fullWidth label="Password" id="formAuth__input--2" type="password"
-              onChange={(e) => dispath(setPass(e.target.value)) } value={pass}
-              name="password"
-              />
-          </div>
-         <Button color="primary" onClick={sub} >Войти</Button>
+        <Typography sx={{mb:'0.5em'}} variant="h2" color="primary">Вход</Typography>
+        <div>
+          <TextField sx={{mb: 2}} fullWidth  label="Login"  id="formAuth__input--1" 
+          onChange={(e) => dispath(setLogin(e.target.value)) } value={login}
+            name="login"
+            />
+        </div>
+        <div >
+          <TextField sx={{mb: 2}}  fullWidth label="Password" id="formAuth__input--2" type="password"
+            onChange={(e) => dispath(setPass(e.target.value)) } value={pass}
+            name="password"
+            />
+        </div>
+        <Button color="primary" onClick={sub} >Войти</Button>
           <div className="formAuth__wrap-button">
             <Button onClick={
               () => {
@@ -103,8 +104,9 @@ function Registry () {
           </div>
       </Box>
 
-      </Modal>
+    </Modal>
   </>
   )
 }
+
 export default Registry

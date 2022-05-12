@@ -1,15 +1,26 @@
-import { Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Container, Rating, Typography } from '@mui/material'
+import { 
+        Button,
+        Card,
+        CardActions,
+        CardContent, 
+        CardMedia, 
+        CircularProgress, 
+        Container, 
+        Rating,  
+        Typography 
+} from '@mui/material'
+import { Box } from '@mui/system'
 import React,{useEffect} from 'react'
+import {styleH1} from '../utils/style'
+import {styleSpiner} from '../utils/style'
 import { useParams } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
-import {getOnePostById} from '../store/descPostSlice'
 import { setCountBasket} from '../store/basketSlice'
-import {styleH1} from '../utils/style'
-import { Box } from '@mui/system'
-import {styleSpiner} from '../utils/style'
+import {getOnePostById} from '../store/descPostSlice'
 
 
-function DescriptionPost() {
+const DescriptionPost = () => {
+  
   const {id} = useParams()
   const {status,post} = useSelector(state => state.descPost)
   const {countBasket} = useSelector(state => state.basket)
@@ -19,7 +30,7 @@ function DescriptionPost() {
   
   useEffect(() => {
     dispatch(getOnePostById(id))
-  }, [])
+  },[])
 
   const addProduct = (e,item) => {
     const valid = JSON.parse(localStorage.getItem(item.articul))
@@ -52,7 +63,11 @@ function DescriptionPost() {
           </Typography>
           <Card>
             <Box sx={{display: 'flex',justifyContent:'center',alignItems: 'center'}}>
-              <CardMedia component="img"sx={{width: {xs: '325px',sm: '550px'}}} src={`http://localhost:4000/${item.img}`}/>
+              <CardMedia 
+                component="img" 
+                sx={{width: {xs: '325px',sm: '550px'}}} 
+                src={`${process.env.SERVER_API_URL}/${item.img}`}
+              />
             </Box>
             <CardContent>
               <Typography component="legend">Rating</Typography>

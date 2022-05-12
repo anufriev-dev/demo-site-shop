@@ -19,7 +19,7 @@ export const getAllProduct = createAsyncThunk(
   'adminPanel/getAllProduct',
   async function (_,{rejectWithValue, dispatch}) {
     try {
-      const respons = await fetch('http://localhost:4000/auth/api/product', {
+      const respons = await fetch(`${process.env.SERVER_API_URL}/auth/api/product`, {
         method: 'GET'
       })
       if(!respons.ok){
@@ -40,7 +40,7 @@ export const createOrder = createAsyncThunk(
   'basket/createOrder',
   async function (body,{rejectWithValue}) {
     try {
-      let result = await fetch('http://localhost:4000/auth/api/order', {
+      let result = await fetch(`${process.env.SERVER_API_URL}/auth/api/order`, {
         method: 'POST',
         body: body,
       })

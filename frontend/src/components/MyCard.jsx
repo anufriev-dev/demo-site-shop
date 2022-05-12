@@ -1,9 +1,9 @@
-import { Button, Grid, Card, CardHeader, Typography, CardContent, CardActions } from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
+import { Button, Grid, Card, Typography, CardContent, CardActions } from '@mui/material'
 
-function MyCard({title,text,btn,link}) {
+
+const MyCard = ({title,text,btn,link}) => {
 
   const navigate = useNavigate()
 
@@ -19,11 +19,19 @@ function MyCard({title,text,btn,link}) {
           <Typography variant="body1" >{text}</Typography>
           </CardContent>
           <CardActions>
-            <Button variant="contained" size="small" color="secondary" onClick={() => navigate(link) }>{btn}</Button>
+            <Button 
+              variant="contained" 
+              size="small" 
+              color="secondary" 
+              onClick={() => navigate(link) }
+            >
+              {btn}
+            </Button>
           </CardActions>
         </Card>
       </Grid>
     </>
   )
 }
+
 export default MyCard

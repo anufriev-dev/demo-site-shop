@@ -1,25 +1,25 @@
-import React,{useEffect} from 'react'
-import {Routes,Route} from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import {Layout} from './Layout'
 import {Error} from './Error.jsx'
-import {MainList} from './MainList.jsx'
-import {FormReg} from '../pages/FormReg'
-import {BrowserRouter} from 'react-router-dom'
-import Redirect from '../pages/Redirect'
 import Panel from '../pages/Panel'
 import Admin from '../pages/Admin'
 import Basket from '../pages/Basket'
-import { setKeys } from '../store/basketSlice'
-import RedirectByOrder from '../pages/RedirectByOrder'
+import React,{useEffect} from 'react'
+import {MainList} from './MainList.jsx'
+import {FormReg} from '../pages/FormReg'
+import Redirect from '../pages/Redirect'
+import { useDispatch } from 'react-redux'
 import PanelOrder from '../pages/PanelOrder'
-import {setBasket,setCountBasket} from '../store/basketSlice'
-import {setCurrent, setLimite} from '../store/mainListSlice'
+import {Routes,Route} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
+import { setKeys } from '../store/basketSlice'
 import Description  from '../pages/DescriptionPost'
+import RedirectByOrder from '../pages/RedirectByOrder'
+import {setCurrent, setLimite} from '../store/mainListSlice'
+import {setBasket,setCountBasket} from '../store/basketSlice'
 
 
-
-function App () {
+const App = () => {
+  
   const dispatch = useDispatch()
 
   if(!localStorage.getItem('basket')) {
@@ -49,16 +49,17 @@ function App () {
         <Route path="/" element={<Layout/>}>
           <Route index element={<MainList/>}/>
           <Route path="/description/:id" element={<Description />} />
-          <Route path="/basket" element={<Basket />} />
           { /* Страницы регистрации */}
           <Route path="/feed" element={<FormReg />}/>
           <Route path="/feed/goodreq" element={<Redirect />}/>
-           {/* Админка */}
+          {/* Админка */}
           <Route path="/admin" element={<Admin />}/>
           <Route path="/admin/panel" element={<Panel />}/>
           <Route path="/admin/order" element={<PanelOrder />} />
           {/* Корзина */}
+          <Route path="/basket" element={<Basket />} />
           <Route path="/basket/order" element={<RedirectByOrder />} />
+          {/* Редирект */}
           <Route path="*" element={<Error />}/>
         </Route>
       </Routes>
@@ -66,4 +67,5 @@ function App () {
     </>
   )
 }
+
 export default  App

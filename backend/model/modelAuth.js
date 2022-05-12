@@ -1,5 +1,6 @@
 const connection                  = require('../config/db')
 
+
 class ModeleAuth {
   static getLogin (login) {
     return new Promise ((res,rej) => {

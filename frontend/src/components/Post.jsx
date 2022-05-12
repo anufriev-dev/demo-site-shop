@@ -1,8 +1,19 @@
 import React  from 'react'
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material'
+import { 
+  Box, 
+  Button, 
+  Card, 
+  CardActions, 
+  CardContent, 
+  CardMedia, 
+  Grid, 
+  Rating, 
+  Typography 
+} from '@mui/material'
 import {useLocation, useNavigate} from 'react-router-dom'
 
-function Post ({item,text,deLete,btnEvent}) {
+
+const Post = ({item,text,deLete,btnEvent}) => {
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -15,7 +26,13 @@ function Post ({item,text,deLete,btnEvent}) {
     <>
     <Grid xs={12}  md={4} sm={6}  item className="post" data-id={item.articul}>
       <Card>
-          <CardMedia height="300" component="img" className="post__img"  src={`http://localhost:4000/${item.img}`} alt="картинка" width={300}/>
+        <CardMedia 
+          height="300" 
+          component="img" 
+          className="post__img"  
+          src={`${process.env.SERVER_API_URL}/${item.img}`} 
+          alt="картинка" width={300}
+        />
         <CardContent>
           <Box
             sx={{mb:'0.5em',mt: '0.5em'}}

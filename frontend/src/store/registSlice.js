@@ -10,7 +10,7 @@ export const auth = createAsyncThunk(
         password: password,
         emile: emile
       }
-      let respons = await fetch('http://localhost:4000/auth/api/registration',{
+      let respons = await fetch(`${process.env.SERVER_API_URL}/auth/api/registration`,{
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -52,7 +52,7 @@ const registSlice = createSlice({
     [auth.fulfilled] : (state,action) => {
       state.response = action.payload
       if(action.payload < 400){
-        document.location.href = 'http://localhost:3000/feed/goodreq'
+        document.location.href = `${process.env.THIS_APP_URL}/feed/goodreq`
       }
     }
   }

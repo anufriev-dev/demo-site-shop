@@ -9,7 +9,7 @@ export const authariz = createAsyncThunk(
         password: pass,
         login: login
       }
-      let res = await fetch('http://localhost:4000/auth/api/auth',{
+      let res = await fetch(`${process.env.SERVER_API_URL}/auth/api/auth`,{
         method: 'POST',
         headers: {
           'Accept': 'application/json',

@@ -9,24 +9,11 @@ const {validBody}                 = require('../middleware/castomValidation')
 
 /**
  * @swagger
- * /auth/api/product/{page}/{limit}:
+ * /auth/api/product:
  *   get: 
  *     tags:
  *     - product
- *     summary: получение Постов постранично
- *     parameters: 
- *       - 
- *         description: "число страниц"
- *         in: path
- *         name: page
- *         require: false
- *         type: integer
- *       - 
- *         description: "число товаров на одной странице"
- *         in: path
- *         name: limit
- *         require: false
- *         type: integer
+ *     summary: получение Постов
  *     responses:
  *      200:
  *        description: ok
@@ -49,7 +36,7 @@ const {validBody}                 = require('../middleware/castomValidation')
  *                  articul:
  *                    type: string          
  */
-router.get('/product/:page?/:limit?',pagination(model.getPost),productController.getProductAll )
+router.get('/product',pagination(model.getPost),productController.getProductAll )
 /**
  * @swagger
  * /auth/api/one/product/{id}:

@@ -5,7 +5,7 @@ export const getProduct = createAsyncThunk(
   'mainlist/getProduct',
   async function (_,{rejectWithValue,dispatch}) {
     try {
-      const respons = await fetch('http://localhost:4000/auth/api/product', {
+      const respons = await fetch(`${process.env.SERVER_API_URL}/auth/api/product`, {
         method: 'GET'
       })
       if(!respons.ok){
@@ -30,8 +30,7 @@ const mainListSlice = createSlice({
     countPage: 1,
     currentPage: 1,
     limit: 6,
-    kastilCount: 0,
-    serch: ''
+    serch: '',
   },
   reducers: {
     setCurrent (state, action) {
@@ -46,8 +45,8 @@ const mainListSlice = createSlice({
     setLimite (state,action) {
       state.limit = action.payload
     },
-    setkastilCount(state,actio) {
-      state.kastilCount = actio.payload
+    setCountPage (state,action) {
+      state.countPage = action.payload
     }
   },
   extraReducers: {
@@ -67,5 +66,5 @@ const mainListSlice = createSlice({
 })
 
 
-export const {setCurrent,setStore,setLimite,setkastilCount,setSerch} = mainListSlice.actions
+export const {setCurrent,setStore,setLimite,setkastilCount,setSerch,setCountPage} = mainListSlice.actions
 export default mainListSlice.reducer

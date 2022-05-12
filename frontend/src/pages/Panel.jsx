@@ -1,39 +1,76 @@
+import {
+  Button,
+  Typography, 
+  TableRow, 
+  Container, 
+  Modal, 
+  Table, 
+  TableContainer, 
+  TableHead, 
+  TableBody,
+  TableCell, 
+  TextField, 
+  NativeSelect, 
+  CircularProgress
+} from '@mui/material'
+import { Box } from '@mui/system'
+import { 
+  getAllProduct,
+  deleteProduct,
+  createProduct,
+  getOneProduct,
+  updateProduct 
+} from '../store/adminPanelSlice'
+import {
+  setTitle,
+  setPrice,
+  setOneProductTitle,
+  setOneProductPrice,
+  setDescpost,
+  setRating
+} from '../store/adminPanelSlice'
+import {styleH1} from '../utils/style'
+import { Add } from '@mui/icons-material'
+import FormPanel from '../components/FormPanel'
 import React, { useEffect, useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { getAllProduct,deleteProduct,createProduct,getOneProduct,updateProduct } from '../store/adminPanelSlice'
-import {setTitle,setPrice,setOneProductTitle,setOneProductPrice,setDescpost,setRating} from '../store/adminPanelSlice'
-import { Link } from 'react-router-dom'
-import FormPanel from '../components/FormPanel'
-import {Button,Typography, TableRow, Container, Modal, Table, TableContainer, TableHead, TableBody,TableCell, TextField, NativeSelect, CircularProgress} from '@mui/material'
 import {styleModal, styleSpiner} from '../utils/style'
-import { Box } from '@mui/system'
-import { Add } from '@mui/icons-material'
-import {styleH1} from '../utils/style'
 
 
+const Panel = () => {
 
-function Panel() {
+  const {
+    status,
+    descpost,
+    rating,
+    store, 
+    error,
+    title,
+    price,
+    oneProduct,
+    amountPost,
+    productid
+  } = useSelector(state => state.adminPanel)
 
-  const {status,descpost,rating,store, error,title,price,oneProduct,amountPost,productid} = useSelector(state => state.adminPanel)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getAllProduct())
-  }, [amountPost])
+  },[amountPost,dispatch])
 
-  function prev (item) {
+  const prev = (item) => {
    const res = window.confirm('Вы точно уверены что хотите удалить пост???')
    if(res) {
     dispatch(deleteProduct(item.productid))
    }
   }
 
-  function createProd (e) {
+  const createProd = (e) => {
     e.preventDefault()
     dispatch(createProduct())
   }
 
-  function updateProd (e) {
+  const updateProd = (e) => {
     e.preventDefault()
     dispatch(updateProduct())
   }
@@ -52,21 +89,26 @@ function Panel() {
 
   const [filterData, setFilterData] = useState([])
   useEffect(() => {
-    setFilterData([...store]?.filter((item) => {
+    try {
+      setFilterData([...store]?.filter((item) => {
+  
+        switch(valueSch){
+          case '1':
+            return item.title.toLowerCase().includes(serch.trim().toLowerCase())
+          case '2':
+            return item.productid.toString().toLowerCase().includes(serch.trim().toLowerCase())
+          case '3':
+            return item.price.toString().toLowerCase().includes(serch.trim().toLowerCase())
+          case '4':
+            return item.rating.toString().toLowerCase().includes(serch.trim().toLowerCase())
+          case '5':
+            return item.descpost.toLowerCase().includes(serch.trim().toLowerCase())
+        }  
+      }))
 
-      switch(valueSch){
-        case '1':
-          return item.title.toLowerCase().includes(serch.trim().toLowerCase())
-        case '2':
-          return item.productid.toString().toLowerCase().includes(serch.trim().toLowerCase())
-        case '3':
-          return item.price.toString().toLowerCase().includes(serch.trim().toLowerCase())
-        case '4':
-          return item.rating.toString().toLowerCase().includes(serch.trim().toLowerCase())
-        case '5':
-          return item.descpost.toLowerCase().includes(serch.trim().toLowerCase())
-      }  
-    }))
+    } catch (e) {
+      e
+    } 
   }, [store,serch,valueSch])
 
   if(status === 'loading') {
@@ -85,7 +127,9 @@ function Panel() {
     <Typography 
         variant="h1"
         sx={{...styleH1,mb: '1em'}}
-      >Заказы</Typography>
+    >
+        Заказы
+    </Typography>
       <label style={{marginRight: '1em'}}>Искать по</label>
       <NativeSelect onChange={(e) => setValueSch(e.target.value)} value={valueSch} sx={{mb:'2em'}}>
         <option value={1}>Названию</option>
@@ -94,7 +138,14 @@ function Panel() {
         <option value={4}>Рейтингу</option>
         <option value={5}>Описанию</option>
       </NativeSelect>
-      <TextField onChange={(e) => setSerch(e.target.value)} sx={{mb:'2em'}} fullWidth label="Поиск" variant="filled" color="success" />
+      <TextField 
+        onChange={(e) => setSerch(e.target.value)} 
+        sx={{mb:'2em'}} 
+        fullWidth 
+        label="Поиск" 
+        variant="filled" 
+        color="success"
+       />
       <Button 
       endIcon={<Add />} 
       size="large" 
@@ -165,20 +216,40 @@ function Panel() {
          </TableHead>
           <TableBody >
           {filterData
-          ?filterData.map((item,index) => (
-            <TableRow   key={index}>
-              <TableCell  >{index + 1}</TableCell>         
-              <TableCell  >{item.productid}</TableCell>
-              <TableCell  >{item.title}</TableCell>
-              <TableCell  >{item.price}</TableCell>
-              <TableCell  ><a target="_blank" href={`http://localhost:4000/${item.img}`}>ссылка</a></TableCell>
-              <TableCell  >{item.rating}</TableCell>
-              <TableCell  >{item.descpost	}</TableCell>
-              <TableCell sx={{textAlign: 'center'}}  ><Button size="small" color="success" variant="outlined" onClick={() => refreshPost(item.productid)}>Обновить</Button></TableCell>
-              <TableCell sx={{textAlign: 'center'}} ><Button size="small" color="error" variant="outlined" onClick={() => prev(item) } >Удалить</Button></TableCell>
-            </TableRow>
-          ))
-          : null
+          
+            ? filterData.map((item,index) => (
+              <TableRow   key={index}>
+                <TableCell  >{index + 1}</TableCell>         
+                <TableCell  >{item.productid}</TableCell>
+                <TableCell  >{item.title}</TableCell>
+                <TableCell  >{item.price}</TableCell>
+                <TableCell  ><a target="_blank" href={`${process.env.SERVER_API_URL}/${item.img}`}>ссылка</a></TableCell>
+                <TableCell  >{item.rating}</TableCell>
+                <TableCell  >{item.descpost	}</TableCell>
+                <TableCell sx={{textAlign: 'center'}}>
+                  <Button 
+                    size="small"
+                    color="success" 
+                    variant="outlined" 
+                    onClick={() => refreshPost(item.productid)}
+                  >
+                    Обновить
+                    </Button>
+                </TableCell>
+                <TableCell sx={{textAlign: 'center'}} >
+                  <Button 
+                    size="small"
+                    color="error" 
+                    variant="outlined" 
+                    onClick={() => prev(item) } 
+                  >
+                    Удалить
+                    </Button>
+                </TableCell>
+              </TableRow>
+            ))
+            : null
+
           }
           </TableBody>
         </Table>

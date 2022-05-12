@@ -4,8 +4,7 @@ import {deleteOneOrder} from '../store/orderSlice'
 import { Button, TableCell, TableRow } from '@mui/material'
 
 
-
-function OrderLi({item}) {
+const OrderLi = ({item}) => {
 
   const dispatch = useDispatch()
 
@@ -22,4 +21,5 @@ function OrderLi({item}) {
     </TableRow>
   )
 }
+
 export default OrderLi

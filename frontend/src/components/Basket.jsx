@@ -1,21 +1,22 @@
+import React from 'react'
+import {useSelector} from 'react-redux'
 import { ShoppingBasket } from '@mui/icons-material'
 import { Badge, IconButton, Tooltip } from '@mui/material'
-import {Link, useLocation, useNavigate} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import { useLocation, useNavigate} from 'react-router-dom'
 
 
-import React from 'react'
+const Basket = () => {
 
-function Basket() {
   const navigate = useNavigate()
   const location =useLocation()
-  const {basket,countBasket} = useSelector(state => state.basket)
+  const {countBasket} = useSelector(state => state.basket)
 
 
   const bool = 
   location.pathname !== '/admin' &&
   location.pathname !== '/admin/panel' &&
   location.pathname !== '/admin/order'
+
   return (
     <>
       {
@@ -36,7 +37,6 @@ function Basket() {
         </IconButton>
       </Tooltip>
       : null
-
       }
     </>
   )

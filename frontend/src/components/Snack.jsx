@@ -1,7 +1,9 @@
-import { Alert, Snackbar } from '@mui/material';
 import React from 'react'
+import { Alert, Snackbar } from '@mui/material'
 
-function Snack({open,close}) {
+
+const Snack = ({open,close}) => {
+  
   return ( 
     <Snackbar 
     open={open}

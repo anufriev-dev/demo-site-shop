@@ -1,10 +1,12 @@
-import { Box, FormControl, InputLabel, NativeSelect, Typography } from '@mui/material'
 import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { setLimite  } from '../store/mainListSlice'
 import {styleH1} from '../utils/style'
+import { setLimite  } from '../store/mainListSlice'
+import {useDispatch, useSelector} from 'react-redux'
+import { Box, FormControl, InputLabel, NativeSelect, Typography } from '@mui/material'
 
-function SelectHeader() {
+
+const SelectHeader = () => {
+  
   const {limit} = useSelector(state => state.mainList)
   const dispatch = useDispatch() 
 

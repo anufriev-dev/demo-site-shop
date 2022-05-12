@@ -64,7 +64,6 @@ const roleMiddleware              = require('../middleware/roleMiddleware')
 router.post('/order',[
   check('articul',"Корзина пуста!").isLength({min:4}),
   check('email', "Email не валидный").isEmail(),
-  // check('textArea',"Минимальное кол-во символов от 4").isLength({min: 4})
 ],
   orderController.order )
 /**

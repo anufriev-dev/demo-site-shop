@@ -1,5 +1,6 @@
 const connection                  = require('../config/db')
 
+
 class ModelUser {
   static getUser() {
     return new Promise((res,rej) => {

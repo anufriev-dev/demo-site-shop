@@ -5,7 +5,7 @@ export const getAllOrder = createAsyncThunk(
   async function (_,{rejectWithValue}) {
     const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
     try {
-      let res = await fetch('http://localhost:4000/auth/api/orderget', {
+      let res = await fetch(`${process.env.SERVER_API_URL}/auth/api/orderget`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -22,7 +22,7 @@ export const deleteOneOrder = createAsyncThunk(
   async function (id,{rejectWithValue}) {
     const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
     try {
-      let res = await fetch(`http://localhost:4000/auth/api/delete/order/${id}`, {
+      let res = await fetch(`${process.env.SERVER_API_URL}/auth/api/delete/order/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

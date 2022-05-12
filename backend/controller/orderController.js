@@ -1,6 +1,7 @@
 const modeleOrder                 = require('../model/modeleOrder')
 const {validationResult}          = require('express-validator')
 
+
 class OrderController {
   static async order (req,res) {
     try {

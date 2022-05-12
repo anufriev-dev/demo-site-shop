@@ -1,5 +1,6 @@
 const connection                  = require('../config/db')
 
+
 class ModelProduct {
   static getProductId(id) {
     return new Promise((res,rej) => {

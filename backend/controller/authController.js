@@ -7,7 +7,6 @@ const createToken                 = require('../utils/createToken')
 require('dotenv').config({path: path.resolve(__dirname, '..','config','.env')})
 
 
-
 class AuthController {
   static async createUser (req,res) {
     try {

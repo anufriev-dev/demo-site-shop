@@ -4,7 +4,7 @@ export const getOnePostById = createAsyncThunk(
   'descPost/getOnePostById',
   async function(id,{rejectWithValue}) {
     try {
-      let result = await fetch(`http://localhost:4000/auth/api/one/product/${id}`, {
+      let result = await fetch(`${process.env.SERVER_API_URL}/auth/api/one/product/${id}`, {
         method: 'GET'
       })
 
@@ -41,5 +41,4 @@ const descPostSlice = createSlice({
   }
 })
 
-// export const {} = descPostSlice.actions
 export default descPostSlice.reducer

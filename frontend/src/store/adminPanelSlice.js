@@ -4,7 +4,7 @@ export const getAllProduct = createAsyncThunk(
   'adminPanel/getAllProduct',
   async function (_,{rejectWithValue}) {
     try {
-      const respons = await fetch('http://localhost:4000/auth/api/product', {
+      const respons = await fetch(`${process.env.SERVER_API_URL}/auth/api/product`, {
         method: 'GET'
       })
       if(!respons.ok){
@@ -22,7 +22,7 @@ export const deleteProduct = createAsyncThunk(
   async function (id,{rejectWithValue}) {
     const token = document.cookie.split('; ').filter(item => item.startsWith('user='))[0].split('=')[1]
     try {
-      let result = fetch(`http://localhost:4000/auth/api/product/delete/${id}`,{
+      let result = fetch(`${process.env.SERVER_API_URL}/auth/api/product/delete/${id}`,{
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -47,7 +47,7 @@ export const createProduct = createAsyncThunk(
     body.append('rating',rating)
     body.append('descpost',descpost)
     try {
-      let result = await fetch('http://localhost:4000/auth/api/product/create', {
+      let result = await fetch(`${process.env.SERVER_API_URL}/auth/api/product/create`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -65,7 +65,7 @@ export const getOneProduct = createAsyncThunk(
   'adminPanel/getOneProduct',
   async function (id,{rejectWithValue}) {
     try {
-      let result = await fetch(`http://localhost:4000/auth/api/one/product/${id}`, {
+      let result = await fetch(`${process.env.SERVER_API_URL}/auth/api/one/product/${id}`, {
         method: 'GET'
       })
       result = await result.json()
@@ -92,7 +92,7 @@ export const updateProduct = createAsyncThunk(
       body.append('rating',rating)
       body.append('descpost',descpost)
 
-      let result = await fetch(`http://localhost:4000/auth/api/product/update/${productid}` , {
+      let result = await fetch(`${process.env.SERVER_API_URL}/auth/api/product/update/${productid}` , {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`

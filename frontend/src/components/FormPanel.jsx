@@ -1,28 +1,44 @@
-import { Button, Input, TextField, Typography } from '@mui/material'
 import React from 'react'
-import {useDispatch } from 'react-redux'
-import {setImg,setProductid} from '../store/adminPanelSlice'
-import {styleH3} from '../utils/style'
-import {UploadFile} from '@mui/icons-material'
 import { Box } from '@mui/system'
+import {styleH3} from '../utils/style'
+import {useDispatch } from 'react-redux'
+import {UploadFile} from '@mui/icons-material'
+import {setImg,setProductid} from '../store/adminPanelSlice'
+import { Button, Input, TextField, Typography } from '@mui/material'
 
-function FormPanel({descpost,rating,setDescpost,setRating,modalFunc,name, nameBtn,title,price,onChangeTitle,onChangePrice,submit,productid}) {
+
+const FormPanel = ({
+  descpost,
+  rating,
+  setDescpost,
+  setRating,
+  modalFunc,
+  name, 
+  nameBtn,
+  title,
+  price,
+  onChangeTitle,
+  onChangePrice,
+  submit,
+  productid
+
+}) => {
 
   const dispatch = useDispatch()
 
-  function fileUp (e) {
+  const fileUp = (e) => {
     e.preventDefault()
     dispatch(setProductid(productid))
     dispatch(setImg(e.target.files[0]))
   }
-  function actionBtn (e) {
+
+  const actionBtn = (e) => {
     dispatch(setProductid(productid))
     submit(e)
     modalFunc(false)
   }
 
 
-  
   return (
     <>
     <form >

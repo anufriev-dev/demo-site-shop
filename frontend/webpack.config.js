@@ -3,6 +3,7 @@ const HtmlWebpackPlugin           = require('html-webpack-plugin')
 const MiniCssExtractPlugin        = require('mini-css-extract-plugin')
 const CssMinimizerWebpackPlugin   = require('css-minimizer-webpack-plugin')
 const BundleAnalyzer              = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const Dotenv                      = require('dotenv-webpack')
 
 module.exports = {
   entry: './src/index.jsx',
@@ -47,7 +48,6 @@ module.exports = {
               '@babel/preset-env',
               '@babel/preset-react',
             ],
-            // plugins: []
           }
         }
       }
@@ -56,7 +56,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({template: './public/index.html'}),
     new MiniCssExtractPlugin({filename: 'static/css/[name].[contenthash].css'}),
-    new BundleAnalyzer()
+    new BundleAnalyzer(),
+    new Dotenv({path: path.resolve(__dirname,'src','config','.env')})
   ],
   optimization: {
     minimizer: [new CssMinimizerWebpackPlugin()],

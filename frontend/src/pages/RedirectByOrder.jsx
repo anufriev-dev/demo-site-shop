@@ -1,14 +1,13 @@
-import { Button, Typography } from '@mui/material'
-import { Box } from '@mui/system'
 import React from 'react'
-import { Link } from 'react-router-dom'
-import ok from '../img/ok-200.png'
+import { Box } from '@mui/system'
+import ok from '../assets/ok-200.png'
 import {styleH1} from '../utils/style'
-import {useNavigate} from 'react-router-dom'
 import {styleFlexBox} from '../utils/style'
+import {useNavigate} from 'react-router-dom'
+import { Button, Typography } from '@mui/material'
 
 
-function RedirectByOrder() {
+const RedirectByOrder = () => {
 
   const navigate = useNavigate()
 
