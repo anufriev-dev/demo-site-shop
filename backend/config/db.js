@@ -9,6 +9,5 @@ const connection =  mysql2.createConnection({
   port: process.env.DB_PORT,
   host: process.env.HOST
 })
-connection.connect((e) => console.log(e))
 
 module.exports = connection

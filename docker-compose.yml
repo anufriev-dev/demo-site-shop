@@ -1,0 +1,60 @@
+services:
+
+  db:
+    image: mysql
+    container_name: db
+    command: --default-authentication-plugin=mysql_native_password # плагин
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=0000
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=my-shop
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    volumes:
+      - ./sql/dump:/docker-entrypoint-initdb.d # загружаем дамп в db
+      - db:/var/lib/mysql # сохраняем стейт db
+    networks:
+      - mynet
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - 3000:3000
+
+  backend:
+    build: ./backend
+    container_name: backend
+    restart: always
+    ports:
+      - 4000:4000
+    networks:
+      - mynet
+    depends_on:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    expose:
+      - 8080
+    ports:
+      - 8080:80
+    networks:
+      - mynet
+
+
+# что-бы cбросить стейт db, используем флаг -p
+# docer-compose down -p
+volumes:
+  db:
+
+
+networks:
+  mynet:
+    driver: bridge

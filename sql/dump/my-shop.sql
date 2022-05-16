@@ -2,7 +2,8 @@
 -- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
-
+-- Хост: localhost:3306
+-- Время создания: Май 16 2022 г., 06:56
 -- Версия сервера: 5.7.24
 -- Версия PHP: 8.0.16
 
@@ -83,6 +84,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `login`, `pass`, `roleid`, `emile`) VALUES
+(1, 'admin', '$2b$04$.YwvliRT1te/0cJHL1mH/uqKcytXo2JySSqRUKSafURpIB6cYquJe', 'ADMIN', '');
+
+--
 -- Индексы сохранённых таблиц
 --
 
@@ -138,7 +146,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
