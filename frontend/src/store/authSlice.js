@@ -55,7 +55,7 @@ const regSlice = createSlice({
       state.cookie = action.payload.token
       state.role = action.payload.role
       if(state.cookie) {
-        window.cookieStore.delete('lore')
+        window.cookieStore.delete('lore') // # role
         window.cookieStore.delete('user')
         window.cookieStore.set({name: 'user', value: state.cookie, sameSite: 'lax'})
         window.cookieStore.set('role',state.role)

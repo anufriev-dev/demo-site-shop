@@ -128,7 +128,7 @@ const Panel = () => {
         variant="h1"
         sx={{...styleH1,mb: '1em'}}
     >
-        Заказы
+        Товары
     </Typography>
       <label style={{marginRight: '1em'}}>Искать по</label>
       <NativeSelect onChange={(e) => setValueSch(e.target.value)} value={valueSch} sx={{mb:'2em'}}>

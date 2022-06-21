@@ -24,4 +24,4 @@ app.use(cors({origin:process.env.CORS}))
 
 app.use('/auth/api', router);
 
-app.listen(PORT,() => console.log(`Сервер запущен на порту ${PORT}`))
+app.listen(PORT,() => console.log(`Server has been started: { port: ${PORT} }`))
