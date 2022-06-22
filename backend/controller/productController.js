@@ -41,7 +41,6 @@ class ProductController {
       if(oneProduct.length === 0) {
         return res.status(400).json({message: 'Поста не существует'})
       }
-      console.log(oneProduct)
       res.status(200).json(oneProduct)
       
     } catch (e) {
@@ -97,10 +96,8 @@ class ProductController {
         img = req.files.img
       }
       let id = req.params.id
-      console.log(img)
-      let {title ,price,rating,descpost } = req.body
 
-      console.log(title ,price,rating,descpost)
+      let {title ,price,rating,descpost } = req.body
 
       if (title)  await modelProduct.updatePostaPatch('title',title,id)
       if (price)  await modelProduct.updatePostaPatch('price',price,id)

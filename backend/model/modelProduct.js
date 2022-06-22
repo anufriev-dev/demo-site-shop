@@ -94,8 +94,9 @@ class ModelProduct {
   // (New) Обновить продукт по любому из полей 
   static updatePostaPatch(name,pole,id) {
     return new  Promise ((res,rej) =>{
-      connection.query("UPDATE product SET ? = ? WHERE productid = ?",
-      [name,pole,id],
+      console.log(pole)
+      connection.query("UPDATE product SET "+ name +" = ? WHERE productid = ?",
+      [pole,id],
       (err,data) => {
         if (err) rej(err)
         

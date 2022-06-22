@@ -8,7 +8,6 @@ const pagination                  = require('../middleware/pagination')
 const model                       = require('../model/modelProduct')
 const productController           = require('../controller/productController')
 const roleMiddleware              = require('../middleware/roleMiddleware')
-const {check}                     = require('express-validator')
 const {validBody}                 = require('../middleware/castomValidation')
 
 
