@@ -1,3 +1,10 @@
+/*
+ *  Логика: Авторизация && Регистрация
+ *  
+ *  1) Регистрация
+ *  2) Авторизация
+ */
+
 const path                        = require('path')
 const bcrypt                      = require('bcrypt')
 const modeleAuth                  = require('../model/modelAuth')
@@ -8,6 +15,7 @@ require('dotenv').config({path: path.resolve(__dirname, '..','config','.env')})
 
 
 class AuthController {
+  // Создать Пользователя (Регистрация)
   static async createUser (req,res) {
     try {
       const errors = validationResult(req)
@@ -28,6 +36,7 @@ class AuthController {
     }
   }
 
+  // (Авторизация)
   static async auth (req, res) {
     try {
       let {password,login} = req.body

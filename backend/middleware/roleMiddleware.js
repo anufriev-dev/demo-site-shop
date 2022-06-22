@@ -1,3 +1,7 @@
+/*
+ *  Валидация JWT - токена 
+ */
+
 const jwt                         = require('jsonwebtoken')
 require('dotenv').config({path: __dirname + '../config/.env'})
 

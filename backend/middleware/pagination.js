@@ -1,3 +1,6 @@
+/*
+ *  Пагинация страниц (Deprecated)
+ */
 
 const pagination = (model) => {
   return async function (req,res,next) {

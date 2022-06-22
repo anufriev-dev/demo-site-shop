@@ -1,3 +1,6 @@
+/*
+ *  Валидация (вариант моей реализации) специфично для проекта
+ */
 
 module.exports.validBody = (req,res,next) => {
   if(req.body.title === '') {

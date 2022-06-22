@@ -1,7 +1,17 @@
+/*
+ *  Запросы к базе данных: Заказы
+ * 
+ *  1) Создать заказ
+ *  2) Получить все заказы
+ *  3) Получить один заказ
+ *  4) Удалить заказы
+ */
+
 const connection                  = require('../config/db')
 
 
 class ModeleOrder {
+  // Создать заказ 
   static orderBy (articul,email,textArea) {
     return new Promise ((res,rej) => {
       connection.query(
@@ -15,6 +25,7 @@ class ModeleOrder {
       })
     })
   }
+  // Получить все заказы в виде объекта
   static orderGetAll () {
     return new Promise ((res,rej) => {
       connection.query("SELECT * FROM orderby", (err,data) => {
@@ -25,6 +36,7 @@ class ModeleOrder {
       })
     })
   }
+  // Получить один заказ по id
   static orderGetOne (id) {
     return new Promise((res,rej) => {
       connection.query("SELECT * FROM orderby WHERE idorder = ?",
@@ -37,6 +49,7 @@ class ModeleOrder {
       })
     })
   }
+  // Удалить заказ по id
   static deleteOrderByOne (id) {
     return new Promise((res,rej) => {
       connection.query("DELETE FROM orderby WHERE idorder = ?",[id],(err,data) => {

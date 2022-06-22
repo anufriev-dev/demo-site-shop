@@ -1,8 +1,13 @@
+/*
+ *  Endpoints (API): Заказы
+ */
+
 const express                     = require('express')
 const router                      = express.Router()
 const orderController             = require('../controller/orderController')
 const {check}                     = require('express-validator')
 const roleMiddleware              = require('../middleware/roleMiddleware')
+
 
 /**
  * @swagger

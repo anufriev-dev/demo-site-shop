@@ -1,8 +1,17 @@
+/*
+ *  Логика: Заказы
+ * 
+ *  1) Формирование заказа
+ *  2) Получить все заказы
+ *  3) Удаление заказа
+ */
+
 const modeleOrder                 = require('../model/modeleOrder')
 const {validationResult}          = require('express-validator')
 
 
 class OrderController {
+  // Сформировать заказ 
   static async order (req,res) {
     try {
       const errors = validationResult(req)
@@ -18,6 +27,7 @@ class OrderController {
       console.log(e)
     }
   }
+  // Вытащить все заказы из базы
   static async orderget (req,res) {
     try {
       let result = await modeleOrder.orderGetAll()
@@ -26,6 +36,7 @@ class OrderController {
       console.log(e)
     }
   }
+  // Удалить заказ из базы по id
   static async deleteOrder (req,res) {
     try {
       let {id} = req.params

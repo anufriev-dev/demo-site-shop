@@ -1,7 +1,15 @@
+/*
+ *  Запросы к базе данных: Авторизация && Регистрация
+ * 
+ *  1) Получить пользователя по login
+ *  2) Создание пользователя
+ */
+
 const connection                  = require('../config/db')
 
 
 class ModeleAuth {
+  // Вытаскиваем данные пользователя по логину
   static getLogin (login) {
     return new Promise ((res,rej) => {
       connection.query("SELECT * FROM user WHERE login = ?",
@@ -14,6 +22,7 @@ class ModeleAuth {
       })
     })
   }
+  // Создаём пользователя
   static createCell (pass,login,emile,role = 'USER') {
     return new Promise ((res,rej) => {
       connection.query(

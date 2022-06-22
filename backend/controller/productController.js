@@ -1,3 +1,13 @@
+/*
+ *  Логика: Продукция
+ * 
+ *  1) Получить сущность всей продукции
+ *  2) Получить продукт по id
+ *  3) Удалить продукт по id
+ *  4) Создать продукт
+ *  5) Обновить продукт 
+ */
+
 const modelProduct                = require('../model/modelProduct')
 const uuid                        = require('uuid')
 const path                        = require('path')
@@ -5,6 +15,10 @@ const fs                          = require('fs')
 
 
 class ProductController {
+  // 1) Получить все продукты 
+  // 2) Вернуть объект который содержит
+  //   1.1 Объект с этими продуктами
+  //   1.2 Количество этих продуктов
   static async getProductAll (req,res) {
     if(res.paginationResult.data.length !== 0){
       res.send(res.paginationResult)
@@ -15,6 +29,7 @@ class ProductController {
       res.send(result)
     }
   }
+  // Получить один продукт с базы, по id
   static async getOneProduct (req, res) {
     try {
       let id = req.params.id
@@ -33,6 +48,7 @@ class ProductController {
       return res.status(400).json(e)
     }
   }
+  // Удалить один продукт с базы, по id
   static async deleteProduct (req,res) {
     try {
       let id = parseInt(req.params.id)
@@ -56,6 +72,7 @@ class ProductController {
       console.log(e)
     }
   }
+  // Создать один продукт
   static async createProduct (req, res) {
     try {
       let {title,price,rating,descpost} = req.body;
@@ -72,6 +89,7 @@ class ProductController {
       console.log(e)
     }
   }
+  // Обновить один продукт по любому кол-ву полей
   static async updateProductPatch (req,res) {
     try {
       let img;

@@ -1,3 +1,7 @@
+/*
+ *  Endpoints (API): Продукция
+ */
+
 const express                     = require('express')
 const router                      = express.Router()
 const pagination                  = require('../middleware/pagination')
@@ -6,6 +10,7 @@ const productController           = require('../controller/productController')
 const roleMiddleware              = require('../middleware/roleMiddleware')
 const {check}                     = require('express-validator')
 const {validBody}                 = require('../middleware/castomValidation')
+
 
 /**
  * @swagger

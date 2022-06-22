@@ -1,7 +1,19 @@
+/*
+ *  Запросы к базе данных: Продукция
+ * 
+ *  1) Получить один продукт
+ *  2) Получить всю продукцию
+ *  3) Удалить продукт
+ *  4) Получить один продукт
+ *  5) Создать продукт
+ *  6) Обновить продукт
+ */
+
 const connection                  = require('../config/db')
 
 
 class ModelProduct {
+  // Получить продукт по id
   static getProductId(id) {
     return new Promise((res,rej) => {
       connection.query("SELECT * FROM product WHERE productid = ?",
@@ -14,7 +26,7 @@ class ModelProduct {
       })
     })
   }
-
+  // Получить все всю продукцию
   static getPost() {
     return new Promise((res,rej) => {
       connection.query('SELECT * FROM product',(err,data) => {
@@ -25,6 +37,7 @@ class ModelProduct {
       })
     })
   }
+  // Удалить продукт по id
   static deletePost(id) {
     return new Promise((res,rej) => {
       connection.query("DELETE FROM product WHERE productid = ?",
@@ -37,6 +50,7 @@ class ModelProduct {
       })
     })
   }
+  // Получить продукт по id
   static findPost (id) {
     return new Promise((res,rej) => {
       connection.query("SELECT * FROM product WHERE productid = ?",
@@ -49,6 +63,7 @@ class ModelProduct {
       })
     })
   }
+  // Создать продукт
   static createPost (title,price,rating,descpost,filename,articul) {
     return new Promise ((res, rej) => {
       connection.query(
@@ -62,6 +77,7 @@ class ModelProduct {
         })
     })
   }
+  // WARNING (Deprecated) !!! Обновить продукт по любому из полей (НЕ ИСПОЛЬЗОВАТЬ !!!)
   static updatePost (title,price,rating,descpost,filename,id) {
     return new Promise((res, rej) => {
       connection.query(
@@ -75,6 +91,7 @@ class ModelProduct {
         })
     })
   }
+  // (New) Обновить продукт по любому из полей 
   static updatePostaPatch(name,pole,id) {
     return new  Promise ((res,rej) =>{
       connection.query("UPDATE product SET ? = ? WHERE productid = ?",

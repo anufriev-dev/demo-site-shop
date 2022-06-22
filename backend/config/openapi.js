@@ -1,7 +1,10 @@
+/*
+ *  Схема документации Swagger (Open API)
+ */
+
 const path = require('path')
 const swaggerJsdoc                = require('swagger-jsdoc')
 require('dotenv').config({path: path.resolve(__dirname,'.env') })
-
 
 
 const option = {
