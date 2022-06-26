@@ -1,10 +1,10 @@
 FROM node:18.0.0
 
   # сделать папку /backend текущим рабочим каталогом
-WORKDIR /backend
+WORKDIR /backend/
 
   # скопировать 'package.json' и 'package-lock.json' (если есть)
-COPY ["package*.json","/backend"]
+COPY ["package*.json","/backend/"]
 
   # установить зависимости проекта
 RUN npm install

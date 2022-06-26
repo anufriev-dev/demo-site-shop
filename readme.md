@@ -1,6 +1,6 @@
 # my-shop 🚀
 
->v.1.0.4 
+>v.1.0.5 
 
 ### Build Setup 
 

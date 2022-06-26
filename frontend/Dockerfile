@@ -1,12 +1,12 @@
 FROM node:18.0.0
 
-WORKDIR /frontend
+WORKDIR /frontend/
 
-COPY ["package*.json", "/frontend"]
+COPY ["package*.json", "/frontend/"]
 
 RUN npm install
 
-COPY . /frontend
+COPY . /frontend/
 
 EXPOSE 3000
 
