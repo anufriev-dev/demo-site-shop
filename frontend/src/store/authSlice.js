@@ -55,10 +55,24 @@ const regSlice = createSlice({
       state.cookie = action.payload.token
       state.role = action.payload.role
       if(state.cookie) {
-        window.cookieStore.delete('lore') // # role
-        window.cookieStore.delete('user')
-        window.cookieStore.set({name: 'user', value: state.cookie, sameSite: 'lax'})
-        window.cookieStore.set('role',state.role)
+        // для https 
+        // window.cookieStore.delete('role')
+        // window.cookieStore.delete('user')
+        // window.cookieStore.set({name: 'user', value: state.cookie, sameSite: 'lax'})
+        // window.cookieStore.set('role',state.role)
+        (function() {
+          var cookies = document.cookie.split(';')
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i]
+            var eqPos = cookie.indexOf('=')
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;'
+            document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+          }
+        })()
+        document.cookie = `user=${state.cookie}`
+        document.cookie = `role=${state.role}`
+
         state.login = ''
         state.pass = ''
         alert('Успех')
