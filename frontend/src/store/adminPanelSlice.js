@@ -211,5 +211,15 @@ const adminPanelSlice = createSlice({
   }
 })
 
-export const {setDescpost,setRating,setTitle,setImg,setPrice,setOneProductTitle,setOneProductPrice,setProductid} = adminPanelSlice.actions
+export const {
+  setDescpost,
+  setRating,
+  setTitle,
+  setImg,
+  setPrice,
+  setOneProductTitle,
+  setOneProductPrice,
+  setProductid
+  
+} = adminPanelSlice.actions
 export default adminPanelSlice.reducer

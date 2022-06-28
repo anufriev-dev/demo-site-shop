@@ -9,6 +9,7 @@ import {FormReg} from '../pages/FormReg'
 import Redirect from '../pages/Redirect'
 import { useDispatch } from 'react-redux'
 import PanelOrder from '../pages/PanelOrder'
+import RequireAuth from '../hoc/RequireAuth'
 import {Routes,Route} from 'react-router-dom'
 import {BrowserRouter} from 'react-router-dom'
 import { setKeys } from '../store/basketSlice'
@@ -31,10 +32,13 @@ const App = () => {
   if(!localStorage.getItem('limit')) {
     localStorage.setItem('limit',6)
   }
+  if(!localStorage.getItem('ADMIN')) {
+    localStorage.setItem('ADMIN','')
+  }
 
   useEffect(() => {
     const keys = Object.keys(localStorage)
-    dispatch(setCountBasket(localStorage.length - 3))
+    dispatch(setCountBasket(localStorage.length - 4))
     dispatch(setKeys(keys))
     dispatch(setBasket(JSON.parse(localStorage.getItem('basket'))))
     dispatch(setCurrent(JSON.parse(localStorage.getItem('currentPage'))))
@@ -53,9 +57,21 @@ const App = () => {
           <Route path="/feed" element={<FormReg />}/>
           <Route path="/feed/goodreq" element={<Redirect />}/>
           {/* Админка */}
-          <Route path="/admin" element={<Admin />}/>
-          <Route path="/admin/panel" element={<Panel />}/>
-          <Route path="/admin/order" element={<PanelOrder />} />
+          <Route path="/admin" element={
+            <RequireAuth>
+              <Admin />
+            </RequireAuth>
+          }/>
+          <Route path="/admin/panel" element={
+            <RequireAuth>
+              <Panel />
+            </RequireAuth>
+          }/>
+          <Route path="/admin/order" element={
+            <RequireAuth>
+              <PanelOrder />
+            </RequireAuth>
+          } />
           {/* Корзина */}
           <Route path="/basket" element={<Basket />} />
           <Route path="/basket/order" element={<RedirectByOrder />} />

@@ -1,7 +1,8 @@
 import { Box } from '@mui/system'
 import React,{useState } from 'react'
 import { styleModal } from '../utils/style'
-import { authariz } from '../store/authSlice'
+import { authariz, setAdmin } from '../store/authSlice'
+import deleteCookie from '../utils/deleteCookie'
 import { Home, Logout } from '@mui/icons-material'
 import {useSelector,useDispatch} from 'react-redux'
 import {useLocation,useNavigate} from 'react-router-dom'
@@ -11,7 +12,7 @@ import { Button, IconButton, Modal, TextField, Tooltip, Typography } from '@mui/
 
 const Registry = () => {
 
-  const {login,pass} = useSelector(state => state.auth)
+  const {login,pass,admin} = useSelector(state => state.auth)
   const location = useLocation()
 
   const dispath = useDispatch()
@@ -30,16 +31,8 @@ const Registry = () => {
     // для https 
     // window.cookieStore.delete('user')
     // window.cookieStore.delete('role')
-    (function() {
-      var cookies = document.cookie.split(';')
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i]
-        var eqPos = cookie.indexOf('=')
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
-        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;'
-        document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
-      }
-    })()
+    deleteCookie()
+    dispath(setAdmin(false))
     localStorage.clear()
     navigate('/')
 

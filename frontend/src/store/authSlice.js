@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import deleteCookie from '../utils/deleteCookie'
 
 export const authariz = createAsyncThunk(
   'registration/authariz',
@@ -36,7 +37,7 @@ const regSlice = createSlice({
     login: '',
     pass: '',
     cookie: '',
-    role: ''
+    role: '',
   },
   reducers: {
     setLogin (state,action) {
@@ -48,6 +49,9 @@ const regSlice = createSlice({
     nulls (state,action) {
       state.login = ''
       state.pass = ''
+    },
+    setAdmin(state,action) {
+      state.admin = action.payload
     }
   },
   extraReducers: {
@@ -55,24 +59,20 @@ const regSlice = createSlice({
       state.cookie = action.payload.token
       state.role = action.payload.role
       if(state.cookie) {
+        localStorage.setItem('ADMIN','')
         // для https 
         // window.cookieStore.delete('role')
         // window.cookieStore.delete('user')
         // window.cookieStore.set({name: 'user', value: state.cookie, sameSite: 'lax'})
         // window.cookieStore.set('role',state.role)
-        (function() {
-          var cookies = document.cookie.split(';')
-          for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i]
-            var eqPos = cookie.indexOf('=')
-            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
-            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;'
-            document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
-          }
-        })()
+        deleteCookie()
+
         document.cookie = `user=${state.cookie}`
         document.cookie = `role=${state.role}`
-
+        
+        if(state.role === 'ADMIN'){
+          localStorage.setItem('ADMIN','ADMIN')
+        }
         state.login = ''
         state.pass = ''
         alert('Успех')
@@ -86,5 +86,5 @@ const regSlice = createSlice({
   }
 })
 
-export const {setLogin,setPass,nulls} = regSlice.actions
+export const {setLogin,setPass,nulls,setAdmin} = regSlice.actions
 export default regSlice.reducer
