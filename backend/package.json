@@ -1,15 +1,15 @@
 {
-  "name": "my-shop",
-  "version": "1.0.5",
-  "description": "",
+  "name": "demo-site-shop",
+  "version": "0.0.0",
+  "private": "true",
+  "description": "backend for the site",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
     "devbug": "SET DEBUG=express:* && npm run dev"
   },
   "keywords": [],
-  "author": "GeorgyDev11111",
-  "license": "ISC",
+  "author": "Anufriev Georgy",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
