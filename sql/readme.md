@@ -1,4 +1,5 @@
->default setings:
- #### Administrator:
-User: **admin**
-Password: **admin**
+
+Учётная запись администратора на сайте:
+
+* User: **admin**
+* Password: **admin**
